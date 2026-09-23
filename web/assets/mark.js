@@ -55,6 +55,20 @@
       innerMarkup(variant, hex, hex, '') + '</svg>';
   }
 
+  // The dimensional (gradient + shadow) file, for concepts 2 & 4 — matches
+  // mark-color.svg in the exported asset pack exactly, defs embedded so the
+  // file is self-contained.
+  function standaloneDimensionalSVG(variant) {
+    var defs =
+      '<defs>' +
+      '<linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6B69"></stop><stop offset="1" stop-color="#0E2F2E"></stop></linearGradient>' +
+      '<radialGradient id="cg" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D59A74"></stop><stop offset="1" stop-color="#9A5B33"></stop></radialGradient>' +
+      '<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0E2F2E" flood-opacity="0.4"></feDropShadow></filter>' +
+      '</defs>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="40 25 120 185">' + defs +
+      innerMarkup(variant, 'url(#tg)', 'url(#cg)', ' filter="url(#sh)"') + '</svg>';
+  }
+
   function conceptMark(c, size, override) {
     override = override || {};
     return markSVG({
@@ -88,15 +102,17 @@
     setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
   }
 
+  // hex === 'gradient' downloads the true dimensional version instead of a
+  // flat recolor (only meaningful for concepts 2 & 4).
   function downloadSVG(variant, hex, filename) {
-    var svg = standaloneMarkSVG(variant, hex);
+    var svg = hex === 'gradient' ? standaloneDimensionalSVG(variant) : standaloneMarkSVG(variant, hex);
     triggerDownload(new Blob([svg], { type: 'image/svg+xml' }), filename);
   }
 
   // Rasterizes the standalone SVG to a transparent-background PNG client-side.
   function downloadPNG(variant, hex, filename, px) {
     px = px || 1024;
-    var svg = standaloneMarkSVG(variant, hex);
+    var svg = hex === 'gradient' ? standaloneDimensionalSVG(variant) : standaloneMarkSVG(variant, hex);
     var svgUrl = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
     var img = new Image();
     img.onload = function () {
@@ -114,7 +130,8 @@
 
   window.RR = {
     TEAL: TEAL, CLAY: CLAY, CONCEPTS: CONCEPTS,
-    markSVG: markSVG, standaloneMarkSVG: standaloneMarkSVG, conceptMark: conceptMark, hydrate: hydrate,
+    markSVG: markSVG, standaloneMarkSVG: standaloneMarkSVG, standaloneDimensionalSVG: standaloneDimensionalSVG,
+    conceptMark: conceptMark, hydrate: hydrate,
     downloadSVG: downloadSVG, downloadPNG: downloadPNG
   };
 })();

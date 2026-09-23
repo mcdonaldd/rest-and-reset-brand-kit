@@ -43,14 +43,27 @@
 
   .picker { margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
   .picker-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin-bottom: 10px; }
-  .picker-preview { width: 84px; height: 84px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .15s; border: 1px solid oklch(85% 0.01 85); }
-  .picker-preview.on-dark { background: var(--teal); border-color: var(--teal); }
-  .picker-preview.on-light { background: oklch(99% 0.005 85); }
+  /* Checkerboard = "this file exports with a transparent background," the
+     standard design-tool convention — never a solid fill, so recoloring the
+     icon can never look like it's recoloring the background too. */
+  .picker-preview {
+    width: 84px; height: 84px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    border: 1px solid oklch(85% 0.01 85);
+    background-image:
+      linear-gradient(45deg, oklch(90% 0.005 85) 25%, transparent 25%),
+      linear-gradient(-45deg, oklch(90% 0.005 85) 25%, transparent 25%),
+      linear-gradient(45deg, transparent 75%, oklch(90% 0.005 85) 75%),
+      linear-gradient(-45deg, transparent 75%, oklch(90% 0.005 85) 75%);
+    background-size: 14px 14px;
+    background-position: 0 0, 0 7px, 7px -7px, -7px 0;
+    background-color: oklch(99% 0.005 85);
+  }
   .picker-controls { min-width: 0; }
   .swatches-mini { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
   .mini { width: 26px; height: 26px; border-radius: 50%; border: 1px solid oklch(0% 0 0 / 0.12); cursor: pointer; padding: 0; position: relative; }
   .mini.light { border-color: oklch(80% 0.01 85); }
   .mini[aria-pressed="true"]::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--teal); }
+  .mini.gradient { background: radial-gradient(circle at 32% 28%, #D59A74 0%, #D59A74 22%, transparent 26%), linear-gradient(180deg, #2F6B69, #0E2F2E); box-shadow: 0 1px 2px rgba(0,0,0,0.35); }
   .hexval { display: inline-flex; align-items: center; margin-left: 6px; font-size: 12px; color: var(--muted); font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
   .picker-row2 { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
   .fmt-group { display: inline-flex; border: 1px solid var(--teal); border-radius: 999px; overflow: hidden; }
@@ -289,15 +302,16 @@
             '<div class="tile-label">Single color</div></div>' +
         '</div>' +
 
-        '<div class="picker" data-picker="' + n + '" data-variant="' + c.mark + '">' +
+        '<div class="picker" data-picker="' + n + '" data-variant="' + c.mark + '" data-default="' + (c.dimensional ? 'gradient' : quickColors[0].hex) + '">' +
           '<div class="picker-preview on-dark" data-preview></div>' +
           '<div class="picker-controls">' +
             '<div class="picker-label">Recolor &amp; download the icon</div>' +
             '<div class="swatches-mini" role="group" aria-label="Quick colors">' +
-              quickColors.map(function (q, i) {
-                return '<button type="button" class="mini' + (isLight(q.hex) ? ' light' : '') + '" style="background:' + q.hex + '" data-hex="' + q.hex + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '" aria-label="' + q.label + '" title="' + q.label + ' &middot; ' + q.hex + '"></button>';
+              (c.dimensional ? '<button type="button" class="mini gradient" data-hex="gradient" aria-pressed="true" aria-label="Original gradient" title="Original &middot; gradient + shadow"></button>' : '') +
+              quickColors.map(function (q) {
+                return '<button type="button" class="mini' + (isLight(q.hex) ? ' light' : '') + '" style="background:' + q.hex + '" data-hex="' + q.hex + '" aria-pressed="' + (!c.dimensional && q.hex === quickColors[0].hex ? 'true' : 'false') + '" aria-label="' + q.label + '" title="' + q.label + ' &middot; ' + q.hex + '"></button>';
               }).join('') +
-              '<span class="hexval" data-hexval>' + quickColors[0].hex + '</span>' +
+              '<span class="hexval" data-hexval>' + (c.dimensional ? 'Original (gradient)' : quickColors[0].hex) + '</span>' +
             '</div>' +
             '<div class="picker-row2">' +
               '<div class="fmt-group" role="group" aria-label="File format">' +
@@ -332,15 +346,16 @@
     var hexLabel = panel.querySelector('[data-hexval]');
     var pngNote = panel.querySelector('[data-png-note]');
     var fmt = 'svg';
-    var hex = quickColors[0].hex;
+    var hex = panel.getAttribute('data-default');
 
     function renderPreview() {
-      preview.className = 'picker-preview ' + (isLight(hex) ? 'on-dark' : 'on-light');
-      preview.innerHTML = RR.markSVG({ variant: variant, fill: hex, dot: hex, dimensional: false, size: 52 });
+      preview.innerHTML = hex === 'gradient'
+        ? RR.markSVG({ variant: variant, dimensional: true, size: 52 })
+        : RR.markSVG({ variant: variant, fill: hex, dot: hex, dimensional: false, size: 52 });
     }
     function setHex(newHex, sourceBtn) {
       hex = newHex;
-      hexLabel.textContent = hex.toUpperCase();
+      hexLabel.textContent = hex === 'gradient' ? 'Original (gradient)' : hex.toUpperCase();
       panel.querySelectorAll('.mini').forEach(function (b) {
         b.setAttribute('aria-pressed', String(b === sourceBtn));
       });
