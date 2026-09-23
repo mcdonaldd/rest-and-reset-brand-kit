@@ -1,0 +1,21 @@
+:root {
+  --teal: oklch(32% 0.055 195);
+  --teal-tint: oklch(88% 0.03 195);
+  --cream: #E8DCC8;
+  --clay: oklch(60% 0.09 45);
+  --ink: oklch(20% 0.02 195);
+  --page: oklch(96% 0.015 85);
+  --card: oklch(99% 0.005 85);
+  --line: oklch(90% 0.01 85);
+  --rule: oklch(88% 0.01 85);
+  --heading: oklch(24% 0.05 195);
+  --body: oklch(40% 0.02 85);
+  --muted: oklch(50% 0.02 85);
+  --label: oklch(55% 0.02 85);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--body); font-family: 'Archivo', sans-serif; -webkit-font-smoothing: antialiased; }
+a { color: inherit; }
+.svg-defs { position: absolute; width: 0; height: 0; }
+[data-mark] { display: inline-flex; line-height: 0; }

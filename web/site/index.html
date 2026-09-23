@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rest &amp; Reset Website Mockup</title>
+<meta name="description" content="Concept mockup of the Rest &amp; Reset homepage using the new brand kit directions.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Piazzolla:wght@500;600&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/brand.css">
+<style>
+  :root { --display: 'Lora', serif; --display-weight: 600; --display-case: none; --display-track: 0; --accent: var(--teal); }
+  body[data-concept="2"] { --display: 'Piazzolla', serif; --accent: var(--clay); }
+  body[data-concept="3"] { --display: 'Archivo', sans-serif; --display-track: -0.01em; }
+  body[data-concept="4"] { --display: 'Archivo', sans-serif; --display-weight: 700; --display-case: uppercase; --display-track: 0.01em; --accent: var(--clay); }
+  body { background: #FBF8F3; color: oklch(30% 0.02 195); }
+
+  /* Mockup chrome */
+  .chrome { position: sticky; top: 0; z-index: 20; background: var(--ink); color: oklch(88% 0.01 85); font-size: 13px; }
+  .chrome-in { max-width: 1180px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+  .chrome-title { font-weight: 600; letter-spacing: 0.04em; }
+  .chrome-title span { color: oklch(70% 0.02 85); font-weight: 400; }
+  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
+  .pill { font: inherit; font-size: 12px; font-weight: 600; background: transparent; color: oklch(88% 0.01 85); border: 1px solid oklch(45% 0.03 195); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
+  .pill[aria-pressed="true"] { background: var(--cream); color: #1F4A48; border-color: var(--cream); }
+  .pill:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
+  .chrome a.back { color: var(--cream); font-weight: 600; text-decoration: none; white-space: nowrap; }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
+  .display { font-family: var(--display); font-weight: var(--display-weight); text-transform: var(--display-case); letter-spacing: var(--display-track); color: var(--heading); }
+  .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: oklch(45% 0.03 195); }
+
+  /* Header */
+  .site-header { background: #FBF8F3; border-bottom: 1px solid var(--line); }
+  .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 16px; padding-bottom: 16px; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .brand .word { font-family: var(--display); font-weight: var(--display-weight); font-size: 18px; letter-spacing: 0.02em; color: var(--heading); line-height: 1.1; }
+  .brand .sub { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
+  .nav { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 600; }
+  .nav .links { display: contents; }
+  .nav .links a { text-decoration: none; color: oklch(30% 0.03 195); }
+  .nav .links a:hover { color: var(--teal); text-decoration: underline; text-underline-offset: 4px; }
+
+  .btn { display: inline-block; text-decoration: none; font-weight: 600; font-size: 15px; padding: 13px 22px; border-radius: 999px; border: 1.5px solid transparent; }
+  .btn-primary { background: var(--teal); color: var(--cream); }
+  .btn-primary:hover { background: oklch(27% 0.05 195); }
+  .btn-ghost { border-color: var(--teal); color: var(--teal); }
+  .btn-ghost:hover { background: var(--teal-tint); }
+  .btn-sm { font-size: 13px; padding: 9px 16px; }
+  body[data-concept="4"] .btn { border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; }
+
+  /* Hero */
+  .hero { padding: 72px 0 80px; }
+  .hero .container { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 56px; align-items: center; }
+  .hero h1 { font-size: 50px; line-height: 1.1; margin: 14px 0 18px; }
+  .hero p { font-size: 18px; line-height: 1.6; color: var(--body); max-width: 520px; margin: 0 0 30px; }
+  .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-art { position: relative; aspect-ratio: 1; border-radius: 28px; background: var(--teal); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .hero-art::before { content: ""; position: absolute; inset: auto -20% -45% -20%; height: 70%; border-radius: 50%; background: oklch(36% 0.055 195); }
+  .hero-art [data-slot] { position: relative; }
+  .hero-note { position: absolute; left: 20px; bottom: 20px; right: 20px; background: rgba(251,248,243,0.94); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: oklch(30% 0.03 195); display: flex; gap: 12px; align-items: center; }
+  .hero-note strong { color: var(--heading); display: block; font-size: 14px; }
+  .hero-note .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+
+  /* Generic band */
+  .band { padding: 76px 0; }
+  .band-tint { background: oklch(94% 0.02 195); }
+  .band-head { max-width: 680px; margin-bottom: 32px; }
+  .band-head.center { margin-left: auto; margin-right: auto; text-align: center; }
+  .band-head h2 { font-size: 34px; line-height: 1.15; margin: 10px 0 14px; }
+  .band-head p { font-size: 16px; line-height: 1.6; color: var(--body); margin: 0 0 10px; }
+
+  /* Thoughtful approach */
+  .approach .container { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: start; }
+  .affirmations { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
+  .affirmations li { display: flex; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--heading); font-weight: 600; }
+  .affirmations .tick { width: 20px; height: 20px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 2px; }
+  body[data-concept="2"] .affirmations .tick, body[data-concept="4"] .affirmations .tick { background: var(--clay); }
+  .link-more { display: inline-block; margin-top: 22px; font-size: 14px; font-weight: 700; color: var(--teal); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
+  body[data-concept="2"] .link-more, body[data-concept="4"] .link-more { color: var(--clay); }
+
+  /* Who we work with */
+  .who ul { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 10px; max-width: 620px; }
+  .who li { font-size: 15.5px; line-height: 1.5; padding-left: 22px; position: relative; color: var(--body); }
+  .who li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+  /* Emphasizes grid */
+  .services { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+  .service { background: #FBF8F3; border-radius: 16px; padding: 26px; border: 1px solid oklch(88% 0.02 195); }
+  .service .num { width: 38px; height: 38px; border-radius: 50%; background: var(--teal); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-bottom: 18px; }
+  body[data-concept="2"] .service .num, body[data-concept="4"] .service .num { background: var(--clay); }
+  .service h3 { font-size: 20px; margin: 0 0 8px; }
+  .service p { font-size: 14.5px; line-height: 1.6; color: var(--body); margin: 0; }
+
+  /* Offer / clarity */
+  .offer-card { background: var(--teal); color: oklch(92% 0.015 85); border-radius: 22px; padding: 44px; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 40px; align-items: center; }
+  .offer-card .eyebrow { color: oklch(82% 0.03 195); }
+  .offer-card h2 { color: var(--cream); }
+  .offer-card p { font-size: 15.5px; line-height: 1.65; margin: 0 0 14px; }
+  .offer-card ul { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 8px; }
+  .offer-card li { font-size: 14.5px; padding-left: 20px; position: relative; }
+  .offer-card li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--cream); }
+  .offer-panel { background: oklch(38% 0.05 195); border-radius: 16px; padding: 28px; text-align: center; }
+  .offer-panel .price { font-size: 38px; color: var(--cream); }
+  .offer-panel .price-label { font-size: 13px; color: oklch(80% 0.02 85); margin-top: 4px; }
+  .offer-panel .btn { margin-top: 20px; width: 100%; text-align: center; box-sizing: border-box; }
+
+  /* Why choose + testimonial */
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 40px; }
+  .why { padding: 24px 0 0; border-top: 2px solid var(--teal); }
+  body[data-concept="2"] .why, body[data-concept="4"] .why { border-top-color: var(--clay); }
+  .why h3 { font-size: 18px; margin: 0 0 8px; }
+  .why p { font-size: 14px; line-height: 1.6; color: var(--body); margin: 0; }
+  .testimonial { background: var(--cream); border-radius: 18px; padding: 36px 40px; text-align: center; max-width: 720px; margin: 0 auto; }
+  .testimonial blockquote { margin: 0 0 14px; font-family: var(--display); font-size: 19px; line-height: 1.5; color: oklch(28% 0.04 195); font-style: italic; }
+  body[data-concept="4"] .testimonial blockquote { font-style: normal; }
+  .testimonial cite { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-style: normal; }
+
+  /* Mission band */
+  .mission { background: var(--teal); color: oklch(92% 0.015 85); text-align: center; }
+  .mission .container { max-width: 780px; }
+  .mission .eyebrow { color: oklch(82% 0.03 195); }
+  .mission h2 { color: var(--cream); font-size: 32px; margin: 10px 0 16px; }
+  .mission p { font-size: 16.5px; line-height: 1.7; margin: 0 0 22px; }
+
+  /* Get started CTA */
+  .cta-band { text-align: center; }
+  .cta-band h2 { font-size: 32px; margin: 10px 0 26px; }
+
+  /* Visit */
+  .visit .container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
+  .visit dl { margin: 0; display: grid; gap: 18px; }
+  .visit dt { font-size: 12px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .visit dd { margin: 4px 0 0; font-size: 17px; color: var(--heading); }
+  .visit dd a { text-decoration: none; }
+  .visit dd a:hover { text-decoration: underline; }
+  .map { border-radius: 20px; min-height: 280px; background:
+      linear-gradient(90deg, transparent 49%, oklch(86% 0.02 195) 49%, oklch(86% 0.02 195) 51%, transparent 51%) 0 0 / 80px 80px,
+      linear-gradient(0deg, transparent 49%, oklch(86% 0.02 195) 49%, oklch(86% 0.02 195) 51%, transparent 51%) 0 0 / 80px 80px,
+      oklch(92% 0.02 195);
+    position: relative; display: flex; align-items: center; justify-content: center; }
+  .pin { background: var(--teal); color: var(--cream); padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 18px oklch(20% 0.04 195 / 0.25); }
+
+  /* Footer */
+  .footer { background: var(--ink); color: oklch(78% 0.02 85); padding-top: 52px; font-size: 13.5px; }
+  .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid oklch(28% 0.02 195); }
+  .footer .brand .word { color: var(--cream); }
+  .footer .brand .sub { color: oklch(70% 0.02 85); }
+  .footer p.desc { margin: 16px 0 0; line-height: 1.6; max-width: 280px; color: oklch(72% 0.02 85); }
+  .footer h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(85% 0.01 85); margin: 0 0 16px; }
+  .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .footer a { color: oklch(78% 0.02 85); text-decoration: none; }
+  .footer a:hover { color: var(--cream); text-decoration: underline; }
+  .footer-bottom { max-width: 1180px; margin: 0 auto; padding: 18px 32px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: oklch(62% 0.02 85); font-size: 12.5px; }
+
+  .disclaimer { text-align: center; font-size: 12px; color: var(--muted); padding: 18px 16px 28px; background: var(--ink); }
+  .disclaimer a { color: var(--cream); }
+
+  @media (max-width: 900px) {
+    .nav .links { display: none; }
+    .hero { padding: 44px 0 56px; }
+    .hero .container, .approach .container, .visit .container { grid-template-columns: 1fr; gap: 32px; }
+    .hero h1 { font-size: 38px; }
+    .hero-art { max-width: 460px; width: 100%; }
+    .offer-card { grid-template-columns: 1fr; padding: 30px; }
+    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+  }
+  @media (max-width: 600px) {
+    .container { padding: 0 16px; }
+    .chrome-in { padding: 10px 16px; }
+    .pills { margin-left: 0; width: 100%; }
+    .band { padding: 52px 0; }
+    .hero h1 { font-size: 32px; }
+    .band-head h2, .mission h2, .cta-band h2 { font-size: 26px; }
+    .brand .sub { display: none; }
+    .testimonial { padding: 28px 22px; }
+  }
+</style>
+</head>
+<body data-concept="1">
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(48% 0.065 195)"></stop>
+      <stop offset="100%" stop-color="oklch(24% 0.05 195)"></stop>
+    </linearGradient>
+    <radialGradient id="clayGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="oklch(74% 0.09 45)"></stop>
+      <stop offset="100%" stop-color="oklch(52% 0.09 45)"></stop>
+    </radialGradient>
+    <filter id="markShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="oklch(20% 0.04 195)" flood-opacity="0.4"></feDropShadow>
+    </filter>
+  </defs>
+</svg>
+
+<div class="chrome" role="region" aria-label="Mockup controls">
+  <div class="chrome-in">
+    <div class="chrome-title">Website mockup <span>&middot; restandresetchiro.com, restyled</span></div>
+    <div class="pills" role="group" aria-label="Logo direction">
+      <button class="pill" data-set="1" aria-pressed="true">1 &middot; Classic Simple</button>
+      <button class="pill" data-set="2" aria-pressed="false">2 &middot; Modern Spine</button>
+      <button class="pill" data-set="3" aria-pressed="false">3 &middot; Clean Sans</button>
+      <button class="pill" data-set="4" aria-pressed="false">4 &middot; Bold Signage</button>
+    </div>
+    <a class="back" href="/">&larr; Brand kit</a>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="#top" aria-label="Rest &amp; Reset home">
+      <span data-slot="mark" data-size="44"></span>
+      <span><div class="word">REST &amp; RESET</div><div class="sub">Dr. Jared Wilson &middot; Chiropractic Care</div></span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <span class="links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#testimonials">Testimonials</a>
+        <a href="#visit">Contact</a>
+      </span>
+      <a class="btn btn-primary btn-sm" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Schedule a Call or Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="container">
+      <div>
+        <div class="eyebrow">Precision Upper Cervical Care in Oregon City</div>
+        <h1 class="display">From neurological stress to restored ease.</h1>
+        <p>Brain-focused chiropractic for individuals and families seeking clarity, structure, and lasting change.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Schedule a Call or Visit</a>
+          <a class="btn btn-ghost" href="#about">Learn More</a>
+        </div>
+      </div>
+      <div class="hero-art">
+        <span data-slot="mark" data-size="260" data-fill="#E8DCC8" data-flat></span>
+        <div class="hero-note"><span class="dot"></span><div><strong>Gentle, specific corrections</strong>Upper cervical analysis, tailored to you</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band approach" id="about">
+    <div class="container">
+      <div>
+        <div class="eyebrow">A Thoughtful Approach to Care</div>
+        <h2 class="display">At Rest &amp; Reset, care begins with understanding.</h2>
+        <p>The upper cervical spine &mdash; the region closest to the brain and brainstem &mdash; plays a significant role in neurological regulation. Restriction, altered proprioception, or imbalance in this region can contribute to patterns that extend far beyond the neck.</p>
+        <a class="link-more" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Learn More</a>
+      </div>
+      <ul class="affirmations">
+        <li><span class="tick"></span>Each case is evaluated carefully to identify contributing patterns.</li>
+        <li><span class="tick"></span>Intervention is minimal and specific.</li>
+        <li><span class="tick"></span>Progress is monitored thoughtfully.</li>
+        <li><span class="tick"></span>The goal is not ongoing dependency &mdash; it&rsquo;s change that holds.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="band band-tint who">
+    <div class="container">
+      <div class="band-head">
+        <div class="eyebrow">Who We Work With</div>
+        <h2 class="display">Dr. Jared Wilson enjoys working with:</h2>
+      </div>
+      <ul>
+        <li>Children and developing nervous systems</li>
+        <li>Pregnant and postpartum individuals</li>
+        <li>Individuals experiencing headaches or dizziness</li>
+        <li>Health-conscious adults seeking optimization</li>
+        <li>Those who have tried multiple approaches without lasting resolution</li>
+      </ul>
+      <p style="max-width:620px;font-size:15.5px;line-height:1.6;">Care is not limited to any one group. If you are ready to move beyond masking symptoms and address neurological stress at its source, you belong here.</p>
+    </div>
+  </section>
+
+  <section class="band" id="services">
+    <div class="container">
+      <div class="band-head">
+        <div class="eyebrow">What to Expect</div>
+        <h2 class="display">Upper cervical care at Rest &amp; Reset emphasizes:</h2>
+      </div>
+      <div class="services">
+        <article class="service">
+          <div class="num">01</div>
+          <h3 class="display">Gentle Specific Adjustments</h3>
+          <p>Precise, low-force corrections at the upper cervical spine, applied only where the analysis calls for them.</p>
+        </article>
+        <article class="service">
+          <div class="num">02</div>
+          <h3 class="display">Fewer, More Intentional Visits</h3>
+          <p>Care is paced to how your body is actually responding, not a fixed schedule.</p>
+        </article>
+        <article class="service">
+          <div class="num">03</div>
+          <h3 class="display">Respect for the Body&rsquo;s Ability to Integrate Change</h3>
+          <p>Time between visits lets a correction settle before the next step is taken.</p>
+        </article>
+        <article class="service">
+          <div class="num">04</div>
+          <h3 class="display">Recognition of Patterns, Not Just Symptoms</h3>
+          <p>We look at what&rsquo;s driving what you&rsquo;re feeling, rather than treating each symptom on its own.</p>
+        </article>
+        <article class="service">
+          <div class="num">05</div>
+          <h3 class="display">A Clear Understanding of Each Situation</h3>
+          <p>Findings are explained in plain language, so you know what we&rsquo;re seeing and why.</p>
+        </article>
+        <article class="service">
+          <div class="num">06</div>
+          <h3 class="display">Honest Recommendations and Care</h3>
+          <p>If upper cervical care isn&rsquo;t the right fit, you&rsquo;ll hear that directly, with a suggestion for where to go instead.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band band-tint">
+    <div class="container">
+      <div class="offer-card">
+        <div>
+          <div class="eyebrow">Start With Clarity</div>
+          <h2 class="display">A simple first step, if you&rsquo;re unsure this is right for you.</h2>
+          <p>We&rsquo;ll review your history, discuss your goals, and explore whether neurological stress may be contributing to your symptoms.</p>
+          <p style="margin-bottom:4px;">You&rsquo;ll leave with:</p>
+          <ul>
+            <li>A clearer understanding of your situation</li>
+            <li>An honest recommendation</li>
+            <li>Direction, whether that&rsquo;s here or elsewhere</li>
+          </ul>
+          <p style="margin-top:14px;">You don&rsquo;t have to decide everything today. You just need a starting point.</p>
+        </div>
+        <div class="offer-panel">
+          <div class="display price">$30</div>
+          <div class="price-label">Virtual Consultation</div>
+          <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book Virtual Consultation</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band" id="testimonials">
+    <div class="container">
+      <div class="band-head center" style="margin-bottom:36px;">
+        <div class="eyebrow">Why Choose Rest &amp; Reset</div>
+      </div>
+      <div class="why-grid">
+        <div class="why"><h3 class="display">Specialized Expertise</h3><p>We focus on upper cervical specific chiropractic and functional neurology, with individualized care and monitored improvement.</p></div>
+        <div class="why"><h3 class="display">Family-Friendly Care</h3><p>We specialize in perinatal and pediatric chiropractic, offering safe treatments for moms and children alike.</p></div>
+        <div class="why"><h3 class="display">Gentle, Non-Invasive Care</h3><p>Our treatments are gentle, focusing on precision to ensure comfort and avoid unnecessary interventions.</p></div>
+        <div class="why"><h3 class="display">Experienced Team</h3><p>Led by Dr. Jared Wilson, our team is dedicated to providing compassionate and professional care.</p></div>
+      </div>
+      <div class="testimonial">
+        <blockquote>&ldquo;Jared is a wonderful chiropractor who is very attentive to what your ailments are [...] and always has ideas of ways you can help yourself by doing exercises at home.&rdquo;</blockquote>
+        <cite>Angelica</cite>
+      </div>
+    </div>
+  </section>
+
+  <section class="band mission">
+    <div class="container">
+      <div class="eyebrow">Rest &amp; Reset Your Body, Mind &amp; Life</div>
+      <h2 class="display">Reset your health with gentle chiropractic care.</h2>
+      <p>At Rest &amp; Reset UCC, we help you move beyond simply getting through the day to truly living with ease, vitality, and resilience. Through gentle, precise upper cervical chiropractic care, Dr. Jared Wilson, D.C. restores balance to the head, neck, and body, unlocking your natural ability to heal fully.</p>
+      <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book An Appointment</a>
+    </div>
+  </section>
+
+  <section class="band band-tint cta-band">
+    <div class="container">
+      <div class="eyebrow">By Appointment Only</div>
+      <h2 class="display">Get started today with Rest &amp; Reset.</h2>
+      <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book Appointment</a>
+    </div>
+  </section>
+
+  <section class="band visit" id="visit">
+    <div class="container">
+      <div>
+        <div class="band-head" style="margin-bottom:28px;">
+          <div class="eyebrow">Visit</div>
+          <h2 class="display">Come rest and reset.</h2>
+        </div>
+        <dl>
+          <div><dt>Address</dt><dd>1107 7th St<br>Oregon City, OR 97045</dd></div>
+          <div><dt>Phone</dt><dd><a href="tel:+15032727689">(503) 272-7689</a></dd></div>
+          <div><dt>Email</dt><dd><a href="mailto:jared.wilson@restandresetchiro.com">jared.wilson@restandresetchiro.com</a></dd></div>
+        </dl>
+        <div style="margin-top:28px;"><a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book Appointment</a></div>
+      </div>
+      <div class="map" aria-hidden="true">
+        <div class="pin"><span data-slot="mark" data-size="22" data-fill="#E8DCC8" data-flat></span>Rest &amp; Reset</div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="footer">
+  <div class="container footer-grid">
+    <div>
+      <a class="brand" href="#top" aria-label="Rest &amp; Reset home">
+        <span data-slot="mark" data-size="40" data-fill="#E8DCC8" data-flat></span>
+        <span><div class="word">REST &amp; RESET</div><div class="sub">Dr. Jared Wilson &middot; Chiropractic Care</div></span>
+      </a>
+      <p class="desc">Contact<br><a href="tel:+15032727689">(503) 272-7689</a><br><a href="mailto:jared.wilson@restandresetchiro.com">jared.wilson@restandresetchiro.com</a></p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <ul>
+        <li><a href="#services">Upper Cervical Specific Chiropractic</a></li>
+        <li><a href="#services">Perinatal Chiropractic Care</a></li>
+        <li><a href="#services">Pediatric Chiropractic Care</a></li>
+      </ul>
+    </div>
+    <div>
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#top">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#visit">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>Copyright &copy; 2026 Rest &amp; Reset UCC. All Rights Reserved.</span>
+  </div>
+</footer>
+<div class="disclaimer">Concept mockup for review only, restyled from restandresetchiro.com. <a href="/">Back to the brand kit</a></div>
+
+<script src="/assets/mark.js"></script>
+<script>
+  function render(n) {
+    var c = RR.CONCEPTS[n] || RR.CONCEPTS[1];
+    document.body.setAttribute('data-concept', c.num);
+    document.querySelectorAll('[data-slot="mark"]').forEach(function (el) {
+      el.innerHTML = RR.conceptMark(c, +el.getAttribute('data-size'), {
+        fill: el.getAttribute('data-fill'),
+        flat: el.hasAttribute('data-flat')
+      });
+    });
+    document.querySelectorAll('.pill').forEach(function (b) {
+      b.setAttribute('aria-pressed', String(b.getAttribute('data-set') === String(c.num)));
+    });
+  }
+  document.querySelectorAll('.pill').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var n = b.getAttribute('data-set');
+      history.replaceState(null, '', '#concept-' + n);
+      render(n);
+    });
+  });
+  var m = location.hash.match(/concept-(\d)/);
+  render(m ? m[1] : 1);
+</script>
+</body>
+</html>

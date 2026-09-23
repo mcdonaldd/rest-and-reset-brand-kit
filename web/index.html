@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Rest &amp; Reset Brand Kit</title>
+<meta name="description" content="Logo directions, palette, typography and usage rules for Rest &amp; Reset, Dr. Jared Wilson's upper cervical chiropractic practice in Oregon City.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Piazzolla:wght@500;600&family=Archivo:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/brand.css">
+<style>
+  .wrap { max-width: 1180px; margin: 0 auto; padding: 56px 32px 96px; }
+  .intro { font-size: 14px; color: var(--body); max-width: 680px; line-height: 1.6; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; margin: 0 0 28px; }
+  .intro strong { color: var(--heading); }
+  .intro a { color: var(--heading); font-weight: 600; text-underline-offset: 3px; }
+  .eyebrow { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(45% 0.03 195); font-weight: 600; }
+  h1 { font-family: 'Lora', serif; font-size: 40px; color: var(--heading); margin: 6px 0 8px; font-weight: 600; }
+  .lede { font-size: 15px; color: var(--body); max-width: 640px; line-height: 1.55; margin: 0 0 28px; }
+
+  .palette { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 12px; }
+  .palette-hint { font-size: 12px; color: var(--muted); margin: 0 0 36px; }
+  .swatch { width: 130px; border: 0; background: none; padding: 0; font: inherit; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+  .swatch:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; border-radius: 4px; }
+  .swatch .chip { height: 64px; border-radius: 4px; border: 1px solid oklch(85% 0.01 85); position: relative; }
+  .swatch .chip .copied-flag { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: oklch(24% 0.05 195 / 0.82); color: var(--cream); border-radius: 4px; opacity: 0; transition: opacity .15s; pointer-events: none; }
+  .swatch.copied .chip .copied-flag { opacity: 1; }
+  .swatch .name { font-size: 12px; font-weight: 600; color: oklch(24% 0.03 195); margin-top: 6px; }
+  .swatch .hex { font-size: 11px; color: var(--muted); font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+  .swatch:hover .hex { color: var(--heading); }
+
+  .downloads { margin-top: 18px; padding-top: 16px; border-top: 1px dashed var(--rule); display: flex; flex-wrap: wrap; align-items: center; gap: 6px 14px; }
+  .downloads .dl-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin-right: 4px; }
+  .downloads a { font-size: 12.5px; color: var(--teal); text-decoration: none; border-bottom: 1px dotted currentColor; padding-bottom: 1px; }
+  .downloads a:hover { text-decoration: none; border-bottom-style: solid; }
+  .downloads .dl-zip { font-weight: 700; border-bottom-style: solid; }
+
+  .kit-download { display: inline-flex; align-items: center; gap: 8px; background: var(--teal); color: var(--cream); text-decoration: none; font-weight: 600; font-size: 14px; padding: 12px 20px; border-radius: 999px; margin: 4px 0 28px; }
+  .kit-download:hover { background: oklch(27% 0.05 195); }
+  .kit-download svg { flex-shrink: 0; }
+
+  .picker { margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
+  .picker-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin-bottom: 10px; }
+  .picker-preview { width: 84px; height: 84px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: background .15s; border: 1px solid oklch(85% 0.01 85); }
+  .picker-preview.on-dark { background: var(--teal); border-color: var(--teal); }
+  .picker-preview.on-light { background: oklch(99% 0.005 85); }
+  .picker-controls { min-width: 0; }
+  .swatches-mini { display: flex; gap: 7px; flex-wrap: wrap; align-items: center; }
+  .mini { width: 26px; height: 26px; border-radius: 50%; border: 1px solid oklch(0% 0 0 / 0.12); cursor: pointer; padding: 0; position: relative; }
+  .mini.light { border-color: oklch(80% 0.01 85); }
+  .mini[aria-pressed="true"]::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--teal); }
+  .hexval { display: inline-flex; align-items: center; margin-left: 6px; font-size: 12px; color: var(--muted); font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
+  .picker-row2 { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  .fmt-group { display: inline-flex; border: 1px solid var(--teal); border-radius: 999px; overflow: hidden; }
+  .fmt-btn { font: inherit; font-size: 12.5px; font-weight: 600; background: none; border: 0; color: var(--teal); padding: 7px 14px; cursor: pointer; }
+  .fmt-btn[aria-pressed="true"] { background: var(--teal); color: var(--cream); }
+  .dl-btn { display: inline-flex; align-items: center; gap: 6px; font: inherit; font-size: 12.5px; font-weight: 700; background: var(--teal); color: var(--cream); border: 0; border-radius: 999px; padding: 8px 16px; cursor: pointer; }
+  .dl-btn:hover { background: oklch(27% 0.05 195); }
+  .png-note { font-size: 11px; color: var(--muted); }
+
+  @media (max-width: 560px) {
+    .picker { grid-template-columns: 1fr; }
+    .picker-preview { margin: 0 auto; }
+  }
+
+  .section { margin-bottom: 52px; padding-bottom: 44px; border-bottom: 1px solid var(--rule); }
+  .concept-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+  .h2 { font-family: 'Lora', serif; font-size: 20px; color: var(--heading); font-weight: 600; }
+  .meta { font-size: 12px; color: var(--muted); }
+
+  .tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; }
+  .tile { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 24px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 10px; text-align: center; }
+  .tile.solid { background: var(--teal); border-color: var(--teal); }
+  .tile-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); }
+  .tile.solid .tile-label { color: oklch(90% 0.01 85); }
+  .word { font-weight: 600; color: var(--heading); letter-spacing: 0.02em; }
+  .sub { letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+  .horiz { display: flex; align-items: center; gap: 14px; text-align: left; }
+
+  .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 20px; }
+  .card .aa { font-size: 38px; color: var(--heading); font-weight: 600; }
+  .card .t { font-size: 13px; font-weight: 600; color: oklch(30% 0.03 195); }
+  .card .d { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .card .p { font-size: 12px; color: oklch(45% 0.02 85); line-height: 1.5; }
+
+  .mockups { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .bizcard { background: var(--teal); border-radius: 6px; padding: 28px; width: 100%; max-width: 340px; aspect-ratio: 1.75; display: flex; flex-direction: column; justify-content: space-between; }
+  .sign { background: var(--cream); border-radius: 6px; padding: 28px; width: 100%; max-width: 340px; aspect-ratio: 1.75; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; }
+  .avatar-row { width: 100%; max-width: 340px; display: flex; align-items: center; gap: 14px; }
+  .avatar { width: 96px; height: 96px; border-radius: 50%; background: #1F4A48; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+
+  .next { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 52px; padding: 22px 24px; background: var(--teal); color: var(--cream); border-radius: 6px; }
+  .next p { margin: 0; font-size: 14px; line-height: 1.5; max-width: 560px; }
+  .next a { display: inline-block; background: var(--cream); color: #1F4A48; text-decoration: none; font-weight: 600; font-size: 14px; padding: 11px 18px; border-radius: 999px; white-space: nowrap; }
+  .next a:hover { background: #F3EBDD; }
+
+  @media (max-width: 600px) {
+    .wrap { padding: 36px 16px 64px; }
+    h1 { font-size: 32px; }
+    .swatch { width: calc(50% - 7px); }
+  }
+</style>
+</head>
+<body>
+<svg class="svg-defs" aria-hidden="true" focusable="false">
+  <defs>
+    <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(48% 0.065 195)"></stop>
+      <stop offset="100%" stop-color="oklch(24% 0.05 195)"></stop>
+    </linearGradient>
+    <radialGradient id="clayGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="oklch(74% 0.09 45)"></stop>
+      <stop offset="100%" stop-color="oklch(52% 0.09 45)"></stop>
+    </radialGradient>
+    <filter id="markShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="oklch(20% 0.04 195)" flood-opacity="0.4"></feDropShadow>
+    </filter>
+  </defs>
+</svg>
+
+<main class="wrap">
+  <header>
+    <p class="intro">
+      <strong>Hi Jared,</strong> here are four logo directions for Rest &amp; Reset. Each one starts from the same idea: a fermata (the musical sign for &ldquo;hold and rest&rdquo;) sitting over a whole rest, with the spine forming below. All four share one color palette and type system, so the rest of the kit applies to whichever you choose. Want to see them in context? <a href="/site">View the website mockup</a>.
+    </p>
+    <div class="eyebrow">Brand Kit</div>
+    <h1>Rest &amp; Reset</h1>
+    <p class="lede">Four directions: two simple marks with a gentle vertebral curve, and two spine-detailed marks with added depth.</p>
+    <a class="kit-download" href="/assets/rest-and-reset-logo-assets.zip" download>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+      Download all logo assets (.zip)
+    </a>
+    <div class="palette" id="palette"></div>
+    <p class="palette-hint">Click a color to copy its hex code.</p>
+  </header>
+
+  <div id="concepts"></div>
+
+  <section class="section">
+    <div class="h2" style="margin-bottom:18px;">Typography</div>
+    <div class="cards">
+      <div class="card">
+        <div class="aa" style="font-family:'Lora',serif;">Aa</div>
+        <div class="t" style="margin-top:8px;">Lora &middot; Classic Serif</div>
+        <div class="d">Wordmark, concept 1</div>
+      </div>
+      <div class="card">
+        <div class="aa" style="font-family:'Piazzolla',serif;">Aa</div>
+        <div class="t" style="margin-top:8px;">Piazzolla &middot; Modern Serif</div>
+        <div class="d">Wordmark, concept 2</div>
+      </div>
+      <div class="card">
+        <div class="aa" style="font-family:'Archivo',sans-serif;font-weight:700;">Aa</div>
+        <div class="t" style="margin-top:8px;">Archivo &middot; Clean Sans</div>
+        <div class="d">Wordmark, concepts 3 &amp; 4 &middot; sublines &amp; UI text, all concepts</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="h2" style="margin-bottom:18px;">Usage Rules</div>
+    <div class="cards">
+      <div class="card">
+        <div class="t" style="margin-bottom:6px;">Clear space</div>
+        <div class="p">Keep open space around the mark equal to the height of the fermata arc on every side. Nothing else sits inside that margin.</div>
+      </div>
+      <div class="card">
+        <div class="t" style="margin-bottom:6px;">Minimum size</div>
+        <div class="p">Mark-only: 32px tall minimum. Full lockup: 120px wide minimum, so the subline stays legible.</div>
+      </div>
+      <div class="card">
+        <div class="t" style="margin-bottom:6px;">Don&rsquo;t</div>
+        <div class="p">Don&rsquo;t stretch or rotate the mark, recolor it outside the palette, or place it on a busy photo without the single-color version.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="h2" style="margin-bottom:6px;">Applied Mockups</div>
+    <div class="meta" style="margin-bottom:18px;">Shown with Concept 1 as an example. The same system applies to whichever direction is chosen.</div>
+    <div class="mockups">
+      <div class="bizcard">
+        <span data-mark="1" data-size="36" data-fill="#E8DCC8"></span>
+        <div>
+          <div style="font-family:'Lora',serif;font-weight:600;font-size:16px;color:#E8DCC8;">REST &amp; RESET</div>
+          <div style="font-size:10px;color:oklch(85% 0.02 85);margin-top:6px;">Dr. Jared Wilson, DC</div>
+          <div style="font-size:9px;letter-spacing:0.05em;color:oklch(70% 0.02 85);margin-top:2px;">(503) 272-7689 &middot; jared.wilson@restandresetchiro.com</div>
+        </div>
+      </div>
+
+      <div class="sign">
+        <span data-mark="1" data-size="46" data-fill="#1F4A48"></span>
+        <div style="font-family:'Lora',serif;font-weight:600;font-size:20px;color:#1F4A48;">REST &amp; RESET</div>
+        <div style="font-size:10px;letter-spacing:0.1em;color:oklch(30% 0.03 195);">1107 7TH STREET &middot; OREGON CITY</div>
+      </div>
+
+      <div class="avatar-row">
+        <div class="avatar"><span data-mark="1" data-size="52" data-fill="#E8DCC8"></span></div>
+        <div style="font-size:12px;color:var(--muted);">Social avatar: the mark scales down cleanly with clear space intact.</div>
+      </div>
+    </div>
+  </section>
+
+  <aside class="next">
+    <p>See all four directions applied to a mockup of the current restandresetchiro.com homepage, with a switcher to compare them.</p>
+    <a href="/site">Open website mockup &rarr;</a>
+  </aside>
+</main>
+
+<script src="/assets/mark.js"></script>
+<script>
+  var palette = [
+    { name: 'Deep Teal', hex: '#1F4A48', color: RR.TEAL },
+    { name: 'Teal Tint', hex: '#C9DEDC', color: 'oklch(88% 0.03 195)' },
+    { name: 'Warm Cream', hex: '#E8DCC8', color: '#E8DCC8' },
+    { name: 'Clay', hex: '#B5764A', color: RR.CLAY },
+    { name: 'Ink', hex: '#152E2D', color: 'oklch(20% 0.02 195)' }
+  ];
+  document.getElementById('palette').innerHTML = palette.map(function (p) {
+    return '<button type="button" class="swatch" data-hex="' + p.hex + '">' +
+      '<div class="chip" style="background:' + p.color + '"><span class="copied-flag">Copied</span></div>' +
+      '<div class="name">' + p.name + '</div><div class="hex">' + p.hex + '</div></button>';
+  }).join('');
+
+  function copyText(text) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      return navigator.clipboard.writeText(text);
+    }
+    var ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); } catch (e) {}
+    ta.remove();
+    return Promise.resolve();
+  }
+
+  document.getElementById('palette').addEventListener('click', function (e) {
+    var btn = e.target.closest('.swatch');
+    if (!btn) return;
+    copyText(btn.getAttribute('data-hex')).then(function () {
+      btn.classList.add('copied');
+      clearTimeout(btn._t);
+      btn._t = setTimeout(function () { btn.classList.remove('copied'); }, 1400);
+    });
+  });
+
+  // Relative luminance, to decide whether a color's preview chip needs a
+  // dark or light backdrop so the icon stays visible.
+  function isLight(hex) {
+    var m = hex.replace('#', '');
+    if (m.length === 3) m = m.split('').map(function (c) { return c + c; }).join('');
+    var r = parseInt(m.substr(0, 2), 16), g = parseInt(m.substr(2, 2), 16), b = parseInt(m.substr(4, 2), 16);
+    return (0.2126 * r + 0.7152 * g + 0.0722 * b) > 175;
+  }
+
+  var slugs = { 1: '1-classic-simple', 2: '2-modern-spine', 3: '3-clean-sans', 4: '4-bold-signage' };
+  // Recolor options are exactly the brand kit palette above — no free-color
+  // picker, so every exported icon stays on-brand.
+  var quickColors = palette.map(function (p) { return { hex: p.hex, label: p.name }; });
+
+  var subline = 'DR. JARED WILSON &middot; CHIROPRACTIC CARE';
+  var html = '';
+  [1, 2, 3, 4].forEach(function (n) {
+    var c = RR.CONCEPTS[n];
+    var label = c.mark === 'detailed' ? 'Spine-detailed' : 'Simple';
+    var slug = slugs[n];
+    var base = '/assets/icons/' + slug + '/';
+    html +=
+      '<section class="section" data-concept-block="' + n + '">' +
+        '<div class="concept-head"><div class="h2">' + c.num + '. ' + c.name + '</div>' +
+        '<div class="meta">' + label + ' mark &middot; ' + c.fontLabel + '</div></div>' +
+        '<div class="tiles">' +
+          '<div class="tile">' + RR.conceptMark(c, 120) + '<div class="tile-label">Mark only</div></div>' +
+          '<div class="tile">' + RR.conceptMark(c, 64) +
+            '<div><div class="word" style="font-family:' + c.font + ';font-size:19px;">REST &amp; RESET</div>' +
+            '<div class="sub" style="font-size:9px;margin-top:4px;">' + subline + '</div></div>' +
+            '<div class="tile-label">Stacked</div></div>' +
+          '<div class="tile" style="gap:12px;"><div class="horiz">' + RR.conceptMark(c, 52) +
+            '<div><div class="word" style="font-family:' + c.font + ';font-size:17px;line-height:1.1;">REST &amp; RESET</div>' +
+            '<div class="sub" style="font-size:8px;margin-top:3px;">' + subline + '</div></div></div>' +
+            '<div class="tile-label">Horizontal</div></div>' +
+          '<div class="tile solid">' + RR.conceptMark(c, 76, { fill: 'oklch(97% 0.01 85)', flat: true }) +
+            '<div class="tile-label">Single color</div></div>' +
+        '</div>' +
+
+        '<div class="picker" data-picker="' + n + '" data-variant="' + c.mark + '">' +
+          '<div class="picker-preview on-dark" data-preview></div>' +
+          '<div class="picker-controls">' +
+            '<div class="picker-label">Recolor &amp; download the icon</div>' +
+            '<div class="swatches-mini" role="group" aria-label="Quick colors">' +
+              quickColors.map(function (q, i) {
+                return '<button type="button" class="mini' + (isLight(q.hex) ? ' light' : '') + '" style="background:' + q.hex + '" data-hex="' + q.hex + '" aria-pressed="' + (i === 0 ? 'true' : 'false') + '" aria-label="' + q.label + '" title="' + q.label + ' &middot; ' + q.hex + '"></button>';
+              }).join('') +
+              '<span class="hexval" data-hexval>' + quickColors[0].hex + '</span>' +
+            '</div>' +
+            '<div class="picker-row2">' +
+              '<div class="fmt-group" role="group" aria-label="File format">' +
+                '<button type="button" class="fmt-btn" data-fmt="svg" aria-pressed="true">SVG</button>' +
+                '<button type="button" class="fmt-btn" data-fmt="png" aria-pressed="false">PNG</button>' +
+              '</div>' +
+              '<button type="button" class="dl-btn" data-dl-icon>' +
+                '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>' +
+                'Download icon' +
+              '</button>' +
+              '<span class="png-note" data-png-note hidden>PNG exports at 1024&times;1024, transparent background.</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="downloads">' +
+          '<span class="dl-label">Also in this direction:</span>' +
+          '<a href="' + base + 'lockup-stacked.svg" download>Stacked lockup (SVG)</a>' +
+          '<a href="' + base + 'lockup-horizontal.svg" download>Horizontal lockup (SVG)</a>' +
+          '<a href="' + base + 'avatar-circle.svg" download>Social avatar (SVG)</a>' +
+          '<a class="dl-zip" href="/assets/rest-and-reset-logo-assets.zip" download>All formats (.zip)</a>' +
+        '</div>' +
+      '</section>';
+  });
+  document.getElementById('concepts').innerHTML = html;
+  RR.hydrate();
+
+  // Wire up each concept's recolor-and-download picker.
+  document.querySelectorAll('[data-picker]').forEach(function (panel) {
+    var variant = panel.getAttribute('data-variant');
+    var preview = panel.querySelector('[data-preview]');
+    var hexLabel = panel.querySelector('[data-hexval]');
+    var pngNote = panel.querySelector('[data-png-note]');
+    var fmt = 'svg';
+    var hex = quickColors[0].hex;
+
+    function renderPreview() {
+      preview.className = 'picker-preview ' + (isLight(hex) ? 'on-dark' : 'on-light');
+      preview.innerHTML = RR.markSVG({ variant: variant, fill: hex, dot: hex, dimensional: false, size: 52 });
+    }
+    function setHex(newHex, sourceBtn) {
+      hex = newHex;
+      hexLabel.textContent = hex.toUpperCase();
+      panel.querySelectorAll('.mini').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b === sourceBtn));
+      });
+      renderPreview();
+    }
+
+    panel.querySelectorAll('.mini').forEach(function (b) {
+      b.addEventListener('click', function () { setHex(b.getAttribute('data-hex'), b); });
+    });
+
+    panel.querySelectorAll('.fmt-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        fmt = b.getAttribute('data-fmt');
+        panel.querySelectorAll('.fmt-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+        pngNote.hidden = fmt !== 'png';
+      });
+    });
+
+    panel.querySelector('[data-dl-icon]').addEventListener('click', function () {
+      var slug = slugs[panel.getAttribute('data-picker')];
+      var name = 'rest-and-reset-' + slug + '-' + hex.replace('#', '').toLowerCase();
+      if (fmt === 'svg') {
+        RR.downloadSVG(variant, hex, name + '.svg');
+      } else {
+        RR.downloadPNG(variant, hex, name + '.png', 1024);
+      }
+    });
+
+    renderPreview();
+  });
+</script>
+</body>
+</html>
