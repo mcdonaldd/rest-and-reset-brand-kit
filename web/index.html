@@ -110,6 +110,15 @@
   .next a { display: inline-block; background: var(--cream); color: #1F4A48; text-decoration: none; font-weight: 600; font-size: 14px; padding: 11px 18px; border-radius: 999px; white-space: nowrap; }
   .next a:hover { background: #F3EBDD; }
 
+  .howto { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px 22px; margin: 0 0 28px; }
+  .howto-title { font-size: 13px; font-weight: 700; color: var(--heading); margin-bottom: 12px; }
+  .howto ol { margin: 0; padding: 0 0 0 20px; display: grid; gap: 8px; }
+  .howto li { font-size: 13.5px; line-height: 1.55; color: var(--body); }
+  .howto li strong { color: var(--heading); }
+  .howto a { color: var(--heading); font-weight: 600; }
+  .tile-key { font-size: 12px; color: var(--muted); line-height: 1.6; margin: -6px 0 20px; }
+  .tile-key strong { color: var(--heading); }
+
   @media (max-width: 600px) {
     .wrap { padding: 36px 16px 64px; }
     h1 { font-size: 32px; }
@@ -120,7 +129,7 @@
 <body>
 <svg class="svg-defs" aria-hidden="true" focusable="false">
   <defs>
-    <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="tealGrad" gradientUnits="userSpaceOnUse" x1="100" y1="0" x2="100" y2="200">
       <stop offset="0%" stop-color="oklch(48% 0.065 195)"></stop>
       <stop offset="100%" stop-color="oklch(24% 0.05 195)"></stop>
     </linearGradient>
@@ -142,6 +151,16 @@
     <div class="eyebrow">Brand Kit</div>
     <h1>Rest &amp; Reset</h1>
     <p class="lede">Four directions: two simple marks with a gentle vertebral curve, and two spine-detailed marks with added depth.</p>
+
+    <div class="howto">
+      <div class="howto-title">How to use this page</div>
+      <ol>
+        <li><strong>Scroll down and pick your favorite of the four directions.</strong> There's no wrong answer &mdash; just go with what feels right for the practice.</li>
+        <li><strong>Need the colors for a printer, web designer, or sign shop?</strong> Click any color swatch below to copy its code, then paste it into an email to them.</li>
+        <li><strong>Need the logo file itself?</strong> Each direction has a &ldquo;Download icon&rdquo; button. Choose <strong>PNG</strong> for everyday use (your website, social media, Word or Google docs) or <strong>SVG</strong> if you're working with a printer or sign shop. Or grab everything at once below.</li>
+      </ol>
+    </div>
+
     <a class="kit-download" href="/assets/rest-and-reset-logo-assets.zip" download>
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
       Download all logo assets (.zip)

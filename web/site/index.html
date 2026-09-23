@@ -58,9 +58,11 @@
   .hero h1 { font-size: 50px; line-height: 1.1; margin: 14px 0 18px; }
   .hero p { font-size: 18px; line-height: 1.6; color: var(--body); max-width: 520px; margin: 0 0 30px; }
   .hero .ctas { display: flex; gap: 12px; flex-wrap: wrap; }
-  .hero-art { position: relative; aspect-ratio: 1; border-radius: 28px; background: var(--teal); display: flex; align-items: center; justify-content: center; overflow: hidden; }
-  .hero-art::before { content: ""; position: absolute; inset: auto -20% -45% -20%; height: 70%; border-radius: 50%; background: oklch(36% 0.055 195); }
-  .hero-art [data-slot] { position: relative; }
+  .hero-art { position: relative; aspect-ratio: 4/5; border-radius: 28px; background: var(--teal); overflow: hidden; }
+  .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
+  /* Teal wash ties a plain photo into the palette instead of sitting on the page as a random stock image. */
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(190deg, oklch(32% 0.055 195 / 0.12) 0%, oklch(32% 0.055 195 / 0.1) 45%, oklch(15% 0.04 195 / 0.72) 100%); }
+  .hero-badge { position: absolute; top: 18px; left: 18px; width: 46px; height: 46px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px oklch(15% 0.04 195 / 0.35); }
   .hero-note { position: absolute; left: 20px; bottom: 20px; right: 20px; background: rgba(251,248,243,0.94); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: oklch(30% 0.03 195); display: flex; gap: 12px; align-items: center; }
   .hero-note strong { color: var(--heading); display: block; font-size: 14px; }
   .hero-note .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
@@ -145,16 +147,19 @@
   .pin { background: var(--teal); color: var(--cream); padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 18px oklch(20% 0.04 195 / 0.25); }
 
   /* Footer */
-  .footer { background: var(--ink); color: oklch(78% 0.02 85); padding-top: 52px; font-size: 13.5px; }
-  .footer-grid { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 32px; padding-bottom: 40px; border-bottom: 1px solid oklch(28% 0.02 195); }
+  /* Compact, horizontally-listed footer — one row of brand + inline link
+     groups, wrapping as needed, instead of tall stacked columns. */
+  .footer { background: var(--ink); color: oklch(78% 0.02 85); padding: 28px 0; font-size: 13px; }
+  .footer-grid { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 28px; padding-bottom: 22px; border-bottom: 1px solid oklch(28% 0.02 195); }
   .footer .brand .word { color: var(--cream); }
   .footer .brand .sub { color: oklch(70% 0.02 85); }
-  .footer p.desc { margin: 16px 0 0; line-height: 1.6; max-width: 280px; color: oklch(72% 0.02 85); }
-  .footer h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(85% 0.01 85); margin: 0 0 16px; }
-  .footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .footer-links { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 14px; }
+  .footer-links .grp { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 12px; }
+  .footer-links h4 { font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: oklch(62% 0.02 85); font-weight: 600; margin: 0; }
   .footer a { color: oklch(78% 0.02 85); text-decoration: none; }
   .footer a:hover { color: var(--cream); text-decoration: underline; }
-  .footer-bottom { max-width: 1180px; margin: 0 auto; padding: 18px 32px 24px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: oklch(62% 0.02 85); font-size: 12.5px; }
+  .footer-contact { text-align: right; line-height: 1.6; color: oklch(78% 0.02 85); }
+  .footer-bottom { max-width: 1180px; margin: 0 auto; padding: 16px 32px 0; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; color: oklch(62% 0.02 85); font-size: 12px; }
 
   .disclaimer { text-align: center; font-size: 12px; color: var(--muted); padding: 18px 16px 28px; background: var(--ink); }
   .disclaimer a { color: var(--cream); }
@@ -166,7 +171,8 @@
     .hero h1 { font-size: 38px; }
     .hero-art { max-width: 460px; width: 100%; }
     .offer-card { grid-template-columns: 1fr; padding: 30px; }
-    .footer-grid { grid-template-columns: 1fr; gap: 28px; }
+    .footer-grid { justify-content: flex-start; }
+    .footer-contact { text-align: left; }
     .services { grid-template-columns: repeat(2, 1fr); }
   }
   @media (max-width: 600px) {
@@ -185,7 +191,7 @@
 <body data-concept="1">
 <svg class="svg-defs" aria-hidden="true" focusable="false">
   <defs>
-    <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+    <linearGradient id="tealGrad" gradientUnits="userSpaceOnUse" x1="100" y1="0" x2="100" y2="200">
       <stop offset="0%" stop-color="oklch(48% 0.065 195)"></stop>
       <stop offset="100%" stop-color="oklch(24% 0.05 195)"></stop>
     </linearGradient>
@@ -243,7 +249,9 @@
         </div>
       </div>
       <div class="hero-art">
-        <span data-slot="mark" data-size="260" data-fill="#E8DCC8" data-flat></span>
+        <img class="hero-photo" src="/assets/dr-wilson.webp" alt="Dr. Jared Wilson">
+        <div class="hero-scrim"></div>
+        <div class="hero-badge"><span data-slot="mark" data-size="24" data-fill="#E8DCC8" data-flat></span></div>
         <div class="hero-note"><span class="dot"></span><div><strong>Gentle, specific corrections</strong>Upper cervical analysis, tailored to you</div></div>
       </div>
     </div>
@@ -261,7 +269,8 @@
         <li><span class="tick"></span>Each case is evaluated carefully to identify contributing patterns.</li>
         <li><span class="tick"></span>Intervention is minimal and specific.</li>
         <li><span class="tick"></span>Progress is monitored thoughtfully.</li>
-        <li><span class="tick"></span>The goal is not ongoing dependency &mdash; it&rsquo;s change that holds.</li>
+        <li><span class="tick"></span>The goal is not ongoing dependency.</li>
+        <li><span class="tick"></span>The goal is to make changes that hold.</li>
       </ul>
     </div>
   </section>
@@ -279,7 +288,7 @@
         <li>Health-conscious adults seeking optimization</li>
         <li>Those who have tried multiple approaches without lasting resolution</li>
       </ul>
-      <p style="max-width:620px;font-size:15.5px;line-height:1.6;">Care is not limited to any one group. If you are ready to move beyond masking symptoms and address neurological stress at its source, you belong here.</p>
+      <p style="max-width:620px;font-size:15.5px;line-height:1.6;">Care is not limited to any one group.<br>If you are ready to move beyond masking symptoms and address neurological stress at its source &mdash; you belong here.</p>
     </div>
   </section>
 
@@ -293,32 +302,26 @@
         <article class="service">
           <div class="num">01</div>
           <h3 class="display">Gentle Specific Adjustments</h3>
-          <p>Precise, low-force corrections at the upper cervical spine, applied only where the analysis calls for them.</p>
         </article>
         <article class="service">
           <div class="num">02</div>
-          <h3 class="display">Fewer, More Intentional Visits</h3>
-          <p>Care is paced to how your body is actually responding, not a fixed schedule.</p>
+          <h3 class="display">Fewer but More Intentional Visits</h3>
         </article>
         <article class="service">
           <div class="num">03</div>
           <h3 class="display">Respect for the Body&rsquo;s Ability to Integrate Change</h3>
-          <p>Time between visits lets a correction settle before the next step is taken.</p>
         </article>
         <article class="service">
           <div class="num">04</div>
-          <h3 class="display">Recognition of Patterns, Not Just Symptoms</h3>
-          <p>We look at what&rsquo;s driving what you&rsquo;re feeling, rather than treating each symptom on its own.</p>
+          <h3 class="display">Recognition of Patterns Rather Than Chasing Symptoms</h3>
         </article>
         <article class="service">
           <div class="num">05</div>
           <h3 class="display">A Clear Understanding of Each Situation</h3>
-          <p>Findings are explained in plain language, so you know what we&rsquo;re seeing and why.</p>
         </article>
         <article class="service">
           <div class="num">06</div>
           <h3 class="display">Honest Recommendations and Care</h3>
-          <p>If upper cervical care isn&rsquo;t the right fit, you&rsquo;ll hear that directly, with a suggestion for where to go instead.</p>
         </article>
       </div>
     </div>
@@ -329,13 +332,13 @@
       <div class="offer-card">
         <div>
           <div class="eyebrow">Start With Clarity</div>
-          <h2 class="display">A simple first step, if you&rsquo;re unsure this is right for you.</h2>
+          <h2 class="display">If you&rsquo;re unsure whether upper cervical care is right for you, the $30 virtual consultation is a simple first step.</h2>
           <p>We&rsquo;ll review your history, discuss your goals, and explore whether neurological stress may be contributing to your symptoms.</p>
           <p style="margin-bottom:4px;">You&rsquo;ll leave with:</p>
           <ul>
             <li>A clearer understanding of your situation</li>
             <li>An honest recommendation</li>
-            <li>Direction, whether that&rsquo;s here or elsewhere</li>
+            <li>Direction &mdash; whether that&rsquo;s here or elsewhere</li>
           </ul>
           <p style="margin-top:14px;">You don&rsquo;t have to decide everything today. You just need a starting point.</p>
         </div>
@@ -354,7 +357,7 @@
         <div class="eyebrow">Why Choose Rest &amp; Reset</div>
       </div>
       <div class="why-grid">
-        <div class="why"><h3 class="display">Specialized Expertise</h3><p>We focus on upper cervical specific chiropractic and functional neurology, with individualized care and monitored improvement.</p></div>
+        <div class="why"><h3 class="display">Specialized Expertise</h3><p>We focus on upper cervical specific chiropractic and functional neurology to individualized care and monitor improvement.</p></div>
         <div class="why"><h3 class="display">Family-Friendly Care</h3><p>We specialize in perinatal and pediatric chiropractic, offering safe treatments for moms and children alike.</p></div>
         <div class="why"><h3 class="display">Gentle, Non-Invasive Care</h3><p>Our treatments are gentle, focusing on precision to ensure comfort and avoid unnecessary interventions.</p></div>
         <div class="why"><h3 class="display">Experienced Team</h3><p>Led by Dr. Jared Wilson, our team is dedicated to providing compassionate and professional care.</p></div>
@@ -369,16 +372,22 @@
   <section class="band mission">
     <div class="container">
       <div class="eyebrow">Rest &amp; Reset Your Body, Mind &amp; Life</div>
-      <h2 class="display">Reset your health with gentle chiropractic care.</h2>
       <p>At Rest &amp; Reset UCC, we help you move beyond simply getting through the day to truly living with ease, vitality, and resilience. Through gentle, precise upper cervical chiropractic care, Dr. Jared Wilson, D.C. restores balance to the head, neck, and body, unlocking your natural ability to heal fully.</p>
-      <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book An Appointment</a>
+      <a class="link-more" style="color:var(--cream);" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Read More</a>
     </div>
   </section>
 
   <section class="band band-tint cta-band">
     <div class="container">
+      <h2 class="display">Reset Your Health with Gentle Chiropractic Care</h2>
+      <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book An Appointment</a>
+    </div>
+  </section>
+
+  <section class="band cta-band">
+    <div class="container">
       <div class="eyebrow">By Appointment Only</div>
-      <h2 class="display">Get started today with Rest &amp; Reset.</h2>
+      <h2 class="display">Get Started Today With Rest And Reset</h2>
       <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book Appointment</a>
     </div>
   </section>
@@ -406,30 +415,24 @@
 
 <footer class="footer">
   <div class="container footer-grid">
-    <div>
-      <a class="brand" href="#top" aria-label="Rest &amp; Reset home">
-        <span data-slot="mark" data-size="40" data-fill="#E8DCC8" data-flat></span>
-        <span><div class="word">REST &amp; RESET</div><div class="sub">Dr. Jared Wilson &middot; Chiropractic Care</div></span>
-      </a>
-      <p class="desc">Contact<br><a href="tel:+15032727689">(503) 272-7689</a><br><a href="mailto:jared.wilson@restandresetchiro.com">jared.wilson@restandresetchiro.com</a></p>
-    </div>
-    <div>
-      <h4>Services</h4>
-      <ul>
-        <li><a href="#services">Upper Cervical Specific Chiropractic</a></li>
-        <li><a href="#services">Perinatal Chiropractic Care</a></li>
-        <li><a href="#services">Pediatric Chiropractic Care</a></li>
-      </ul>
-    </div>
-    <div>
-      <h4>Quick Links</h4>
-      <ul>
-        <li><a href="#top">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#visit">Contact</a></li>
-      </ul>
-    </div>
+    <a class="brand" href="#top" aria-label="Rest &amp; Reset home">
+      <span data-slot="mark" data-size="34" data-fill="#E8DCC8" data-flat></span>
+      <span><div class="word">REST &amp; RESET</div><div class="sub">Dr. Jared Wilson &middot; Chiropractic Care</div></span>
+    </a>
+    <nav class="footer-links" aria-label="Footer">
+      <span class="grp"><h4>Services</h4>
+        <a href="#services">Upper Cervical Specific Chiropractic</a> &middot;
+        <a href="#services">Perinatal Chiropractic Care</a> &middot;
+        <a href="#services">Pediatric Chiropractic Care</a>
+      </span>
+      <span class="grp"><h4>Quick Links</h4>
+        <a href="#top">Home</a> &middot;
+        <a href="#about">About</a> &middot;
+        <a href="#services">Services</a> &middot;
+        <a href="#visit">Contact</a>
+      </span>
+    </nav>
+    <div class="footer-contact"><a href="tel:+15032727689">(503) 272-7689</a><br><a href="mailto:jared.wilson@restandresetchiro.com">jared.wilson@restandresetchiro.com</a></div>
   </div>
   <div class="footer-bottom">
     <span>Copyright &copy; 2026 Rest &amp; Reset UCC. All Rights Reserved.</span>

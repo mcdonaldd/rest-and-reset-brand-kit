@@ -61,7 +61,10 @@
   function standaloneDimensionalSVG(variant) {
     var defs =
       '<defs>' +
-      '<linearGradient id="tg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2F6B69"></stop><stop offset="1" stop-color="#0E2F2E"></stop></linearGradient>' +
+      // userSpaceOnUse (not the objectBoundingBox default) — a perfectly
+      // horizontal <line> has a zero-height bounding box, so a top-to-bottom
+      // objectBoundingBox gradient on it is degenerate and paints nothing.
+      '<linearGradient id="tg" gradientUnits="userSpaceOnUse" x1="100" y1="0" x2="100" y2="200"><stop offset="0" stop-color="#2F6B69"></stop><stop offset="1" stop-color="#0E2F2E"></stop></linearGradient>' +
       '<radialGradient id="cg" cx="35%" cy="30%" r="75%"><stop offset="0" stop-color="#D59A74"></stop><stop offset="1" stop-color="#9A5B33"></stop></radialGradient>' +
       '<filter id="sh" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0E2F2E" flood-opacity="0.4"></feDropShadow></filter>' +
       '</defs>';
