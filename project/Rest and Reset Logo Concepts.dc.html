@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lora:wght@500;600&family=Piazzolla:wght@500;600&family=Archivo:wght@600;700&display=swap" rel="stylesheet">
+<style>
+  body { margin: 0; background: oklch(96% 0.015 85); }
+</style>
+<template id="__bundler_thumbnail" data-bg-color="#1F4A48">
+  <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+    <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="#E8DCC8" stroke-width="8" stroke-linecap="round"></path>
+    <circle cx="100" cy="88" r="7" fill="#E8DCC8"></circle>
+    <line x1="70" x2="130" y1="118" y2="118" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></line>
+    <rect x="84" y="118" width="32" height="20" fill="#E8DCC8"></rect>
+    <path d="M78,155 Q100,150 122,155" fill="none" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></path>
+    <path d="M84,172 Q100,168 116,172" fill="none" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></path>
+  </svg>
+</template>
+</helmet>
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <linearGradient id="tealGrad" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="oklch(48% 0.065 195)"></stop>
+      <stop offset="100%" stop-color="oklch(24% 0.05 195)"></stop>
+    </linearGradient>
+    <radialGradient id="clayGrad" cx="35%" cy="30%" r="75%">
+      <stop offset="0%" stop-color="oklch(74% 0.09 45)"></stop>
+      <stop offset="100%" stop-color="oklch(52% 0.09 45)"></stop>
+    </radialGradient>
+    <filter id="markShadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="oklch(20% 0.04 195)" flood-opacity="0.4"></feDropShadow>
+    </filter>
+  </defs>
+</svg>
+<div style="max-width:1180px;margin:0 auto;padding:56px 32px 96px;font-family:'Archivo',sans-serif;">
+  <div style="margin-bottom:36px;">
+    <p style="font-size:14px;color:oklch(40% 0.02 85);max-width:680px;line-height:1.6;background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:16px 18px;margin-bottom:28px;">
+      <strong style="color:oklch(24% 0.05 195);">A full brand kit covers:</strong> the logo suite (primary, icon-only, single-color), color palette, typography, spacing/usage rules, and applied mockups. All five are below &mdash; two marks now carry a subtle gradient and shadow for depth, two stay flat for contrast.
+    </p>
+    <div style="font-size:13px;letter-spacing:0.12em;text-transform:uppercase;color:oklch(45% 0.03 195);font-weight:600;">Brand Kit</div>
+    <h1 style="font-family:'Lora',serif;font-size:40px;color:oklch(24% 0.05 195);margin:6px 0 8px;font-weight:600;">Rest &amp; Reset</h1>
+    <p style="font-size:15px;color:oklch(40% 0.02 85);max-width:640px;line-height:1.55;margin:0 0 28px;">Four directions carried forward, now with a shared expanded palette and slight vertebral curve on the simpler marks.</p>
+
+    <div style="display:flex;gap:14px;flex-wrap:wrap;">
+      <sc-for list="{{palette}}" as="p" hint-placeholder-count="5">
+        <div style="width:130px;">
+          <div style="height:64px;border-radius:4px;background:{{p.color}};border:1px solid oklch(85% 0.01 85);"></div>
+          <div style="font-size:12px;font-weight:600;color:oklch(24% 0.03 195);margin-top:6px;">{{p.name}}</div>
+          <div style="font-size:11px;color:oklch(50% 0.02 85);">{{p.hex}}</div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+
+  <sc-for list="{{concepts}}" as="c" hint-placeholder-count="4">
+    <div style="margin-bottom:52px;padding-bottom:44px;border-bottom:1px solid oklch(88% 0.01 85);">
+      <div style="display:flex;align-items:baseline;gap:12px;margin-bottom:18px;">
+        <div style="font-family:'Lora',serif;font-size:20px;color:oklch(24% 0.05 195);font-weight:600;">{{c.num}}. {{c.name}}</div>
+        <div style="font-size:12px;color:oklch(50% 0.02 85);">{{c.markLabel}} mark &middot; {{c.fontLabel}}</div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:16px;">
+
+        <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+          <svg viewBox="0 0 200 200" width="120" height="120">
+            <g filter="{{c.filterAttr}}">
+              <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="{{c.markFill}}" stroke-width="8" stroke-linecap="round"></path>
+              <circle cx="100" cy="88" r="7" fill="{{c.dotFill}}"></circle>
+              <line x1="70" x2="130" y1="118" y2="118" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></line>
+              <rect x="84" y="118" width="32" height="20" fill="{{c.markFill}}"></rect>
+              <sc-if value="{{c.detailed}}" hint-placeholder-val="{{false}}">
+                <sc-for list="{{c.vertebrae}}" as="vb" hint-placeholder-count="4">
+                  <rect x="{{vb.x}}" y="{{vb.y}}" width="{{vb.w}}" height="10" rx="4" fill="{{c.markFill}}"></rect>
+                </sc-for>
+              </sc-if>
+              <sc-if value="{{c.simple}}" hint-placeholder-val="{{false}}">
+                <path d="M78,155 Q100,150 122,155" fill="none" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M84,172 Q100,168 116,172" fill="none" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></path>
+              </sc-if>
+            </g>
+          </svg>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:oklch(55% 0.02 85);">Mark only</div>
+        </div>
+
+        <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+          <svg viewBox="0 0 200 200" width="64" height="64">
+            <g filter="{{c.filterAttr}}">
+              <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="{{c.markFill}}" stroke-width="8" stroke-linecap="round"></path>
+              <circle cx="100" cy="88" r="7" fill="{{c.dotFill}}"></circle>
+              <line x1="70" x2="130" y1="118" y2="118" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></line>
+              <rect x="84" y="118" width="32" height="20" fill="{{c.markFill}}"></rect>
+              <sc-if value="{{c.detailed}}" hint-placeholder-val="{{false}}">
+                <sc-for list="{{c.vertebrae}}" as="vb" hint-placeholder-count="4">
+                  <rect x="{{vb.x}}" y="{{vb.y}}" width="{{vb.w}}" height="10" rx="4" fill="{{c.markFill}}"></rect>
+                </sc-for>
+              </sc-if>
+              <sc-if value="{{c.simple}}" hint-placeholder-val="{{false}}">
+                <path d="M78,155 Q100,150 122,155" fill="none" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></path>
+                <path d="M84,172 Q100,168 116,172" fill="none" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></path>
+              </sc-if>
+            </g>
+          </svg>
+          <div style="text-align:center;">
+            <div style="font-family:{{c.fontFamily}};font-weight:600;font-size:19px;color:oklch(24% 0.05 195);letter-spacing:0.02em;">REST &amp; RESET</div>
+            <div style="font-size:9px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(50% 0.02 85);margin-top:4px;">{{c.subline}}</div>
+          </div>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:oklch(55% 0.02 85);">Stacked</div>
+        </div>
+
+        <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;">
+          <div style="display:flex;align-items:center;gap:14px;">
+            <svg viewBox="0 0 200 200" width="52" height="52">
+              <g filter="{{c.filterAttr}}">
+                <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="{{c.markFill}}" stroke-width="8" stroke-linecap="round"></path>
+                <circle cx="100" cy="88" r="7" fill="{{c.dotFill}}"></circle>
+                <line x1="70" x2="130" y1="118" y2="118" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></line>
+                <rect x="84" y="118" width="32" height="20" fill="{{c.markFill}}"></rect>
+                <sc-if value="{{c.detailed}}" hint-placeholder-val="{{false}}">
+                  <sc-for list="{{c.vertebrae}}" as="vb" hint-placeholder-count="4">
+                    <rect x="{{vb.x}}" y="{{vb.y}}" width="{{vb.w}}" height="10" rx="4" fill="{{c.markFill}}"></rect>
+                  </sc-for>
+                </sc-if>
+                <sc-if value="{{c.simple}}" hint-placeholder-val="{{false}}">
+                  <path d="M78,155 Q100,150 122,155" fill="none" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></path>
+                  <path d="M84,172 Q100,168 116,172" fill="none" stroke="{{c.markFill}}" stroke-width="6" stroke-linecap="round"></path>
+                </sc-if>
+              </g>
+            </svg>
+            <div>
+              <div style="font-family:{{c.fontFamily}};font-weight:600;font-size:17px;color:oklch(24% 0.05 195);letter-spacing:0.02em;line-height:1.1;">REST &amp; RESET</div>
+              <div style="font-size:8px;letter-spacing:0.1em;text-transform:uppercase;color:oklch(50% 0.02 85);margin-top:3px;">{{c.subline}}</div>
+            </div>
+          </div>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:oklch(55% 0.02 85);">Horizontal</div>
+        </div>
+
+        <div style="background:{{c.flatColor}};border-radius:4px;padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;">
+          <svg viewBox="0 0 200 200" width="76" height="76">
+            <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="oklch(97% 0.01 85)" stroke-width="8" stroke-linecap="round"></path>
+            <circle cx="100" cy="88" r="7" fill="oklch(97% 0.01 85)"></circle>
+            <line x1="70" x2="130" y1="118" y2="118" stroke="oklch(97% 0.01 85)" stroke-width="6" stroke-linecap="round"></line>
+            <rect x="84" y="118" width="32" height="20" fill="oklch(97% 0.01 85)"></rect>
+            <sc-if value="{{c.detailed}}" hint-placeholder-val="{{false}}">
+              <sc-for list="{{c.vertebrae}}" as="vb" hint-placeholder-count="4">
+                <rect x="{{vb.x}}" y="{{vb.y}}" width="{{vb.w}}" height="10" rx="4" fill="oklch(97% 0.01 85)"></rect>
+              </sc-for>
+            </sc-if>
+            <sc-if value="{{c.simple}}" hint-placeholder-val="{{false}}">
+              <path d="M78,155 Q100,150 122,155" fill="none" stroke="oklch(97% 0.01 85)" stroke-width="6" stroke-linecap="round"></path>
+              <path d="M84,172 Q100,168 116,172" fill="none" stroke="oklch(97% 0.01 85)" stroke-width="6" stroke-linecap="round"></path>
+            </sc-if>
+          </svg>
+          <div style="font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:oklch(90% 0.01 85);">Single color</div>
+        </div>
+
+      </div>
+    </div>
+  </sc-for>
+
+  <div style="margin-bottom:52px;padding-bottom:44px;border-bottom:1px solid oklch(88% 0.01 85);">
+    <div style="font-family:'Lora',serif;font-size:20px;color:oklch(24% 0.05 195);font-weight:600;margin-bottom:18px;">Typography</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+      <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:20px;">
+        <div style="font-family:'Lora',serif;font-size:38px;color:oklch(24% 0.05 195);font-weight:600;">Aa</div>
+        <div style="font-size:13px;font-weight:600;color:oklch(30% 0.03 195);margin-top:8px;">Lora &mdash; Classic Serif</div>
+        <div style="font-size:12px;color:oklch(50% 0.02 85);margin-top:2px;">Wordmark, concepts 1 &amp; 4</div>
+      </div>
+      <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:20px;">
+        <div style="font-family:'Piazzolla',serif;font-size:38px;color:oklch(24% 0.05 195);font-weight:600;">Aa</div>
+        <div style="font-size:13px;font-weight:600;color:oklch(30% 0.03 195);margin-top:8px;">Piazzolla &mdash; Modern Serif</div>
+        <div style="font-size:12px;color:oklch(50% 0.02 85);margin-top:2px;">Wordmark, concept 2</div>
+      </div>
+      <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:20px;">
+        <div style="font-family:'Archivo',sans-serif;font-size:38px;color:oklch(24% 0.05 195);font-weight:700;">Aa</div>
+        <div style="font-size:13px;font-weight:600;color:oklch(30% 0.03 195);margin-top:8px;">Archivo &mdash; Clean Sans</div>
+        <div style="font-size:12px;color:oklch(50% 0.02 85);margin-top:2px;">Wordmark, concept 3 &middot; sublines &amp; UI text, all concepts</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="margin-bottom:52px;padding-bottom:44px;border-bottom:1px solid oklch(88% 0.01 85);">
+    <div style="font-family:'Lora',serif;font-size:20px;color:oklch(24% 0.05 195);font-weight:600;margin-bottom:18px;">Usage Rules</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;">
+      <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:20px;">
+        <div style="font-size:13px;font-weight:600;color:oklch(30% 0.03 195);margin-bottom:6px;">Clear space</div>
+        <div style="font-size:12px;color:oklch(45% 0.02 85);line-height:1.5;">Keep open space around the mark equal to the height of the fermata arc on every side. Nothing else sits inside that margin.</div>
+      </div>
+      <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:20px;">
+        <div style="font-size:13px;font-weight:600;color:oklch(30% 0.03 195);margin-bottom:6px;">Minimum size</div>
+        <div style="font-size:12px;color:oklch(45% 0.02 85);line-height:1.5;">Mark-only: 32px tall minimum. Full lockup: 120px wide minimum, so the subline stays legible.</div>
+      </div>
+      <div style="background:oklch(99% 0.005 85);border:1px solid oklch(90% 0.01 85);border-radius:4px;padding:20px;">
+        <div style="font-size:13px;font-weight:600;color:oklch(30% 0.03 195);margin-bottom:6px;">Don&rsquo;t</div>
+        <div style="font-size:12px;color:oklch(45% 0.02 85);line-height:1.5;">Don&rsquo;t stretch or rotate the mark, recolor it outside the palette, or place it on a busy photo without the single-color version.</div>
+      </div>
+    </div>
+  </div>
+
+  <div>
+    <div style="font-family:'Lora',serif;font-size:20px;color:oklch(24% 0.05 195);font-weight:600;margin-bottom:6px;">Applied Mockups</div>
+    <div style="font-size:12px;color:oklch(50% 0.02 85);margin-bottom:18px;">Shown with Concept 1 as an example &mdash; the same system applies to whichever direction is chosen.</div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;">
+
+      <div style="background:oklch(32% 0.055 195);border-radius:6px;padding:28px;width:100%;max-width:340px;aspect-ratio:1.75;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between;">
+        <svg viewBox="0 0 200 200" width="36" height="36">
+          <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="#E8DCC8" stroke-width="8" stroke-linecap="round"></path>
+          <circle cx="100" cy="88" r="7" fill="#E8DCC8"></circle>
+          <line x1="70" x2="130" y1="118" y2="118" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></line>
+          <rect x="84" y="118" width="32" height="20" fill="#E8DCC8"></rect>
+          <path d="M78,155 Q100,150 122,155" fill="none" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></path>
+          <path d="M84,172 Q100,168 116,172" fill="none" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></path>
+        </svg>
+        <div>
+          <div style="font-family:'Lora',serif;font-weight:600;font-size:16px;color:#E8DCC8;">REST &amp; RESET</div>
+          <div style="font-size:10px;color:oklch(85% 0.02 85);margin-top:6px;">Dr. Jared Wilson, DC</div>
+          <div style="font-size:9px;letter-spacing:0.05em;color:oklch(70% 0.02 85);margin-top:2px;font-family:'Archivo',sans-serif;">(555) 010-0182 &middot; hello@restandreset.com</div>
+        </div>
+      </div>
+
+      <div style="background:#E8DCC8;border-radius:6px;padding:28px;width:100%;max-width:340px;aspect-ratio:1.75;box-sizing:border-box;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+        <svg viewBox="0 0 200 200" width="46" height="46">
+          <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="#1F4A48" stroke-width="8" stroke-linecap="round"></path>
+          <circle cx="100" cy="88" r="7" fill="#1F4A48"></circle>
+          <line x1="70" x2="130" y1="118" y2="118" stroke="#1F4A48" stroke-width="6" stroke-linecap="round"></line>
+          <rect x="84" y="118" width="32" height="20" fill="#1F4A48"></rect>
+          <path d="M78,155 Q100,150 122,155" fill="none" stroke="#1F4A48" stroke-width="6" stroke-linecap="round"></path>
+          <path d="M84,172 Q100,168 116,172" fill="none" stroke="#1F4A48" stroke-width="6" stroke-linecap="round"></path>
+        </svg>
+        <div style="font-family:'Lora',serif;font-weight:600;font-size:20px;color:#1F4A48;">REST &amp; RESET</div>
+        <div style="font-size:10px;letter-spacing:0.1em;color:oklch(30% 0.03 195);font-family:'Archivo',sans-serif;">123 MAIN STREET &middot; SUITE 4</div>
+      </div>
+
+      <div style="width:100%;max-width:340px;display:flex;align-items:center;gap:14px;">
+        <div style="width:96px;height:96px;border-radius:50%;background:#1F4A48;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <svg viewBox="0 0 200 200" width="52" height="52">
+            <path d="M50,85 A50,50 0 0 1 150,85" fill="none" stroke="#E8DCC8" stroke-width="8" stroke-linecap="round"></path>
+            <circle cx="100" cy="88" r="7" fill="#E8DCC8"></circle>
+            <line x1="70" x2="130" y1="118" y2="118" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></line>
+            <rect x="84" y="118" width="32" height="20" fill="#E8DCC8"></rect>
+            <path d="M78,155 Q100,150 122,155" fill="none" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></path>
+            <path d="M84,172 Q100,168 116,172" fill="none" stroke="#E8DCC8" stroke-width="6" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <div style="font-size:12px;color:oklch(50% 0.02 85);">Social avatar &mdash; mark scales down cleanly with clear space intact.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  renderVals() {
+    const teal = 'oklch(32% 0.055 195)';
+    const tealTint = 'oklch(88% 0.03 195)';
+    const cream = '#E8DCC8';
+    const clay = 'oklch(60% 0.09 45)';
+    const ink = 'oklch(20% 0.02 195)';
+    const subline = 'DR. JARED WILSON \u00b7 CHIROPRACTIC CARE';
+    const vb4 = [
+      { x: 77, y: 152, w: 46 },
+      { x: 80, y: 166, w: 40 },
+      { x: 83, y: 180, w: 34 },
+      { x: 87, y: 194, w: 26 }
+    ];
+    const base = (num, name, mark, fontLabel, fontFamily, dotColor, dimensional) => ({
+      num, name,
+      markLabel: mark === 'detailed' ? 'Spine-detailed' : 'Simple',
+      detailed: mark === 'detailed',
+      simple: mark === 'simple',
+      dimensional: !!dimensional,
+      vertebrae: vb4,
+      fontLabel, fontFamily,
+      subline,
+      flatColor: teal,
+      markFill: dimensional ? 'url(#tealGrad)' : teal,
+      dotFill: dimensional ? 'url(#clayGrad)' : dotColor,
+      filterAttr: dimensional ? 'url(#markShadow)' : 'none'
+    });
+    return {
+      palette: [
+        { name: 'Deep Teal', hex: '#1F4A48', color: teal },
+        { name: 'Teal Tint', hex: '#C9DEDC', color: tealTint },
+        { name: 'Warm Cream', hex: '#E8DCC8', color: cream },
+        { name: 'Clay', hex: '#B5764A', color: clay },
+        { name: 'Ink', hex: '#152E2D', color: ink }
+      ],
+      concepts: [
+        base(1, 'Classic Simple', 'simple', 'Lora (classic serif)', "'Lora',serif", teal, false),
+        base(2, 'Modern Spine', 'detailed', 'Piazzolla (modern serif)', "'Piazzolla',serif", clay, true),
+        base(3, 'Clean Sans', 'simple', 'Archivo (clean sans)', "'Archivo',sans-serif", teal, false),
+        base(4, 'Bold Signage', 'detailed', 'Archivo (clean sans)', "'Archivo',sans-serif", clay, true)
+      ]
+    };
+  }
+}
+
+</script>
+</body>
+</html>
