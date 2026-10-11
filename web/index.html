@@ -43,8 +43,7 @@
   .picker { margin-top: 18px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: grid; grid-template-columns: auto 1fr; gap: 22px; align-items: center; }
   .picker-label { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--label); margin-bottom: 10px; }
   /* Checkerboard = "this file exports with a transparent background," the
-     standard design-tool convention — never a solid fill, so recoloring the
-     icon can never look like it's recoloring the background too. */
+     standard design-tool convention. A chosen background replaces it inline. */
   .picker-preview {
     width: 84px; height: 84px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
     border: 1px solid oklch(85% 0.01 85);
@@ -63,6 +62,11 @@
   .mini.light { border-color: oklch(80% 0.01 85); }
   .mini[aria-pressed="true"]::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--teal); }
   .mini.gradient { background: radial-gradient(circle at 32% 28%, #D59A74 0%, #D59A74 22%, transparent 26%), linear-gradient(180deg, #2F6B69, #0E2F2E); box-shadow: 0 1px 2px rgba(0,0,0,0.35); }
+  .mini.transparent { border-color: oklch(80% 0.01 85); background-image: linear-gradient(45deg, oklch(85% 0.005 85) 25%, transparent 25%), linear-gradient(-45deg, oklch(85% 0.005 85) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, oklch(85% 0.005 85) 75%), linear-gradient(-45deg, transparent 75%, oklch(85% 0.005 85) 75%); background-size: 8px 8px; background-position: 0 0, 0 4px, 4px -4px, -4px 0; background-color: #fff; }
+  .mini-custom { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; }
+  .mini-custom input[type=color] { width: 26px; height: 26px; padding: 0; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; background: none; }
+  .mini-custom span { font-size: 11px; color: var(--muted); }
+  .picker-label-sub { margin-top: 14px; }
   .hexval { display: inline-flex; align-items: center; margin-left: 6px; font-size: 12px; color: var(--muted); font-family: ui-monospace, 'SF Mono', Menlo, Consolas, monospace; }
   .picker-row2 { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
   .fmt-group { display: inline-flex; border: 1px solid var(--teal); border-radius: 999px; overflow: hidden; }
@@ -124,16 +128,15 @@
     .swatch { width: calc(50% - 7px); }
   }
 
-  .ver-bar { position: sticky; top: 0; z-index: 20; background: oklch(96% 0.015 85 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
-  .ver-bar-in { max-width: 1180px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-  .ver-bar-title { font-family: 'Lora', serif; font-weight: 600; font-size: 16px; color: var(--heading); }
-  .ver-toggle { display: flex; gap: 4px; padding: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; }
-  .ver-toggle button { border: none; cursor: pointer; font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 999px; background: none; color: oklch(35% 0.03 195); }
-  .ver-toggle button[aria-pressed="true"] { background: var(--teal); color: var(--cream); }
+  .see-site { margin-left: auto; font-size: 13px; font-weight: 600; color: var(--teal); text-decoration: none; border-bottom: 1px solid currentColor; padding-bottom: 1px; white-space: nowrap; }
+  .see-site:hover { color: oklch(24% 0.05 195); border-bottom-width: 2px; }
+  .see-site:focus-visible { outline: 2px solid var(--clay); outline-offset: 3px; border-radius: 2px; }
+  .mix-site { display: inline-block; margin: 14px 0 0; }
   @media (max-width: 600px) {
-    .ver-bar-in { padding: 10px 16px; }
-    .ver-toggle { gap: 2px; padding: 3px; width: 100%; }
-    .ver-toggle button { flex: 1; font-size: 11.5px; padding: 7px 6px; white-space: nowrap; }
+    .see-site { margin-left: 0; }
+  }
+  @media (max-width: 560px) {
+    [data-bgval] { display: none; }
   }
 
   /* ---- Mix & Match ---- */
@@ -199,14 +202,15 @@
   </defs>
 </svg>
 
-<div class="ver-bar">
-  <div class="ver-bar-in">
-    <div class="ver-bar-title">Rest &amp; Reset &middot; Brand Kit</div>
-    <div class="ver-toggle" role="group" aria-label="Version">
-      <button type="button" id="ver-v1" aria-pressed="true">V1 &middot; Original</button>
-      <button type="button" id="ver-v2" aria-pressed="false">V2 &middot; New Directions</button>
-      <button type="button" id="ver-mix" aria-pressed="false">Mix &amp; Match</button>
-    </div>
+<div class="kit-bar">
+  <div class="kit-bar-row">
+    <a class="kit-bar-title" href="/#v1">Rest &amp; Reset &middot; Brand Kit</a>
+    <nav class="kit-nav" aria-label="Brand kit">
+      <a href="/#v1" data-tab="v1" aria-current="page"><span class="full">V1 &middot; Original</span><span class="short">V1</span></a>
+      <a href="/#v2" data-tab="v2"><span class="full">V2 &middot; New Directions</span><span class="short">V2</span></a>
+      <a href="/#mix" data-tab="mix">Mix &amp; Match</a>
+      <a href="/site"><span class="full">Website Mockup</span><span class="short">Mockup</span></a>
+    </nav>
   </div>
 </div>
 
@@ -304,8 +308,8 @@
   </section>
 
   <aside class="next">
-    <p>See all four directions applied to a mockup of the current restandresetchiro.com homepage, with a switcher to compare them.</p>
-    <a href="/site">Open website mockup &rarr;</a>
+    <p>Preview any direction, V1 or V2, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
+    <a href="/site#concept=v1-1">Open website mockup &rarr;</a>
   </aside>
 </div>
 
@@ -340,6 +344,11 @@
     <div class="meta" style="margin-bottom:18px;">Social avatar and favicon sizes. The anatomical detail needs to stay readable when the mark is small.</div>
     <div id="v2small" style="display:flex;gap:28px;flex-wrap:wrap;"></div>
   </section>
+
+  <aside class="next">
+    <p>Preview any direction, V1 or V2, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
+    <a href="/site#concept=v2-1">Open website mockup &rarr;</a>
+  </aside>
 </div>
 
 <div class="wrap" id="mix-view" hidden>
@@ -405,6 +414,116 @@
   // Recolor options are exactly the brand kit palette above — no free-color
   // picker, so every exported icon stays on-brand.
   var quickColors = palette.map(function (p) { return { hex: p.hex, label: p.name }; });
+  var bgChoices = quickColors.concat([{ hex: 'transparent', label: 'Transparent' }]);
+
+  function bgRowHtml() {
+    return '<div class="picker-label picker-label-sub">Background</div>' +
+      '<div class="swatches-mini" role="group" aria-label="Background">' +
+        bgChoices.map(function (q) {
+          var clear = q.hex === 'transparent';
+          return '<button type="button" class="mini' + (clear ? ' transparent' : (isLight(q.hex) ? ' light' : '')) + '"' +
+            (clear ? '' : ' style="background:' + q.hex + '"') +
+            ' data-bg="' + q.hex + '" aria-pressed="' + clear + '" aria-label="' + q.label + ' background"' +
+            ' title="' + q.label + (clear ? '' : ' &middot; ' + q.hex) + '"></button>';
+        }).join('') +
+        '<label class="mini-custom"><input type="color" value="#FFFFFF" data-bg-custom aria-label="Custom background color"><span>Custom</span></label>' +
+        '<span class="hexval" data-bgval>Transparent</span>' +
+      '</div>';
+  }
+
+  // Places a standalone mark file on a square tile of the chosen color, with
+  // the mark filling ~72% of the tile, so the export reads like an app icon.
+  function composeOnBackground(svg, bg, px) {
+    var vb = parseViewBox(svg);
+    var side = Math.max(vb.w, vb.h) / 0.72;
+    var x = vb.x + vb.w / 2 - side / 2, y = vb.y + vb.h / 2 - side / 2;
+    var box = x.toFixed(2) + ' ' + y.toFixed(2) + ' ' + side.toFixed(2) + ' ' + side.toFixed(2);
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + box + '" width="' + px + '" height="' + px + '">' +
+      '<rect x="' + x.toFixed(2) + '" y="' + y.toFixed(2) + '" width="' + side.toFixed(2) + '" height="' + side.toFixed(2) + '" fill="' + bg + '"></rect>' +
+      innerOf(svg) + '</svg>';
+  }
+
+  function saveBlob(blob, filename) {
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a');
+    a.href = url; a.download = filename;
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+  }
+  function svgToPNG(svg, filename, px) {
+    var svgUrl = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+    var img = new Image();
+    img.onload = function () {
+      var canvas = document.createElement('canvas');
+      canvas.width = px; canvas.height = px;
+      canvas.getContext('2d').drawImage(img, 0, 0, px, px);
+      URL.revokeObjectURL(svgUrl);
+      canvas.toBlob(function (blob) { saveBlob(blob, filename); }, 'image/png');
+    };
+    img.onerror = function () { URL.revokeObjectURL(svgUrl); };
+    img.src = svgUrl;
+  }
+
+  // o: { slug, previewSVG(hex), fileSVG(hex), saveTransparent(hex, fmt, name) }
+  // Transparent exports go through the mark module untouched, so those files
+  // stay identical to the shipped asset packs.
+  function wireIconPicker(panel, o) {
+    var preview = panel.querySelector('[data-preview]');
+    var hexLabel = panel.querySelector('[data-hexval]');
+    var bgLabel = panel.querySelector('[data-bgval]');
+    var pngNote = panel.querySelector('[data-png-note]');
+    var fmt = 'svg';
+    var hex = panel.getAttribute('data-default');
+    var bg = 'transparent';
+
+    function render() {
+      preview.innerHTML = o.previewSVG(hex);
+      preview.style.background = bg === 'transparent' ? '' : bg;
+      pngNote.textContent = 'PNG exports at 1024×1024, ' +
+        (bg === 'transparent' ? 'transparent background.' : 'on a square tile of the chosen background.');
+    }
+    function press(selector, active) {
+      panel.querySelectorAll(selector).forEach(function (b) { b.setAttribute('aria-pressed', String(b === active)); });
+    }
+    function setBg(value, sourceBtn) {
+      bg = value;
+      bgLabel.textContent = bg === 'transparent' ? 'Transparent' : bg.toUpperCase();
+      press('[data-bg]', sourceBtn);
+      render();
+    }
+
+    panel.querySelectorAll('[data-hex]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        hex = b.getAttribute('data-hex');
+        hexLabel.textContent = hex === 'gradient' ? 'Original (gradient)' : hex.toUpperCase();
+        press('[data-hex]', b);
+        render();
+      });
+    });
+    panel.querySelectorAll('[data-bg]').forEach(function (b) {
+      b.addEventListener('click', function () { setBg(b.getAttribute('data-bg'), b); });
+    });
+    panel.querySelector('[data-bg-custom]').addEventListener('input', function (e) { setBg(e.target.value, null); });
+
+    panel.querySelectorAll('.fmt-btn').forEach(function (b) {
+      b.addEventListener('click', function () {
+        fmt = b.getAttribute('data-fmt');
+        press('.fmt-btn', b);
+        pngNote.hidden = fmt !== 'png';
+      });
+    });
+
+    panel.querySelector('[data-dl-icon]').addEventListener('click', function () {
+      var name = 'rest-and-reset-' + o.slug + '-' + hex.replace('#', '').toLowerCase();
+      if (bg === 'transparent') return o.saveTransparent(hex, fmt, name);
+      name += '-on-' + bg.replace('#', '').toLowerCase();
+      var svg = composeOnBackground(o.fileSVG(hex), bg, 1024);
+      if (fmt === 'svg') saveBlob(new Blob([svg], { type: 'image/svg+xml' }), name + '.svg');
+      else svgToPNG(svg, name + '.png', 1024);
+    });
+
+    render();
+  }
 
   var subline = 'DR. JARED WILSON &middot; CHIROPRACTIC CARE';
   var html = '';
@@ -416,7 +535,8 @@
     html +=
       '<section class="section" data-concept-block="' + n + '">' +
         '<div class="concept-head"><div class="h2">' + c.num + '. ' + c.name + '</div>' +
-        '<div class="meta">' + label + ' mark &middot; ' + c.fontLabel + '</div></div>' +
+        '<div class="meta">' + label + ' mark &middot; ' + c.fontLabel + '</div>' +
+        '<a class="see-site" href="/site#concept=v1-' + n + '">See it on the website &rarr;</a></div>' +
         '<div class="tiles">' +
           '<div class="tile">' + RR.conceptMark(c, 120) + '<div class="tile-label">Mark only</div></div>' +
           '<div class="tile">' + RR.conceptMark(c, 64) +
@@ -442,6 +562,7 @@
               }).join('') +
               '<span class="hexval" data-hexval>' + (c.dimensional ? 'Original (gradient)' : quickColors[0].hex) + '</span>' +
             '</div>' +
+            bgRowHtml() +
             '<div class="picker-row2">' +
               '<div class="fmt-group" role="group" aria-label="File format">' +
                 '<button type="button" class="fmt-btn" data-fmt="svg" aria-pressed="true">SVG</button>' +
@@ -471,70 +592,48 @@
   // Wire up each concept's recolor-and-download picker.
   document.querySelectorAll('[data-picker]').forEach(function (panel) {
     var variant = panel.getAttribute('data-variant');
-    var preview = panel.querySelector('[data-preview]');
-    var hexLabel = panel.querySelector('[data-hexval]');
-    var pngNote = panel.querySelector('[data-png-note]');
-    var fmt = 'svg';
-    var hex = panel.getAttribute('data-default');
-
-    function renderPreview() {
-      preview.innerHTML = hex === 'gradient'
-        ? RR.markSVG({ variant: variant, dimensional: true, size: 52 })
-        : RR.markSVG({ variant: variant, fill: hex, dot: hex, dimensional: false, size: 52 });
-    }
-    function setHex(newHex, sourceBtn) {
-      hex = newHex;
-      hexLabel.textContent = hex === 'gradient' ? 'Original (gradient)' : hex.toUpperCase();
-      panel.querySelectorAll('.mini').forEach(function (b) {
-        b.setAttribute('aria-pressed', String(b === sourceBtn));
-      });
-      renderPreview();
-    }
-
-    panel.querySelectorAll('.mini').forEach(function (b) {
-      b.addEventListener('click', function () { setHex(b.getAttribute('data-hex'), b); });
-    });
-
-    panel.querySelectorAll('.fmt-btn').forEach(function (b) {
-      b.addEventListener('click', function () {
-        fmt = b.getAttribute('data-fmt');
-        panel.querySelectorAll('.fmt-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-        pngNote.hidden = fmt !== 'png';
-      });
-    });
-
-    panel.querySelector('[data-dl-icon]').addEventListener('click', function () {
-      var slug = slugs[panel.getAttribute('data-picker')];
-      var name = 'rest-and-reset-' + slug + '-' + hex.replace('#', '').toLowerCase();
-      if (fmt === 'svg') {
-        RR.downloadSVG(variant, hex, name + '.svg');
-      } else {
-        RR.downloadPNG(variant, hex, name + '.png', 1024);
+    wireIconPicker(panel, {
+      slug: slugs[panel.getAttribute('data-picker')],
+      previewSVG: function (hex) {
+        return hex === 'gradient'
+          ? RR.markSVG({ variant: variant, dimensional: true, size: 52 })
+          : RR.markSVG({ variant: variant, fill: hex, dot: hex, dimensional: false, size: 52 });
+      },
+      fileSVG: function (hex) {
+        return hex === 'gradient' ? RR.standaloneDimensionalSVG(variant) : RR.standaloneMarkSVG(variant, hex);
+      },
+      saveTransparent: function (hex, fmt, name) {
+        if (fmt === 'svg') RR.downloadSVG(variant, hex, name + '.svg');
+        else RR.downloadPNG(variant, hex, name + '.png', 1024);
       }
     });
-
-    renderPreview();
   });
 
   // ============================================================
-  // Version toggle: V1 / V2 / Mix & Match
+  // Tabs: V1 / V2 / Mix & Match, routed by URL hash (/#v2) so the mockup
+  // and the back button can return to a specific tab.
   // ============================================================
   (function () {
     var views = { v1: document.getElementById('v1-view'), v2: document.getElementById('v2-view'), mix: document.getElementById('mix-view') };
-    var buttons = { v1: document.getElementById('ver-v1'), v2: document.getElementById('ver-v2'), mix: document.getElementById('ver-mix') };
+    var links = document.querySelectorAll('.kit-nav [data-tab]');
     var v2Built = false, mixBuilt = false;
-    function show(which) {
-      Object.keys(views).forEach(function (k) {
-        views[k].hidden = k !== which;
-        buttons[k].setAttribute('aria-pressed', String(k === which));
+    function current() {
+      var h = location.hash.replace('#', '');
+      return views[h] ? h : 'v1';
+    }
+    function show(which, scroll) {
+      Object.keys(views).forEach(function (k) { views[k].hidden = k !== which; });
+      links.forEach(function (a) {
+        if (a.getAttribute('data-tab') === which) a.setAttribute('aria-current', 'page');
+        else a.removeAttribute('aria-current');
       });
       if (which === 'v2' && !v2Built) { buildV2(); v2Built = true; }
       if (which === 'mix' && !mixBuilt) { buildMix(); mixBuilt = true; }
-      window.scrollTo(0, 0);
+      if (scroll) window.scrollTo(0, 0);
     }
-    buttons.v1.addEventListener('click', function () { show('v1'); });
-    buttons.v2.addEventListener('click', function () { show('v2'); });
-    buttons.mix.addEventListener('click', function () { show('mix'); });
+    window.addEventListener('hashchange', function () { show(current(), true); });
+    // Deferred until the whole script has run: buildV2/buildMix read vars declared below.
+    document.addEventListener('DOMContentLoaded', function () { show(current(), false); });
   })();
 
   // ============================================================
@@ -555,7 +654,8 @@
       html2 +=
         '<section class="section" data-v2-block="' + n + '">' +
           '<div class="concept-head"><div class="h2">' + c.num + '. ' + c.name + '</div>' +
-          '<div class="meta">' + c.finish + ' &middot; ' + c.fontLabel + '</div></div>' +
+          '<div class="meta">' + c.finish + ' &middot; ' + c.fontLabel + '</div>' +
+          '<a class="see-site" href="/site#concept=v2-' + n + '">See it on the website &rarr;</a></div>' +
           '<div class="meta" style="margin-bottom:14px;max-width:640px;">' + c.desc + '</div>' +
           '<div class="tiles">' +
             '<div class="tile">' + RR2.conceptMark(c, 120) + '<div class="tile-label">Mark only</div></div>' +
@@ -582,6 +682,7 @@
                 }).join('') +
                 '<span class="hexval" data-hexval>' + (c.dim ? 'Original (gradient)' : quickColors[0].hex) + '</span>' +
               '</div>' +
+              bgRowHtml() +
               '<div class="picker-row2">' +
                 '<div class="fmt-group" role="group" aria-label="File format">' +
                   '<button type="button" class="fmt-btn" data-fmt="svg" aria-pressed="true">SVG</button>' +
@@ -621,40 +722,21 @@
 
     document.querySelectorAll('[data-v2-picker]').forEach(function (panel) {
       var variant = panel.getAttribute('data-variant');
-      var preview = panel.querySelector('[data-preview]');
-      var hexLabel = panel.querySelector('[data-hexval]');
-      var pngNote = panel.querySelector('[data-png-note]');
-      var fmt = 'svg';
-      var hex = panel.getAttribute('data-default');
-
-      function renderPreview() {
-        preview.innerHTML = hex === 'gradient'
-          ? RR2.markSVG({ variant: variant, dimensional: true, size: 52 })
-          : RR2.markSVG({ variant: variant, color: hex, accent: hex, dimensional: false, size: 52 });
-      }
-      function setHex(newHex, sourceBtn) {
-        hex = newHex;
-        hexLabel.textContent = hex === 'gradient' ? 'Original (gradient)' : hex.toUpperCase();
-        panel.querySelectorAll('.mini').forEach(function (b) { b.setAttribute('aria-pressed', String(b === sourceBtn)); });
-        renderPreview();
-      }
-      panel.querySelectorAll('.mini').forEach(function (b) {
-        b.addEventListener('click', function () { setHex(b.getAttribute('data-hex'), b); });
+      wireIconPicker(panel, {
+        slug: v2Slugs[panel.getAttribute('data-v2-picker')],
+        previewSVG: function (hex) {
+          return hex === 'gradient'
+            ? RR2.markSVG({ variant: variant, dimensional: true, size: 52 })
+            : RR2.markSVG({ variant: variant, color: hex, accent: hex, dimensional: false, size: 52 });
+        },
+        fileSVG: function (hex) {
+          return hex === 'gradient' ? RR2.standaloneDimensionalSVG(variant) : RR2.standaloneSVG(variant, hex);
+        },
+        saveTransparent: function (hex, fmt, name) {
+          if (fmt === 'svg') RR2.downloadSVG(variant, hex, name + '.svg');
+          else RR2.downloadPNG(variant, hex, name + '.png', 1024);
+        }
       });
-      panel.querySelectorAll('.fmt-btn').forEach(function (b) {
-        b.addEventListener('click', function () {
-          fmt = b.getAttribute('data-fmt');
-          panel.querySelectorAll('.fmt-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
-          pngNote.hidden = fmt !== 'png';
-        });
-      });
-      panel.querySelector('[data-dl-icon]').addEventListener('click', function () {
-        var slug = v2Slugs[panel.getAttribute('data-v2-picker')];
-        var name = 'rest-and-reset-' + slug + '-' + hex.replace('#', '').toLowerCase();
-        if (fmt === 'svg') RR2.downloadSVG(variant, hex, name + '.svg');
-        else RR2.downloadPNG(variant, hex, name + '.png', 1024);
-      });
-      renderPreview();
     });
   }
 
@@ -741,6 +823,7 @@
               'Download' +
             '</button>' +
           '</div>' +
+          '<a class="see-site mix-site" id="mix-site" href="/site">See this combination on the website &rarr;</a>' +
           '<p class="png-note" style="margin-top:10px;">PNG exports at 2&times; this preview size. Background is included as drawn, so choose Transparent for a cutout logo.</p>' +
         '</div>' +
       '</div>';
@@ -775,12 +858,6 @@
     var bgEl = document.getElementById('mix-bgrow');
     bgEl.innerHTML = colorRowHtml('mixbg', false, true);
 
-    function markPressed(sel, val) {
-      document.querySelectorAll(sel).forEach(function (b) {
-        var v = b.getAttribute(sel.indexOf('mixbg') > -1 ? 'data-mixbg' : (sel.indexOf('mixcolor') > -1 ? 'data-mixcolor' : null));
-      });
-    }
-
     function syncPressed(container, attr, val) {
       container.querySelectorAll('[' + attr + ']').forEach(function (b) {
         b.setAttribute('aria-pressed', String(b.getAttribute(attr) === val));
@@ -798,6 +875,10 @@
       syncPressed(fontsEl, 'data-font', state.font);
       syncPressed(colorEl, 'data-mixcolor', state.hex);
       syncPressed(bgEl, 'data-mixbg', state.bg);
+      // The mockup takes the mark plus a typeface override; logo color and
+      // background are export-only settings with no page equivalent.
+      var typeKey = state.font === m.font ? '' : '&type=' + state.font.match(/'(\w+)'/)[1].toLowerCase();
+      document.getElementById('mix-site').href = '/site#concept=' + m.id + typeKey;
     }
 
     marksEl.addEventListener('click', function (e) {

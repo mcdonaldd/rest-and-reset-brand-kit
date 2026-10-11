@@ -15,16 +15,18 @@
   :root { --display: 'Lora', serif; --display-weight: 600; --display-case: none; --display-track: 0; --accent: var(--teal); }
   body { background: #FBF8F3; color: oklch(30% 0.02 195); }
 
-  /* Mockup chrome */
-  .chrome { position: sticky; top: 0; z-index: 20; background: var(--ink); color: oklch(88% 0.01 85); font-size: 13px; }
-  .chrome-in { max-width: 1180px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .chrome-title { font-weight: 600; letter-spacing: 0.04em; }
-  .chrome-title span { color: oklch(70% 0.02 85); font-weight: 400; }
-  .concept-picker { margin-left: auto; display: flex; align-items: center; }
-  .concept-picker select { font: inherit; font-size: 12.5px; font-weight: 600; background: oklch(24% 0.03 195); color: oklch(92% 0.01 85); border: 1px solid oklch(45% 0.03 195); padding: 7px 10px; border-radius: 8px; cursor: pointer; max-width: 220px; }
-  .concept-picker select:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
-  .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
-  .chrome a.back { color: var(--cream); font-weight: 600; text-decoration: none; white-space: nowrap; }
+  /* Mockup controls: a second row inside the shared kit bar. */
+  .mock-controls { border-top: 1px solid oklch(29% 0.025 195); }
+  .mock-controls-in { max-width: 1180px; margin: 0 auto; padding: 8px 32px; display: flex; align-items: center; gap: 10px 22px; flex-wrap: wrap; font-size: 13px; }
+  .mock-note { color: oklch(72% 0.02 85); margin-right: auto; }
+  .control { display: flex; align-items: center; gap: 6px; }
+  .control label { color: oklch(80% 0.015 85); margin-right: 4px; }
+  .control select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 13px; font-weight: 600; color: var(--cream); height: 32px; padding: 0 34px 0 14px; border-radius: 999px; border: 1px solid oklch(38% 0.03 195); cursor: pointer;
+    background: oklch(27% 0.028 195) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23D9D2BF' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center / 10px 6px; }
+  .control option, .control optgroup { color: #1C3E3C; background: #FBF8F3; }
+  .step { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: 1px solid oklch(38% 0.03 195); background: oklch(27% 0.028 195); color: var(--cream); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .control select:hover, .step:hover { border-color: oklch(52% 0.04 195); background-color: oklch(31% 0.03 195); }
+  .control select:focus-visible, .step:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
   .display { font-family: var(--display); font-weight: var(--display-weight); text-transform: var(--display-case); letter-spacing: var(--display-track); color: var(--heading); }
@@ -159,9 +161,12 @@
   }
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
-    .chrome-in { padding: 10px 16px; }
-    .concept-picker { margin-left: 0; width: 100%; }
-    .concept-picker select { max-width: none; width: 100%; }
+    .kit-bar.has-controls { position: static; }
+    .mock-controls-in { padding: 8px 16px 12px; }
+    .mock-note { display: none; }
+    .control { width: 100%; }
+    .control label { width: 68px; flex-shrink: 0; }
+    .control select { flex: 1; min-width: 0; }
     .band { padding: 52px 0; }
     .hero h1 { font-size: 32px; }
     .band-head h2, .mission h2, .cta-band h2 { font-size: 26px; }
@@ -203,14 +208,35 @@
   </defs>
 </svg>
 
-<div class="chrome" role="region" aria-label="Mockup controls">
-  <div class="chrome-in">
-    <div class="chrome-title">Website mockup <span>&middot; restandresetchiro.com, restyled</span></div>
-    <label class="concept-picker">
-      <span class="sr-only">Logo direction</span>
-      <select id="concept-select" aria-label="Logo direction"></select>
-    </label>
-    <a class="back" href="/">&larr; Brand kit</a>
+<div class="kit-bar has-controls">
+  <div class="kit-bar-row">
+    <a class="kit-bar-title" href="/#v1">Rest &amp; Reset &middot; Brand Kit</a>
+    <nav class="kit-nav" aria-label="Brand kit">
+      <a href="/#v1"><span class="full">V1 &middot; Original</span><span class="short">V1</span></a>
+      <a href="/#v2"><span class="full">V2 &middot; New Directions</span><span class="short">V2</span></a>
+      <a href="/#mix">Mix &amp; Match</a>
+      <a href="/site" aria-current="page"><span class="full">Website Mockup</span><span class="short">Mockup</span></a>
+    </nav>
+  </div>
+  <div class="mock-controls">
+    <div class="mock-controls-in">
+      <span class="mock-note">The current restandresetchiro.com homepage, restyled</span>
+      <div class="control">
+        <label for="concept-select">Logo</label>
+        <button type="button" class="step" data-step="-1" aria-label="Previous logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M6.5 1.5L3 5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <select id="concept-select"></select>
+        <button type="button" class="step" data-step="1" aria-label="Next logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M3.5 1.5L7 5 3.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <div class="control">
+        <label for="type-select">Typeface</label>
+        <select id="type-select">
+          <option value="">Matches logo</option>
+          <option value="lora">Lora</option>
+          <option value="piazzolla">Piazzolla</option>
+          <option value="archivo">Archivo</option>
+        </select>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -418,7 +444,7 @@
   [1, 2, 3, 4].forEach(function (n) {
     var c = RR.CONCEPTS[n], style = V1_STYLE[n];
     ALL_CONCEPTS['v1-' + n] = {
-      src: 'v1', n: n, group: 'V1 · Original', label: n + ' · ' + c.name,
+      src: 'v1', n: n, group: 'V1 · Original', label: 'V1 · ' + n + '. ' + c.name,
       font: c.font, weight: style.weight, case: style.case, track: style.track,
       accent: n === 2 || n === 4 ? 'var(--clay)' : 'var(--teal)'
     };
@@ -426,7 +452,7 @@
   [1, 2, 3, 4, 5, 6, 7, 8].forEach(function (n) {
     var c = RR2.CONCEPTS[n];
     ALL_CONCEPTS['v2-' + n] = {
-      src: 'v2', n: n, group: 'V2 · New Directions', label: n + ' · ' + c.name,
+      src: 'v2', n: n, group: 'V2 · New Directions', label: 'V2 · ' + n + '. ' + c.name,
       font: c.fontFamily, weight: 600, case: 'none', track: '0',
       accent: ACCENT_BY_HEX[c.accent] || 'var(--teal)'
     };
@@ -455,26 +481,52 @@
     groups[e.group].appendChild(opt);
   });
 
-  function render(id) {
+  // A typeface override swaps only the font family; the direction's own case,
+  // tracking and weight belong to its original font, so they reset with it.
+  var TYPEFACES = { lora: "'Lora',serif", piazzolla: "'Piazzolla',serif", archivo: "'Archivo',sans-serif" };
+  var ORDER = Object.keys(ALL_CONCEPTS);
+  var typeSelect = document.getElementById('type-select');
+
+  function render(id, type) {
     if (!ALL_CONCEPTS[id]) id = 'v1-1';
-    var e = ALL_CONCEPTS[id];
+    if (!TYPEFACES[type]) type = '';
+    var e = ALL_CONCEPTS[id], s = document.body.style;
     document.body.setAttribute('data-concept', id);
-    document.body.style.setProperty('--display', e.font);
-    document.body.style.setProperty('--display-weight', e.weight);
-    document.body.style.setProperty('--display-case', e.case);
-    document.body.style.setProperty('--display-track', e.track);
-    document.body.style.setProperty('--accent', e.accent);
+    s.setProperty('--display', type ? TYPEFACES[type] : e.font);
+    s.setProperty('--display-weight', type ? 600 : e.weight);
+    s.setProperty('--display-case', type ? 'none' : e.case);
+    s.setProperty('--display-track', type ? '0' : e.track);
+    s.setProperty('--accent', e.accent);
     document.querySelectorAll('[data-slot="mark"]').forEach(function (el) {
       el.innerHTML = markFor(id, +el.getAttribute('data-size'), el.getAttribute('data-fill'), el.hasAttribute('data-flat'));
     });
     select.value = id;
+    typeSelect.value = type;
   }
-  select.addEventListener('change', function () {
-    history.replaceState(null, '', '#concept-' + select.value);
-    render(select.value);
+  function update() {
+    history.replaceState(null, '', '#concept=' + select.value + (typeSelect.value ? '&type=' + typeSelect.value : ''));
+    render(select.value, typeSelect.value);
+  }
+  // #concept=v2-3&type=lora, plus the older #concept-v2-3 form.
+  function fromHash() {
+    var h = location.hash.slice(1);
+    var legacy = h.match(/^concept-([a-z0-9-]+)$/i);
+    if (legacy) return render(legacy[1], '');
+    var p = new URLSearchParams(h);
+    render(p.get('concept') || 'v1-1', p.get('type') || '');
+  }
+
+  select.addEventListener('change', update);
+  typeSelect.addEventListener('change', update);
+  document.querySelectorAll('.step').forEach(function (b) {
+    b.addEventListener('click', function () {
+      var i = (ORDER.indexOf(select.value) + Number(b.getAttribute('data-step')) + ORDER.length) % ORDER.length;
+      select.value = ORDER[i];
+      update();
+    });
   });
-  var m = location.hash.match(/concept-([a-z0-9-]+)/i);
-  render(m ? m[1] : 'v1-1');
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 </script>
 </body>
 </html>
