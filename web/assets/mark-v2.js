@@ -1,8 +1,6 @@
 // Rest & Reset V2 marks — 8 directions from Dr. Wilson's feedback round.
 // Geometry ported 1:1 from RRMarkV2.dc.html (the Claude Design export).
 (function () {
-  var CREAM = '#E8DCC8';
-
   // Each builder takes (main, acc, filterAttr) and returns the <g>...</g>
   // markup for that variant. `main` / `acc` are already resolved to either
   // a literal color or a gradient url() reference by the caller.
@@ -121,9 +119,16 @@
     var filt = dim ? ' filter="url(#v2markShadow)"' : '';
     var inner;
     if (variant === 'seal') {
-      var knock = color.toUpperCase() === CREAM ? '#1F4A48' : '#F7F1E7';
-      var sealDot = accent === color ? knock : (dim ? 'url(#v2clayGrad)' : accent);
-      inner = BUILDERS.seal(main, knock, sealDot, filt);
+      if (dim) {
+        var knock = '#F7F1E7';
+        var sealDot = accent === color ? knock : 'url(#v2clayGrad)';
+        inner = BUILDERS.seal(main, knock, sealDot, filt);
+      } else {
+        // Flat single-ink render: no filled background disc, just the
+        // line art in one color (a filled disc would collide with a
+        // same-hue knockout whenever the chosen color is itself light).
+        inner = BUILDERS.seal('none', color, color, filt);
+      }
     } else {
       inner = (BUILDERS[variant] || BUILDERS.vrest)(main, acc, filt);
     }
@@ -156,8 +161,7 @@
   function standaloneSVG(variant, hex) {
     var inner;
     if (variant === 'seal') {
-      var knock = hex.toUpperCase() === CREAM ? '#1F4A48' : '#F7F1E7';
-      inner = BUILDERS.seal(hex, knock, knock, '');
+      inner = BUILDERS.seal('none', hex, hex, '');
     } else {
       inner = (BUILDERS[variant] || BUILDERS.vrest)(hex, hex, '');
     }
