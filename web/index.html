@@ -16,7 +16,6 @@
   .intro { font-size: 14px; color: var(--body); max-width: 680px; line-height: 1.6; background: var(--card); border: 1px solid var(--line); border-radius: 4px; padding: 16px 18px; margin: 0 0 28px; }
   .intro strong { color: var(--heading); }
   .intro a { color: var(--heading); font-weight: 600; text-underline-offset: 3px; }
-  .eyebrow { font-size: 13px; letter-spacing: 0.12em; text-transform: uppercase; color: oklch(45% 0.03 195); font-weight: 600; }
   h1 { font-family: 'Lora', serif; font-size: 40px; color: var(--heading); margin: 6px 0 8px; font-weight: 600; }
   .lede { font-size: 15px; color: var(--body); max-width: 640px; line-height: 1.55; margin: 0 0 28px; }
 
@@ -133,6 +132,8 @@
   .ver-toggle button[aria-pressed="true"] { background: var(--teal); color: var(--cream); }
   @media (max-width: 600px) {
     .ver-bar-in { padding: 10px 16px; }
+    .ver-toggle { gap: 2px; padding: 3px; width: 100%; }
+    .ver-toggle button { flex: 1; font-size: 11.5px; padding: 7px 6px; white-space: nowrap; }
   }
 
   /* ---- Mix & Match ---- */
@@ -215,7 +216,6 @@
     <p class="intro">
       <strong>Hi Jared,</strong> here are four logo directions for Rest &amp; Reset. Each one starts from the same idea: a fermata (the musical sign for &ldquo;hold and rest&rdquo;) sitting over a whole rest, with the spine forming below. All four share one color palette and type system, so the rest of the kit applies to whichever you choose. Want to see them in context? <a href="/site">View the website mockup</a>.
     </p>
-    <div class="eyebrow">Brand Kit</div>
     <h1>Rest &amp; Reset</h1>
     <p class="lede">Four directions: two simple marks with a gentle vertebral curve, and two spine-detailed marks with added depth.</p>
 
@@ -285,8 +285,8 @@
         <span data-mark="1" data-size="36" data-fill="#E8DCC8"></span>
         <div>
           <div style="font-family:'Lora',serif;font-weight:600;font-size:16px;color:#E8DCC8;">REST &amp; RESET</div>
-          <div style="font-size:10px;color:oklch(85% 0.02 85);margin-top:6px;">Dr. Jared Wilson, DC</div>
-          <div style="font-size:9px;letter-spacing:0.05em;color:oklch(70% 0.02 85);margin-top:2px;">(503) 272-7689 &middot; jared.wilson@restandresetchiro.com</div>
+          <div style="font-size:10px;color:oklch(85% 0.03 195);margin-top:6px;">Dr. Jared Wilson, DC</div>
+          <div style="font-size:9px;letter-spacing:0.05em;color:oklch(70% 0.06 195);margin-top:2px;">(503) 272-7689 &middot; jared.wilson@restandresetchiro.com</div>
         </div>
       </div>
 
@@ -311,7 +311,6 @@
 
 <div class="wrap" id="v2-view" hidden>
   <header>
-    <div class="eyebrow">Brand Kit &middot; V2</div>
     <h1>Rest &amp; Reset</h1>
     <p class="lede">Eight marks built from a second round of notes. The palette, typography and usage rules carry over from V1.</p>
     <div class="cards" style="max-width:900px;margin-bottom:28px;">
@@ -345,7 +344,6 @@
 
 <div class="wrap" id="mix-view" hidden>
   <header>
-    <div class="eyebrow">Mix &amp; Match</div>
     <h1>Build your own combination</h1>
     <p class="lede">Pair any mark with any typeface, pick its color, and set the background, including transparent. This isn&rsquo;t a new direction, just a way to try combinations the fixed concepts above don&rsquo;t show.</p>
   </header>
@@ -719,7 +717,7 @@
   }
 
   function buildMix() {
-    var state = { markId: ALL_MARKS[0].id, font: ALL_MARKS[0].font, hex: '#1F4A48', bg: '#1F4A48', fmt: 'svg' };
+    var state = { markId: ALL_MARKS[0].id, font: ALL_MARKS[0].font, hex: '#1F4A48', bg: 'transparent', fmt: 'svg' };
 
     function mark() { return ALL_MARKS.filter(function (m) { return m.id === state.markId; })[0]; }
 

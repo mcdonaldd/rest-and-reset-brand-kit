@@ -31,13 +31,12 @@
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
   .display { font-family: var(--display); font-weight: var(--display-weight); text-transform: var(--display-case); letter-spacing: var(--display-track); color: var(--heading); }
-  .eyebrow { font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; font-weight: 600; color: oklch(45% 0.03 195); }
 
   /* Header */
   .site-header { background: #FBF8F3; border-bottom: 1px solid var(--line); }
   .site-header .container { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding-top: 16px; padding-bottom: 16px; }
-  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-  .brand .word { font-family: var(--display); font-weight: var(--display-weight); font-size: 18px; letter-spacing: 0.02em; color: var(--heading); line-height: 1.1; }
+  .brand { display: flex; align-items: center; gap: 12px; text-decoration: none; min-width: 0; }
+  .brand .word { font-family: var(--display); font-weight: var(--display-weight); font-size: 18px; letter-spacing: 0.02em; color: var(--heading); line-height: 1.1; white-space: nowrap; }
   .brand .sub { font-size: 8px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-top: 3px; }
   .nav { display: flex; align-items: center; gap: 26px; font-size: 14px; font-weight: 600; }
   .nav .links { display: contents; }
@@ -92,7 +91,7 @@
   /* Emphasizes grid */
   .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
   .service { background: #FBF8F3; border-radius: 16px; padding: 26px; border: 1px solid oklch(88% 0.02 195); }
-  .service .num { width: 38px; height: 38px; border-radius: 50%; background: var(--teal); color: var(--cream); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 14px; margin-bottom: 18px; }
+  .service .num { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); margin-bottom: 18px; }
   body[data-concept="2"] .service .num, body[data-concept="4"] .service .num { background: var(--clay); }
   .service h3 { font-size: 20px; margin: 0 0 8px; }
   .service p { font-size: 14.5px; line-height: 1.6; color: var(--body); margin: 0; }
@@ -111,13 +110,13 @@
   /* Mission band */
   .mission { background: var(--teal); color: oklch(92% 0.015 85); text-align: center; }
   .mission .container { max-width: 780px; }
-  .mission .eyebrow { color: oklch(82% 0.03 195); }
   .mission h2 { color: var(--cream); font-size: 32px; margin: 10px 0 16px; }
   .mission p { font-size: 16.5px; line-height: 1.7; margin: 0 0 22px; }
 
   /* Get started CTA */
   .cta-band { text-align: center; }
-  .cta-band h2 { font-size: 32px; margin: 10px 0 26px; }
+  .cta-band h2 { font-size: 32px; margin: 10px 0 8px; }
+  .cta-note { font-size: 14px; color: var(--body); margin: 0 0 22px; }
 
   /* Visit */
   .visit .container { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: stretch; }
@@ -168,7 +167,11 @@
     .band { padding: 52px 0; }
     .hero h1 { font-size: 32px; }
     .band-head h2, .mission h2, .cta-band h2 { font-size: 26px; }
+    .site-header .container { gap: 10px; }
+    .brand { gap: 8px; }
+    .brand .word { font-size: 15px; }
     .brand .sub { display: none; }
+    .btn-sm { font-size: 12px; padding: 8px 12px; }
     .testimonial { padding: 28px 22px; }
     .services { grid-template-columns: 1fr; }
   }
@@ -226,9 +229,8 @@
   <section class="hero">
     <div class="container">
       <div>
-        <div class="eyebrow">Precision Upper Cervical Care in Oregon City</div>
         <h1 class="display">From neurological stress to restored ease.</h1>
-        <p>Brain-focused chiropractic for individuals and families seeking clarity, structure, and lasting change.</p>
+        <p>Precision upper cervical chiropractic in Oregon City &mdash; brain-focused care for individuals and families seeking clarity, structure, and lasting change.</p>
         <div class="ctas">
           <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Schedule a Call or Visit</a>
           <a class="btn btn-ghost" href="#about">Learn More</a>
@@ -246,7 +248,6 @@
   <section class="band approach" id="about">
     <div class="container">
       <div>
-        <div class="eyebrow">A Thoughtful Approach to Care</div>
         <h2 class="display">At Rest &amp; Reset, care begins with understanding.</h2>
         <p>The upper cervical spine &mdash; the region closest to the brain and brainstem &mdash; plays a significant role in neurological regulation. Restriction, altered proprioception, or imbalance in this region can contribute to patterns that extend far beyond the neck.</p>
         <a class="link-more" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Learn More</a>
@@ -264,7 +265,6 @@
   <section class="band band-tint who">
     <div class="container">
       <div class="band-head">
-        <div class="eyebrow">Who We Work With</div>
         <h2 class="display">Dr. Jared Wilson enjoys working with:</h2>
       </div>
       <ul>
@@ -281,32 +281,31 @@
   <section class="band" id="services">
     <div class="container">
       <div class="band-head">
-        <div class="eyebrow">What to Expect</div>
         <h2 class="display">Upper cervical care at Rest &amp; Reset emphasizes:</h2>
       </div>
       <div class="services">
         <article class="service">
-          <div class="num">01</div>
+          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Gentle Specific Adjustments</h3>
         </article>
         <article class="service">
-          <div class="num">02</div>
+          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Fewer but More Intentional Visits</h3>
         </article>
         <article class="service">
-          <div class="num">03</div>
+          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Respect for the Body&rsquo;s Ability to Integrate Change</h3>
         </article>
         <article class="service">
-          <div class="num">04</div>
+          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Recognition of Patterns Rather Than Chasing Symptoms</h3>
         </article>
         <article class="service">
-          <div class="num">05</div>
+          <div class="num" aria-hidden="true"></div>
           <h3 class="display">A Clear Understanding of Each Situation</h3>
         </article>
         <article class="service">
-          <div class="num">06</div>
+          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Honest Recommendations and Care</h3>
         </article>
       </div>
@@ -316,7 +315,7 @@
   <section class="band" id="testimonials">
     <div class="container">
       <div class="band-head center" style="margin-bottom:36px;">
-        <div class="eyebrow">Why Choose Rest &amp; Reset</div>
+        <h2 class="display">Why Choose Rest &amp; Reset</h2>
       </div>
       <div class="why-grid">
         <div class="why"><h3 class="display">Specialized Expertise</h3><p>We focus on upper cervical specific chiropractic and functional neurology to individualized care and monitor improvement.</p></div>
@@ -333,7 +332,7 @@
 
   <section class="band mission">
     <div class="container">
-      <div class="eyebrow">Rest &amp; Reset Your Body, Mind &amp; Life</div>
+      <h2 class="display">Rest &amp; Reset Your Body, Mind &amp; Life</h2>
       <p>At Rest &amp; Reset UCC, we help you move beyond simply getting through the day to truly living with ease, vitality, and resilience. Through gentle, precise upper cervical chiropractic care, Dr. Jared Wilson, D.C. restores balance to the head, neck, and body, unlocking your natural ability to heal fully.</p>
       <a class="link-more" style="color:var(--cream);" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Read More</a>
     </div>
@@ -341,8 +340,8 @@
 
   <section class="band band-tint cta-band">
     <div class="container">
-      <div class="eyebrow">By Appointment Only</div>
       <h2 class="display">Get Started Today With Rest And Reset</h2>
+      <p class="cta-note">By appointment only.</p>
       <a class="btn btn-primary" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Book Appointment</a>
     </div>
   </section>
@@ -351,7 +350,6 @@
     <div class="container">
       <div>
         <div class="band-head" style="margin-bottom:28px;">
-          <div class="eyebrow">Visit</div>
           <h2 class="display">Come rest and reset.</h2>
         </div>
         <dl>
