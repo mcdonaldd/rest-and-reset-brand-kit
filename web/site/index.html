@@ -15,18 +15,15 @@
   :root { --display: 'Lora', serif; --display-weight: 600; --display-case: none; --display-track: 0; --accent: var(--teal); }
   body { background: #FBF8F3; color: oklch(30% 0.02 195); }
 
-  /* Mockup controls: a second row inside the shared kit bar. */
-  .mock-controls { border-top: 1px solid oklch(29% 0.025 195); }
-  .mock-controls-in { max-width: 1180px; margin: 0 auto; padding: 8px 32px; display: flex; align-items: center; gap: 10px 22px; flex-wrap: wrap; font-size: 13px; }
-  .mock-note { color: oklch(72% 0.02 85); margin-right: auto; }
-  .control { display: flex; align-items: center; gap: 6px; }
-  .control label { color: oklch(80% 0.015 85); margin-right: 4px; }
-  .control select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 13px; font-weight: 600; color: var(--cream); height: 32px; padding: 0 34px 0 14px; border-radius: 999px; border: 1px solid oklch(38% 0.03 195); cursor: pointer;
+  /* Mockup controls share the kit bar's single row; the tabs keep their place on the right. */
+  .mock-controls { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .control { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .mock-controls select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 13px; font-weight: 600; color: var(--cream); height: 32px; padding: 0 34px 0 14px; border-radius: 999px; border: 1px solid oklch(38% 0.03 195); cursor: pointer;
     background: oklch(27% 0.028 195) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23D9D2BF' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center / 10px 6px; }
-  .control option, .control optgroup { color: #1C3E3C; background: #FBF8F3; }
+  .mock-controls option, .mock-controls optgroup { color: #1C3E3C; background: #FBF8F3; }
   .step { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: 1px solid oklch(38% 0.03 195); background: oklch(27% 0.028 195); color: var(--cream); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
-  .control select:hover, .step:hover { border-color: oklch(52% 0.04 195); background-color: oklch(31% 0.03 195); }
-  .control select:focus-visible, .step:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
+  .mock-controls select:hover, .step:hover { border-color: oklch(52% 0.04 195); background-color: oklch(31% 0.03 195); }
+  .mock-controls select:focus-visible, .step:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
   .display { font-family: var(--display); font-weight: var(--display-weight); text-transform: var(--display-case); letter-spacing: var(--display-track); color: var(--heading); }
@@ -155,14 +152,17 @@
     .footer-contact { text-align: left; }
     .services { column-gap: 32px; }
   }
+  @media (max-width: 1180px) {
+    .has-controls .kit-nav .full { display: none; }
+    .has-controls .kit-nav .short { display: inline; }
+  }
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
     .kit-bar.has-controls { position: static; }
-    .mock-controls-in { padding: 8px 16px 12px; }
-    .mock-note { display: none; }
-    .control { width: 100%; }
-    .control label { width: 68px; flex-shrink: 0; }
-    .control select { flex: 1; min-width: 0; }
+    .has-controls .kit-nav { order: -1; }
+    .mock-controls { width: 100%; flex-wrap: wrap; }
+    .control, .mock-controls > select { flex: 1 1 100%; }
+    .mock-controls select { flex: 1; min-width: 0; }
     .band { padding: 52px 0; }
     .hero h1 { font-size: 32px; }
     .band-head h2, .mission h2, .cta-band h2 { font-size: 26px; }
@@ -208,33 +208,25 @@
 
 <div class="kit-bar has-controls">
   <div class="kit-bar-row">
-    <a class="kit-bar-title" href="/#v1">Rest &amp; Reset &middot; Brand Kit</a>
+    <div class="mock-controls">
+      <div class="control">
+        <button type="button" class="step" data-step="-1" aria-label="Previous logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M6.5 1.5L3 5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <select id="concept-select" aria-label="Logo direction"></select>
+        <button type="button" class="step" data-step="1" aria-label="Next logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M3.5 1.5L7 5 3.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <select id="type-select" aria-label="Typeface">
+        <option value="">Typeface: matches logo</option>
+        <option value="lora">Typeface: Lora</option>
+        <option value="piazzolla">Typeface: Piazzolla</option>
+        <option value="archivo">Typeface: Archivo</option>
+      </select>
+    </div>
     <nav class="kit-nav" aria-label="Brand kit">
       <a href="/#v1"><span class="full">V1 &middot; Original</span><span class="short">V1</span></a>
       <a href="/#v2"><span class="full">V2 &middot; New Directions</span><span class="short">V2</span></a>
       <a href="/#mix">Mix &amp; Match</a>
       <a href="/site" aria-current="page"><span class="full">Website Mockup</span><span class="short">Mockup</span></a>
     </nav>
-  </div>
-  <div class="mock-controls">
-    <div class="mock-controls-in">
-      <span class="mock-note">The current restandresetchiro.com homepage, restyled</span>
-      <div class="control">
-        <label for="concept-select">Logo</label>
-        <button type="button" class="step" data-step="-1" aria-label="Previous logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M6.5 1.5L3 5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-        <select id="concept-select"></select>
-        <button type="button" class="step" data-step="1" aria-label="Next logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M3.5 1.5L7 5 3.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
-      </div>
-      <div class="control">
-        <label for="type-select">Typeface</label>
-        <select id="type-select">
-          <option value="">Matches logo</option>
-          <option value="lora">Lora</option>
-          <option value="piazzolla">Piazzolla</option>
-          <option value="archivo">Archivo</option>
-        </select>
-      </div>
-    </div>
   </div>
 </div>
 
