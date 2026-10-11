@@ -60,7 +60,6 @@
   .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
   /* Teal wash ties a plain photo into the palette instead of sitting on the page as a random stock image. */
   .hero-scrim { position: absolute; inset: 0; background: linear-gradient(190deg, oklch(32% 0.055 195 / 0.12) 0%, oklch(32% 0.055 195 / 0.1) 45%, oklch(15% 0.04 195 / 0.72) 100%); }
-  .hero-badge { position: absolute; top: 18px; left: 18px; width: 46px; height: 46px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px oklch(15% 0.04 195 / 0.35); }
   .hero-note { position: absolute; left: 20px; bottom: 20px; right: 20px; background: rgba(251,248,243,0.94); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: oklch(30% 0.03 195); display: flex; gap: 12px; align-items: center; }
   .hero-note strong { color: var(--heading); display: block; font-size: 14px; }
   .hero-note .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
@@ -110,6 +109,8 @@
   .mission { background: var(--teal); color: oklch(92% 0.015 85); text-align: center; }
   .mission .container { max-width: 780px; }
   .mission h2 { color: var(--cream); font-size: 32px; margin: 10px 0 16px; }
+  .mission-mark { display: inline-flex; line-height: 0; margin: -12px 0 16px; }
+  .brand-mark { display: inline-flex; line-height: 0; }
   .mission p { font-size: 16.5px; line-height: 1.7; margin: 0 0 22px; }
 
   /* Get started CTA */
@@ -170,6 +171,8 @@
     .band { padding: 52px 0; }
     .hero h1 { font-size: 32px; }
     .band-head h2, .mission h2, .cta-band h2 { font-size: 26px; }
+    .brand-mark svg { width: 48px; height: 48px; }
+    .mission-mark svg { width: 150px; height: 150px; }
     .site-header .container { gap: 10px; }
     .brand { gap: 8px; }
     .brand .word { font-size: 15px; }
@@ -243,7 +246,7 @@
 <header class="site-header">
   <div class="container">
     <a class="brand" href="#top" aria-label="Rest &amp; Reset home">
-      <span data-slot="mark" data-size="44"></span>
+      <span class="brand-mark" data-slot="mark" data-size="64"></span>
       <span><div class="word">REST &amp; RESET</div><div class="sub">Dr. Jared Wilson &middot; Chiropractic Care</div></span>
     </a>
     <nav class="nav" aria-label="Main">
@@ -272,7 +275,6 @@
       <div class="hero-art">
         <img class="hero-photo" src="/assets/dr-wilson.webp" alt="Dr. Jared Wilson">
         <div class="hero-scrim"></div>
-        <div class="hero-badge"><span data-slot="mark" data-size="24" data-fill="#E8DCC8" data-flat></span></div>
         <div class="hero-note"><span class="dot"></span><div><strong>Gentle, specific corrections</strong>Upper cervical analysis, tailored to you</div></div>
       </div>
     </div>
@@ -365,6 +367,7 @@
 
   <section class="band mission">
     <div class="container">
+      <span class="mission-mark" data-slot="mark" data-size="208" data-fill="#E8DCC8" data-flat></span>
       <h2 class="display">Rest &amp; Reset Your Body, Mind &amp; Life</h2>
       <p>At Rest &amp; Reset UCC, we help you move beyond simply getting through the day to truly living with ease, vitality, and resilience. Through gentle, precise upper cervical chiropractic care, Dr. Jared Wilson, D.C. restores balance to the head, neck, and body, unlocking your natural ability to heal fully.</p>
       <a class="link-more" style="color:var(--cream);" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Read More</a>
