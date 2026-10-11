@@ -19,3 +19,22 @@ body { margin: 0; background: var(--page); color: var(--body); font-family: 'Arc
 a { color: inherit; }
 .svg-defs { position: absolute; width: 0; height: 0; }
 [data-mark] { display: inline-flex; line-height: 0; }
+::selection { background: oklch(88% 0.03 195); color: oklch(20% 0.02 195); }
+
+/* Presentation frame shared by the brand kit tabs and the website mockup. */
+.kit-bar { position: sticky; top: 0; z-index: 30; background: var(--ink); color: oklch(90% 0.01 85); }
+.kit-bar-row { max-width: 1180px; margin: 0 auto; padding: 10px 32px; display: flex; align-items: center; justify-content: space-between; gap: 10px 20px; flex-wrap: wrap; }
+.kit-bar-title { font-family: 'Lora', serif; font-weight: 600; font-size: 16px; color: var(--cream); text-decoration: none; white-space: nowrap; }
+.kit-nav { display: flex; gap: 2px; padding: 3px; background: oklch(25% 0.025 195); border: 1px solid oklch(33% 0.03 195); border-radius: 999px; }
+.kit-nav a { font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 13px; padding: 7px 14px; border-radius: 999px; color: oklch(84% 0.015 85); text-decoration: none; white-space: nowrap; transition: background-color .15s ease-out, color .15s ease-out; }
+.kit-nav a:hover { color: var(--cream); background: oklch(30% 0.03 195); }
+.kit-nav a[aria-current="page"] { background: var(--cream); color: #1F4A48; }
+.kit-nav a:focus-visible, .kit-bar-title:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
+.kit-nav .short { display: none; }
+@media (max-width: 600px) {
+  .kit-bar-row { padding: 10px 16px; }
+  .kit-nav { width: 100%; }
+  .kit-nav a { flex: 1; text-align: center; font-size: 12px; padding: 7px 4px; }
+  .kit-nav .full { display: none; }
+  .kit-nav .short { display: inline; }
+}

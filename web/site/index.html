@@ -13,21 +13,17 @@
 <link rel="stylesheet" href="/assets/brand.css">
 <style>
   :root { --display: 'Lora', serif; --display-weight: 600; --display-case: none; --display-track: 0; --accent: var(--teal); }
-  body[data-concept="2"] { --display: 'Piazzolla', serif; --accent: var(--clay); }
-  body[data-concept="3"] { --display: 'Archivo', sans-serif; --display-track: -0.01em; }
-  body[data-concept="4"] { --display: 'Archivo', sans-serif; --display-weight: 700; --display-case: uppercase; --display-track: 0.01em; --accent: var(--clay); }
   body { background: #FBF8F3; color: oklch(30% 0.02 195); }
 
-  /* Mockup chrome */
-  .chrome { position: sticky; top: 0; z-index: 20; background: var(--ink); color: oklch(88% 0.01 85); font-size: 13px; }
-  .chrome-in { max-width: 1180px; margin: 0 auto; padding: 10px 24px; display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
-  .chrome-title { font-weight: 600; letter-spacing: 0.04em; }
-  .chrome-title span { color: oklch(70% 0.02 85); font-weight: 400; }
-  .pills { display: flex; gap: 6px; flex-wrap: wrap; margin-left: auto; }
-  .pill { font: inherit; font-size: 12px; font-weight: 600; background: transparent; color: oklch(88% 0.01 85); border: 1px solid oklch(45% 0.03 195); padding: 6px 12px; border-radius: 999px; cursor: pointer; }
-  .pill[aria-pressed="true"] { background: var(--cream); color: #1F4A48; border-color: var(--cream); }
-  .pill:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
-  .chrome a.back { color: var(--cream); font-weight: 600; text-decoration: none; white-space: nowrap; }
+  /* Mockup controls share the kit bar's single row; the tabs keep their place on the right. */
+  .mock-controls { display: flex; align-items: center; gap: 10px; min-width: 0; }
+  .control { display: flex; align-items: center; gap: 6px; min-width: 0; }
+  .mock-controls select { appearance: none; -webkit-appearance: none; font: inherit; font-size: 13px; font-weight: 600; color: var(--cream); height: 32px; padding: 0 34px 0 14px; border-radius: 999px; border: 1px solid oklch(38% 0.03 195); cursor: pointer;
+    background: oklch(27% 0.028 195) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='%23D9D2BF' stroke-width='1.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") no-repeat right 13px center / 10px 6px; }
+  .mock-controls option, .mock-controls optgroup { color: #1C3E3C; background: #FBF8F3; }
+  .step { width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; border: 1px solid oklch(38% 0.03 195); background: oklch(27% 0.028 195); color: var(--cream); display: inline-flex; align-items: center; justify-content: center; cursor: pointer; padding: 0; }
+  .mock-controls select:hover, .step:hover { border-color: oklch(52% 0.04 195); background-color: oklch(31% 0.03 195); }
+  .mock-controls select:focus-visible, .step:focus-visible, .btn:focus-visible, .nav a:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
 
   .container { max-width: 1180px; margin: 0 auto; padding: 0 32px; }
   .display { font-family: var(--display); font-weight: var(--display-weight); text-transform: var(--display-case); letter-spacing: var(--display-track); color: var(--heading); }
@@ -49,7 +45,7 @@
   .btn-ghost { border-color: var(--teal); color: var(--teal); }
   .btn-ghost:hover { background: var(--teal-tint); }
   .btn-sm { font-size: 13px; padding: 9px 16px; }
-  body[data-concept="4"] .btn { border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; }
+  body[data-concept="v1-4"] .btn { border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; font-size: 13px; }
 
   /* Hero */
   .hero { padding: 72px 0 80px; }
@@ -60,15 +56,13 @@
   .hero-art { position: relative; aspect-ratio: 4/5; border-radius: 28px; background: var(--teal); overflow: hidden; }
   .hero-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 22%; }
   /* Teal wash ties a plain photo into the palette instead of sitting on the page as a random stock image. */
-  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(190deg, oklch(32% 0.055 195 / 0.12) 0%, oklch(32% 0.055 195 / 0.1) 45%, oklch(15% 0.04 195 / 0.72) 100%); }
-  .hero-badge { position: absolute; top: 18px; left: 18px; width: 46px; height: 46px; border-radius: 50%; background: var(--teal); display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 14px oklch(15% 0.04 195 / 0.35); }
-  .hero-note { position: absolute; left: 20px; bottom: 20px; right: 20px; background: rgba(251,248,243,0.94); border-radius: 14px; padding: 14px 16px; font-size: 13px; color: oklch(30% 0.03 195); display: flex; gap: 12px; align-items: center; }
-  .hero-note strong { color: var(--heading); display: block; font-size: 14px; }
-  .hero-note .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .hero-scrim { position: absolute; inset: 0; background: linear-gradient(190deg, oklch(32% 0.055 195 / 0.1) 0%, oklch(32% 0.055 195 / 0.06) 50%, oklch(15% 0.04 195 / 0.28) 100%); }
 
   /* Generic band */
   .band { padding: 76px 0; }
-  .band-tint { background: oklch(94% 0.02 195); }
+  .band-warm { background: oklch(93% 0.025 80); }
+  .band-deep { background: oklch(25% 0.04 195); color: oklch(88% 0.015 85); }
+  .band-deep .display { color: var(--cream); }
   .band-head { max-width: 680px; margin-bottom: 32px; }
   .band-head.center { margin-left: auto; margin-right: auto; text-align: center; }
   .band-head h2 { font-size: 34px; line-height: 1.15; margin: 10px 0 14px; }
@@ -76,41 +70,39 @@
 
   /* Thoughtful approach */
   .approach .container { display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 56px; align-items: start; }
-  .affirmations { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 12px; }
-  .affirmations li { display: flex; gap: 10px; font-size: 15px; line-height: 1.5; color: var(--heading); font-weight: 600; }
-  .affirmations .tick { width: 20px; height: 20px; border-radius: 50%; background: var(--teal); flex-shrink: 0; margin-top: 2px; }
-  body[data-concept="2"] .affirmations .tick, body[data-concept="4"] .affirmations .tick { background: var(--clay); }
-  .link-more { display: inline-block; margin-top: 22px; font-size: 14px; font-weight: 700; color: var(--teal); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
-  body[data-concept="2"] .link-more, body[data-concept="4"] .link-more { color: var(--clay); }
+  .approach p { font-size: 16px; line-height: 1.65; color: var(--body); margin: 0; }
+  .affirmations { list-style: none; margin: 22px 0 0; padding: 0; display: grid; gap: 14px; }
+  .affirmations li { display: flex; gap: 14px; font-size: 16px; line-height: 1.5; color: var(--body); }
+  .affirmations .tick { flex-shrink: 0; width: 6px; height: 11px; margin: 4px 3px 0 4px; border-right: 1.75px solid var(--accent); border-bottom: 1.75px solid var(--accent); transform: rotate(45deg); }
+  .link-more { display: inline-block; margin-top: 22px; font-size: 14px; font-weight: 700; color: var(--accent); text-decoration: none; border-bottom: 1.5px solid currentColor; padding-bottom: 2px; }
 
   /* Who we work with */
   .who ul { list-style: none; margin: 18px 0; padding: 0; display: grid; gap: 10px; max-width: 620px; }
-  .who li { font-size: 15.5px; line-height: 1.5; padding-left: 22px; position: relative; color: var(--body); }
-  .who li::before { content: ""; position: absolute; left: 0; top: 8px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+  .who li { font-size: 15.5px; line-height: 1.5; padding-left: 22px; position: relative; }
+  .who li::before { content: ""; position: absolute; left: 0; top: 9px; width: 7px; height: 7px; border-radius: 50%; background: oklch(74% 0.09 45); }
+  .who-note { max-width: 620px; font-size: 15.5px; line-height: 1.6; color: oklch(80% 0.015 85); margin: 0; }
 
-  /* Emphasizes grid */
-  .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
-  .service { background: #FBF8F3; border-radius: 16px; padding: 26px; border: 1px solid oklch(88% 0.02 195); }
-  .service .num { width: 12px; height: 12px; border-radius: 50%; background: var(--teal); margin-bottom: 18px; }
-  body[data-concept="2"] .service .num, body[data-concept="4"] .service .num { background: var(--clay); }
-  .service h3 { font-size: 20px; margin: 0 0 8px; }
-  .service p { font-size: 14.5px; line-height: 1.6; color: var(--body); margin: 0; }
+  /* Emphases: a ruled two-column list, not a card grid. */
+  .services { display: grid; grid-template-columns: repeat(2, 1fr); column-gap: 64px; border-top: 1px solid oklch(84% 0.015 85); }
+  .service { padding: 22px 0; border-bottom: 1px solid oklch(84% 0.015 85); }
+  .service h3 { font-size: 21px; line-height: 1.3; margin: 0; }
 
   /* Why choose + testimonial */
   .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; margin-bottom: 40px; }
-  .why { padding: 24px 0 0; border-top: 2px solid var(--teal); }
-  body[data-concept="2"] .why, body[data-concept="4"] .why { border-top-color: var(--clay); }
+  .why { padding: 24px 0 0; border-top: 2px solid var(--accent); }
   .why h3 { font-size: 18px; margin: 0 0 8px; }
   .why p { font-size: 14px; line-height: 1.6; color: var(--body); margin: 0; }
   .testimonial { background: var(--cream); border-radius: 18px; padding: 36px 40px; text-align: center; max-width: 720px; margin: 0 auto; }
   .testimonial blockquote { margin: 0 0 14px; font-family: var(--display); font-size: 19px; line-height: 1.5; color: oklch(28% 0.04 195); font-style: italic; }
-  body[data-concept="4"] .testimonial blockquote { font-style: normal; }
+  body[data-concept="v1-4"] .testimonial blockquote { font-style: normal; }
   .testimonial cite { font-size: 13px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); font-style: normal; }
 
   /* Mission band */
   .mission { background: var(--teal); color: oklch(92% 0.015 85); text-align: center; }
   .mission .container { max-width: 780px; }
   .mission h2 { color: var(--cream); font-size: 32px; margin: 10px 0 16px; }
+  .mission-mark { display: inline-flex; line-height: 0; margin: -12px 0 16px; }
+  .brand-mark { display: inline-flex; line-height: 0; }
   .mission p { font-size: 16.5px; line-height: 1.7; margin: 0 0 22px; }
 
   /* Get started CTA */
@@ -126,9 +118,9 @@
   .visit dd a { text-decoration: none; }
   .visit dd a:hover { text-decoration: underline; }
   .map { border-radius: 20px; min-height: 280px; background:
-      linear-gradient(90deg, transparent 49%, oklch(86% 0.02 195) 49%, oklch(86% 0.02 195) 51%, transparent 51%) 0 0 / 80px 80px,
-      linear-gradient(0deg, transparent 49%, oklch(86% 0.02 195) 49%, oklch(86% 0.02 195) 51%, transparent 51%) 0 0 / 80px 80px,
-      oklch(92% 0.02 195);
+      linear-gradient(90deg, transparent 49%, oklch(86% 0.02 80) 49%, oklch(86% 0.02 80) 51%, transparent 51%) 0 0 / 80px 80px,
+      linear-gradient(0deg, transparent 49%, oklch(86% 0.02 80) 49%, oklch(86% 0.02 80) 51%, transparent 51%) 0 0 / 80px 80px,
+      oklch(93% 0.025 80);
     position: relative; display: flex; align-items: center; justify-content: center; }
   .pin { background: var(--teal); color: var(--cream); padding: 10px 14px; border-radius: 12px; font-size: 13px; font-weight: 600; display: flex; align-items: center; gap: 8px; box-shadow: 0 6px 18px oklch(20% 0.04 195 / 0.25); }
 
@@ -158,15 +150,24 @@
     .hero-art { max-width: 460px; width: 100%; }
     .footer-grid { justify-content: flex-start; }
     .footer-contact { text-align: left; }
-    .services { grid-template-columns: repeat(2, 1fr); }
+    .services { column-gap: 32px; }
+  }
+  @media (max-width: 1180px) {
+    .has-controls .kit-nav .full { display: none; }
+    .has-controls .kit-nav .short { display: inline; }
   }
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
-    .chrome-in { padding: 10px 16px; }
-    .pills { margin-left: 0; width: 100%; }
+    .kit-bar.has-controls { position: static; }
+    .has-controls .kit-nav { order: -1; }
+    .mock-controls { width: 100%; flex-wrap: wrap; }
+    .control, .mock-controls > select { flex: 1 1 100%; }
+    .mock-controls select { flex: 1; min-width: 0; }
     .band { padding: 52px 0; }
     .hero h1 { font-size: 32px; }
     .band-head h2, .mission h2, .cta-band h2 { font-size: 26px; }
+    .brand-mark svg { width: 48px; height: 48px; }
+    .mission-mark svg { width: 150px; height: 150px; }
     .site-header .container { gap: 10px; }
     .brand { gap: 8px; }
     .brand .word { font-size: 15px; }
@@ -177,7 +178,7 @@
   }
 </style>
 </head>
-<body data-concept="1">
+<body data-concept="v1-1">
 <svg class="svg-defs" aria-hidden="true" focusable="false">
   <defs>
     <linearGradient id="tealGrad" gradientUnits="userSpaceOnUse" x1="100" y1="0" x2="100" y2="200">
@@ -191,26 +192,48 @@
     <filter id="markShadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="oklch(20% 0.04 195)" flood-opacity="0.4"></feDropShadow>
     </filter>
+    <linearGradient id="v2tealGrad" gradientUnits="userSpaceOnUse" x1="100" y1="20" x2="100" y2="216">
+      <stop offset="0" stop-color="#2F6B69"></stop>
+      <stop offset="1" stop-color="#0E2F2E"></stop>
+    </linearGradient>
+    <radialGradient id="v2clayGrad" gradientUnits="userSpaceOnUse" cx="92" cy="105" r="45">
+      <stop offset="0" stop-color="#E0A882"></stop>
+      <stop offset="1" stop-color="#9A5B33"></stop>
+    </radialGradient>
+    <filter id="v2markShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0E2F2E" flood-opacity="0.35"></feDropShadow>
+    </filter>
   </defs>
 </svg>
 
-<div class="chrome" role="region" aria-label="Mockup controls">
-  <div class="chrome-in">
-    <div class="chrome-title">Website mockup <span>&middot; restandresetchiro.com, restyled</span></div>
-    <div class="pills" role="group" aria-label="Logo direction">
-      <button class="pill" data-set="1" aria-pressed="true">1 &middot; Classic Simple</button>
-      <button class="pill" data-set="2" aria-pressed="false">2 &middot; Modern Spine</button>
-      <button class="pill" data-set="3" aria-pressed="false">3 &middot; Clean Sans</button>
-      <button class="pill" data-set="4" aria-pressed="false">4 &middot; Bold Signage</button>
+<div class="kit-bar has-controls">
+  <div class="kit-bar-row">
+    <div class="mock-controls">
+      <div class="control">
+        <button type="button" class="step" data-step="-1" aria-label="Previous logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M6.5 1.5L3 5l3.5 3.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+        <select id="concept-select" aria-label="Logo direction"></select>
+        <button type="button" class="step" data-step="1" aria-label="Next logo direction"><svg width="10" height="10" viewBox="0 0 10 10" aria-hidden="true"><path d="M3.5 1.5L7 5 3.5 8.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      </div>
+      <select id="type-select" aria-label="Typeface">
+        <option value="">Typeface: matches logo</option>
+        <option value="lora">Typeface: Lora</option>
+        <option value="piazzolla">Typeface: Piazzolla</option>
+        <option value="archivo">Typeface: Archivo</option>
+      </select>
     </div>
-    <a class="back" href="/">&larr; Brand kit</a>
+    <nav class="kit-nav" aria-label="Brand kit">
+      <a href="/#v1"><span class="full">V1 &middot; Original</span><span class="short">V1</span></a>
+      <a href="/#v2"><span class="full">V2 &middot; New Directions</span><span class="short">V2</span></a>
+      <a href="/#mix">Mix &amp; Match</a>
+      <a href="/site" aria-current="page"><span class="full">Website Mockup</span><span class="short">Mockup</span></a>
+    </nav>
   </div>
 </div>
 
 <header class="site-header">
   <div class="container">
     <a class="brand" href="#top" aria-label="Rest &amp; Reset home">
-      <span data-slot="mark" data-size="44"></span>
+      <span class="brand-mark" data-slot="mark" data-size="64"></span>
       <span><div class="word">REST &amp; RESET</div><div class="sub">Dr. Jared Wilson &middot; Chiropractic Care</div></span>
     </a>
     <nav class="nav" aria-label="Main">
@@ -239,8 +262,6 @@
       <div class="hero-art">
         <img class="hero-photo" src="/assets/dr-wilson.webp" alt="Dr. Jared Wilson">
         <div class="hero-scrim"></div>
-        <div class="hero-badge"><span data-slot="mark" data-size="24" data-fill="#E8DCC8" data-flat></span></div>
-        <div class="hero-note"><span class="dot"></span><div><strong>Gentle, specific corrections</strong>Upper cervical analysis, tailored to you</div></div>
       </div>
     </div>
   </section>
@@ -262,7 +283,7 @@
     </div>
   </section>
 
-  <section class="band band-tint who">
+  <section class="band band-deep who">
     <div class="container">
       <div class="band-head">
         <h2 class="display">Dr. Jared Wilson enjoys working with:</h2>
@@ -274,7 +295,7 @@
         <li>Health-conscious adults seeking optimization</li>
         <li>Those who have tried multiple approaches without lasting resolution</li>
       </ul>
-      <p style="max-width:620px;font-size:15.5px;line-height:1.6;">Care is not limited to any one group.<br>If you are ready to move beyond masking symptoms and address neurological stress at its source &mdash; you belong here.</p>
+      <p class="who-note">Care is not limited to any one group.<br>If you are ready to move beyond masking symptoms and address neurological stress at its source &mdash; you belong here.</p>
     </div>
   </section>
 
@@ -285,27 +306,21 @@
       </div>
       <div class="services">
         <article class="service">
-          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Gentle Specific Adjustments</h3>
         </article>
         <article class="service">
-          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Fewer but More Intentional Visits</h3>
         </article>
         <article class="service">
-          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Respect for the Body&rsquo;s Ability to Integrate Change</h3>
         </article>
         <article class="service">
-          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Recognition of Patterns Rather Than Chasing Symptoms</h3>
         </article>
         <article class="service">
-          <div class="num" aria-hidden="true"></div>
           <h3 class="display">A Clear Understanding of Each Situation</h3>
         </article>
         <article class="service">
-          <div class="num" aria-hidden="true"></div>
           <h3 class="display">Honest Recommendations and Care</h3>
         </article>
       </div>
@@ -332,13 +347,14 @@
 
   <section class="band mission">
     <div class="container">
+      <span class="mission-mark" data-slot="mark" data-size="208" data-fill="#E8DCC8" data-flat></span>
       <h2 class="display">Rest &amp; Reset Your Body, Mind &amp; Life</h2>
       <p>At Rest &amp; Reset UCC, we help you move beyond simply getting through the day to truly living with ease, vitality, and resilience. Through gentle, precise upper cervical chiropractic care, Dr. Jared Wilson, D.C. restores balance to the head, neck, and body, unlocking your natural ability to heal fully.</p>
       <a class="link-more" style="color:var(--cream);" href="https://restandresetchiro.janeapp.com/" target="_blank" rel="noopener">Read More</a>
     </div>
   </section>
 
-  <section class="band band-tint cta-band">
+  <section class="band band-warm cta-band">
     <div class="container">
       <h2 class="display">Get Started Today With Rest And Reset</h2>
       <p class="cta-note">By appointment only.</p>
@@ -394,29 +410,106 @@
 <div class="disclaimer">Concept mockup for review only, restyled from restandresetchiro.com. <a href="/">Back to the brand kit</a></div>
 
 <script src="/assets/mark.js"></script>
+<script src="/assets/mark-v2.js"></script>
 <script>
-  function render(n) {
-    var c = RR.CONCEPTS[n] || RR.CONCEPTS[1];
-    document.body.setAttribute('data-concept', c.num);
-    document.querySelectorAll('[data-slot="mark"]').forEach(function (el) {
-      el.innerHTML = RR.conceptMark(c, +el.getAttribute('data-size'), {
-        fill: el.getAttribute('data-fill'),
-        flat: el.hasAttribute('data-flat')
-      });
-    });
-    document.querySelectorAll('.pill').forEach(function (b) {
-      b.setAttribute('aria-pressed', String(b.getAttribute('data-set') === String(c.num)));
-    });
+  // Unified registry of every logo direction (V1's 4 + V2's 8) so the
+  // switcher and the whole page's type/accent treatment can key off one
+  // id instead of two separate concept systems. Derived from RR/RR2's own
+  // concept data rather than duplicated, so a change there can't drift.
+  var V1_STYLE = {
+    1: { case: 'none', track: '0', weight: 600 },
+    2: { case: 'none', track: '0', weight: 600 },
+    3: { case: 'none', track: '-0.01em', weight: 600 },
+    4: { case: 'uppercase', track: '0.01em', weight: 700 }
+  };
+  var ACCENT_BY_HEX = { '#1F4A48': 'var(--teal)', '#B5764A': 'var(--clay)' };
+  var ALL_CONCEPTS = {};
+  [1, 2, 3, 4].forEach(function (n) {
+    var c = RR.CONCEPTS[n], style = V1_STYLE[n];
+    ALL_CONCEPTS['v1-' + n] = {
+      src: 'v1', n: n, group: 'V1 · Original', label: 'V1 · ' + n + '. ' + c.name,
+      font: c.font, weight: style.weight, case: style.case, track: style.track,
+      accent: n === 2 || n === 4 ? 'var(--clay)' : 'var(--teal)'
+    };
+  });
+  [1, 2, 3, 4, 5, 6, 7, 8].forEach(function (n) {
+    var c = RR2.CONCEPTS[n];
+    ALL_CONCEPTS['v2-' + n] = {
+      src: 'v2', n: n, group: 'V2 · New Directions', label: 'V2 · ' + n + '. ' + c.name,
+      font: c.fontFamily, weight: 600, case: 'none', track: '0',
+      accent: ACCENT_BY_HEX[c.accent] || 'var(--teal)'
+    };
+  });
+
+  function markFor(id, size, fill, flat) {
+    var e = ALL_CONCEPTS[id];
+    return e.src === 'v1'
+      ? RR.conceptMark(RR.CONCEPTS[e.n], size, { fill: fill, flat: flat })
+      : RR2.conceptMark(RR2.CONCEPTS[e.n], size, { color: fill, flat: flat });
   }
-  document.querySelectorAll('.pill').forEach(function (b) {
+
+  // Build the picker once from ALL_CONCEPTS, grouped by version.
+  var select = document.getElementById('concept-select');
+  var groups = {};
+  Object.keys(ALL_CONCEPTS).forEach(function (id) {
+    var e = ALL_CONCEPTS[id];
+    if (!groups[e.group]) {
+      groups[e.group] = document.createElement('optgroup');
+      groups[e.group].label = e.group;
+      select.appendChild(groups[e.group]);
+    }
+    var opt = document.createElement('option');
+    opt.value = id;
+    opt.textContent = e.label;
+    groups[e.group].appendChild(opt);
+  });
+
+  // A typeface override swaps only the font family; the direction's own case,
+  // tracking and weight belong to its original font, so they reset with it.
+  var TYPEFACES = { lora: "'Lora',serif", piazzolla: "'Piazzolla',serif", archivo: "'Archivo',sans-serif" };
+  var ORDER = Object.keys(ALL_CONCEPTS);
+  var typeSelect = document.getElementById('type-select');
+
+  function render(id, type) {
+    if (!ALL_CONCEPTS[id]) id = 'v1-1';
+    if (!TYPEFACES[type]) type = '';
+    var e = ALL_CONCEPTS[id], s = document.body.style;
+    document.body.setAttribute('data-concept', id);
+    s.setProperty('--display', type ? TYPEFACES[type] : e.font);
+    s.setProperty('--display-weight', type ? 600 : e.weight);
+    s.setProperty('--display-case', type ? 'none' : e.case);
+    s.setProperty('--display-track', type ? '0' : e.track);
+    s.setProperty('--accent', e.accent);
+    document.querySelectorAll('[data-slot="mark"]').forEach(function (el) {
+      el.innerHTML = markFor(id, +el.getAttribute('data-size'), el.getAttribute('data-fill'), el.hasAttribute('data-flat'));
+    });
+    select.value = id;
+    typeSelect.value = type;
+  }
+  function update() {
+    history.replaceState(null, '', '#concept=' + select.value + (typeSelect.value ? '&type=' + typeSelect.value : ''));
+    render(select.value, typeSelect.value);
+  }
+  // #concept=v2-3&type=lora, plus the older #concept-v2-3 form.
+  function fromHash() {
+    var h = location.hash.slice(1);
+    var legacy = h.match(/^concept-([a-z0-9-]+)$/i);
+    if (legacy) return render(legacy[1], '');
+    var p = new URLSearchParams(h);
+    render(p.get('concept') || 'v1-1', p.get('type') || '');
+  }
+
+  select.addEventListener('change', update);
+  typeSelect.addEventListener('change', update);
+  document.querySelectorAll('.step').forEach(function (b) {
     b.addEventListener('click', function () {
-      var n = b.getAttribute('data-set');
-      history.replaceState(null, '', '#concept-' + n);
-      render(n);
+      var i = (ORDER.indexOf(select.value) + Number(b.getAttribute('data-step')) + ORDER.length) % ORDER.length;
+      select.value = ORDER[i];
+      update();
     });
   });
-  var m = location.hash.match(/concept-(\d)/);
-  render(m ? m[1] : 1);
+  window.addEventListener('hashchange', fromHash);
+  fromHash();
 </script>
 </body>
 </html>
