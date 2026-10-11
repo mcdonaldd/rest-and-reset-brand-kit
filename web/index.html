@@ -124,6 +124,50 @@
     h1 { font-size: 32px; }
     .swatch { width: calc(50% - 7px); }
   }
+
+  .ver-bar { position: sticky; top: 0; z-index: 20; background: oklch(96% 0.015 85 / 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--line); }
+  .ver-bar-in { max-width: 1180px; margin: 0 auto; padding: 12px 32px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+  .ver-bar-title { font-family: 'Lora', serif; font-weight: 600; font-size: 16px; color: var(--heading); }
+  .ver-toggle { display: flex; gap: 4px; padding: 4px; background: var(--card); border: 1px solid var(--line); border-radius: 999px; }
+  .ver-toggle button { border: none; cursor: pointer; font-family: 'Archivo', sans-serif; font-weight: 600; font-size: 13px; padding: 8px 16px; border-radius: 999px; background: none; color: oklch(35% 0.03 195); }
+  .ver-toggle button[aria-pressed="true"] { background: var(--teal); color: var(--cream); }
+  @media (max-width: 600px) {
+    .ver-bar-in { padding: 10px 16px; }
+  }
+
+  /* ---- Mix & Match ---- */
+  .mix-grid { display: grid; grid-template-columns: 1fr 360px; gap: 28px; align-items: start; }
+  .mix-group { margin-bottom: 26px; }
+  .mix-label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--heading); margin-bottom: 10px; }
+  .mix-marks { display: grid; grid-template-columns: repeat(auto-fill, minmax(76px, 1fr)); gap: 8px; }
+  .mix-mark-btn { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 10px 6px 7px; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+  .mix-mark-btn svg { width: 34px; height: 34px; }
+  .mix-mark-btn .mix-mark-name { font-size: 9.5px; color: var(--muted); text-align: center; line-height: 1.2; }
+  .mix-mark-btn[aria-pressed="true"] { border-color: var(--teal); border-width: 2px; background: var(--teal-tint); }
+  .mix-fonts { display: flex; gap: 8px; flex-wrap: wrap; }
+  .mix-font-btn { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 10px 16px; cursor: pointer; font-size: 15px; color: var(--heading); }
+  .mix-font-btn[aria-pressed="true"] { border-color: var(--teal); border-width: 2px; background: var(--teal-tint); }
+  .mix-colors { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; }
+  .mix-swatch { width: 30px; height: 30px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.15); cursor: pointer; padding: 0; position: relative; }
+  .mix-swatch.light-border { border-color: oklch(80% 0.01 85); }
+  .mix-swatch[aria-pressed="true"]::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2px solid var(--teal); }
+  .mix-swatch.transparent-sw { background-image: linear-gradient(45deg, #ccc 25%, transparent 25%), linear-gradient(-45deg, #ccc 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #ccc 75%), linear-gradient(-45deg, transparent 75%, #ccc 75%); background-size: 8px 8px; background-position: 0 0, 0 4px, 4px -4px, -4px 0; background-color: #fff; }
+  .mix-swatch.gradient-sw { background: radial-gradient(circle at 32% 28%, #D59A74 0%, #D59A74 22%, transparent 26%), linear-gradient(180deg, #2F6B69, #0E2F2E); }
+  .mix-custom { display: inline-flex; align-items: center; gap: 6px; }
+  .mix-custom input[type=color] { width: 30px; height: 30px; padding: 0; border: 1px solid var(--line); border-radius: 50%; cursor: pointer; background: none; }
+  .mix-custom span { font-size: 11px; color: var(--muted); }
+  .mix-preview-wrap { position: sticky; top: 76px; }
+  .mix-preview {
+    border-radius: 10px; border: 1px solid var(--line); min-height: 220px; display: flex; align-items: center; justify-content: center; padding: 20px;
+    background-image: linear-gradient(45deg, oklch(90% 0.005 85) 25%, transparent 25%), linear-gradient(-45deg, oklch(90% 0.005 85) 25%, transparent 25%), linear-gradient(45deg, transparent 75%, oklch(90% 0.005 85) 75%), linear-gradient(-45deg, transparent 75%, oklch(90% 0.005 85) 75%);
+    background-size: 16px 16px; background-position: 0 0, 0 8px, 8px -8px, -8px 0; background-color: #fff;
+  }
+  .mix-preview svg { max-width: 100%; height: auto; }
+  .mix-actions { display: flex; align-items: center; gap: 10px; margin-top: 14px; flex-wrap: wrap; }
+  @media (max-width: 860px) {
+    .mix-grid { grid-template-columns: 1fr; }
+    .mix-preview-wrap { position: static; }
+  }
 </style>
 </head>
 <body>
@@ -140,10 +184,33 @@
     <filter id="markShadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="oklch(20% 0.04 195)" flood-opacity="0.4"></feDropShadow>
     </filter>
+    <linearGradient id="v2tealGrad" gradientUnits="userSpaceOnUse" x1="100" y1="20" x2="100" y2="216">
+      <stop offset="0" stop-color="#2F6B69"></stop>
+      <stop offset="1" stop-color="#0E2F2E"></stop>
+    </linearGradient>
+    <radialGradient id="v2clayGrad" gradientUnits="userSpaceOnUse" cx="92" cy="105" r="45">
+      <stop offset="0" stop-color="#E0A882"></stop>
+      <stop offset="1" stop-color="#9A5B33"></stop>
+    </radialGradient>
+    <filter id="v2markShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#0E2F2E" flood-opacity="0.35"></feDropShadow>
+    </filter>
   </defs>
 </svg>
 
-<main class="wrap">
+<div class="ver-bar">
+  <div class="ver-bar-in">
+    <div class="ver-bar-title">Rest &amp; Reset &middot; Brand Kit</div>
+    <div class="ver-toggle" role="group" aria-label="Version">
+      <button type="button" id="ver-v1" aria-pressed="true">V1 &middot; Original</button>
+      <button type="button" id="ver-v2" aria-pressed="false">V2 &middot; New Directions</button>
+      <button type="button" id="ver-mix" aria-pressed="false">Mix &amp; Match</button>
+    </div>
+  </div>
+</div>
+
+<main>
+<div class="wrap" id="v1-view">
   <header>
     <p class="intro">
       <strong>Hi Jared,</strong> here are four logo directions for Rest &amp; Reset. Each one starts from the same idea: a fermata (the musical sign for &ldquo;hold and rest&rdquo;) sitting over a whole rest, with the spine forming below. All four share one color palette and type system, so the rest of the kit applies to whichever you choose. Want to see them in context? <a href="/site">View the website mockup</a>.
@@ -240,9 +307,54 @@
     <p>See all four directions applied to a mockup of the current restandresetchiro.com homepage, with a switcher to compare them.</p>
     <a href="/site">Open website mockup &rarr;</a>
   </aside>
+</div>
+
+<div class="wrap" id="v2-view" hidden>
+  <header>
+    <div class="eyebrow">Brand Kit &middot; V2</div>
+    <h1>Rest &amp; Reset</h1>
+    <p class="lede">Eight marks built from a second round of notes. The palette, typography and usage rules carry over from V1.</p>
+    <div class="cards" style="max-width:900px;margin-bottom:28px;">
+      <div class="card">
+        <div class="t" style="margin-bottom:4px;">A curvier, anatomical rest</div>
+        <div class="p">The whole rest is redrawn as a vertebra silhouette: the bar is the transverse processes, the hanging block is the vertebral body.</div>
+      </div>
+      <div class="card">
+        <div class="t" style="margin-bottom:4px;">Sunset from the beach</div>
+        <div class="p">The fermata arc is the sky and its dot is the setting sun. The whole rest is the sun&rsquo;s reflection under the horizon, and the ripples taper like a spine.</div>
+      </div>
+      <div class="card">
+        <div class="t" style="margin-bottom:4px;">&ldquo;Am I doing too much?&rdquo;</div>
+        <div class="p">Concepts 1, 3, 5, 6 and 8 each use one idea. Concepts 2 and 4 combine ideas; 2, 4 and 7 get a dimensional finish.</div>
+      </div>
+    </div>
+    <a class="kit-download" href="/assets/rest-and-reset-logo-assets-v2.zip" download>
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+      Download all V2 logo assets (.zip)
+    </a>
+  </header>
+
+  <div id="v2concepts"></div>
+
+  <section class="section" style="border-bottom:0;margin-bottom:0;padding-bottom:0;">
+    <div class="h2" style="margin-bottom:6px;">Small-size check</div>
+    <div class="meta" style="margin-bottom:18px;">Social avatar and favicon sizes. The anatomical detail needs to stay readable when the mark is small.</div>
+    <div id="v2small" style="display:flex;gap:28px;flex-wrap:wrap;"></div>
+  </section>
+</div>
+
+<div class="wrap" id="mix-view" hidden>
+  <header>
+    <div class="eyebrow">Mix &amp; Match</div>
+    <h1>Build your own combination</h1>
+    <p class="lede">Pair any mark with any typeface, pick its color, and set the background &mdash; including transparent. This isn&rsquo;t a new direction, just a way to try combinations the fixed concepts above don&rsquo;t show.</p>
+  </header>
+  <div id="mix-tool"></div>
+</div>
 </main>
 
 <script src="/assets/mark.js"></script>
+<script src="/assets/mark-v2.js"></script>
 <script>
   var palette = [
     { name: 'Deep Teal', hex: '#1F4A48', color: RR.TEAL },
@@ -405,6 +517,360 @@
 
     renderPreview();
   });
+
+  // ============================================================
+  // Version toggle: V1 / V2 / Mix & Match
+  // ============================================================
+  (function () {
+    var views = { v1: document.getElementById('v1-view'), v2: document.getElementById('v2-view'), mix: document.getElementById('mix-view') };
+    var buttons = { v1: document.getElementById('ver-v1'), v2: document.getElementById('ver-v2'), mix: document.getElementById('ver-mix') };
+    var v2Built = false, mixBuilt = false;
+    function show(which) {
+      Object.keys(views).forEach(function (k) {
+        views[k].hidden = k !== which;
+        buttons[k].setAttribute('aria-pressed', String(k === which));
+      });
+      if (which === 'v2' && !v2Built) { buildV2(); v2Built = true; }
+      if (which === 'mix' && !mixBuilt) { buildMix(); mixBuilt = true; }
+      window.scrollTo(0, 0);
+    }
+    buttons.v1.addEventListener('click', function () { show('v1'); });
+    buttons.v2.addEventListener('click', function () { show('v2'); });
+    buttons.mix.addEventListener('click', function () { show('mix'); });
+  })();
+
+  // ============================================================
+  // V2 section
+  // ============================================================
+  var v2Slugs = {
+    1: '1-vertebra-rest', 2: '2-vertebral-column', 3: '3-sunset-rest', 4: '4-sunset-vertebra',
+    5: '5-line-vertebra', 6: '6-tidal-spine', 7: '7-seal', 8: '8-soft-horizon'
+  };
+  var v2Subline = 'UPPER CERVICAL CHIROPRACTIC CARE';
+
+  function buildV2() {
+    var html2 = '';
+    [1, 2, 3, 4, 5, 6, 7, 8].forEach(function (n) {
+      var c = RR2.CONCEPTS[n];
+      var slug = v2Slugs[n];
+      var base = '/assets/icons-v2/' + slug + '/';
+      html2 +=
+        '<section class="section" data-v2-block="' + n + '">' +
+          '<div class="concept-head"><div class="h2">' + c.num + '. ' + c.name + '</div>' +
+          '<div class="meta">' + c.finish + ' &middot; ' + c.fontLabel + '</div></div>' +
+          '<div class="meta" style="margin-bottom:14px;max-width:640px;">' + c.desc + '</div>' +
+          '<div class="tiles">' +
+            '<div class="tile">' + RR2.conceptMark(c, 120) + '<div class="tile-label">Mark only</div></div>' +
+            '<div class="tile">' + RR2.conceptMark(c, 64) +
+              '<div><div class="word" style="font-family:' + c.fontFamily + ';font-size:19px;">REST &amp; RESET</div>' +
+              '<div class="sub" style="font-size:9px;margin-top:4px;">' + v2Subline + '</div></div>' +
+              '<div class="tile-label">Stacked</div></div>' +
+            '<div class="tile" style="gap:12px;"><div class="horiz">' + RR2.conceptMark(c, 52) +
+              '<div><div class="word" style="font-family:' + c.fontFamily + ';font-size:17px;line-height:1.1;">REST &amp; RESET</div>' +
+              '<div class="sub" style="font-size:8px;margin-top:3px;">' + v2Subline + '</div></div></div>' +
+              '<div class="tile-label">Horizontal</div></div>' +
+            '<div class="tile solid">' + RR2.conceptMark(c, 76, { color: 'oklch(97% 0.01 85)', flat: true }) +
+              '<div class="tile-label">Single color</div></div>' +
+          '</div>' +
+
+          '<div class="picker" data-v2-picker="' + n + '" data-variant="' + c.variant + '" data-default="' + (c.dim ? 'gradient' : quickColors[0].hex) + '">' +
+            '<div class="picker-preview" data-preview></div>' +
+            '<div class="picker-controls">' +
+              '<div class="picker-label">Recolor &amp; download the icon</div>' +
+              '<div class="swatches-mini" role="group" aria-label="Quick colors">' +
+                (c.dim ? '<button type="button" class="mini gradient" data-hex="gradient" aria-pressed="true" aria-label="Original gradient" title="Original &middot; gradient + shadow"></button>' : '') +
+                quickColors.map(function (q) {
+                  return '<button type="button" class="mini' + (isLight(q.hex) ? ' light' : '') + '" style="background:' + q.hex + '" data-hex="' + q.hex + '" aria-pressed="' + (!c.dim && q.hex === quickColors[0].hex ? 'true' : 'false') + '" aria-label="' + q.label + '" title="' + q.label + ' &middot; ' + q.hex + '"></button>';
+                }).join('') +
+                '<span class="hexval" data-hexval>' + (c.dim ? 'Original (gradient)' : quickColors[0].hex) + '</span>' +
+              '</div>' +
+              '<div class="picker-row2">' +
+                '<div class="fmt-group" role="group" aria-label="File format">' +
+                  '<button type="button" class="fmt-btn" data-fmt="svg" aria-pressed="true">SVG</button>' +
+                  '<button type="button" class="fmt-btn" data-fmt="png" aria-pressed="false">PNG</button>' +
+                '</div>' +
+                '<button type="button" class="dl-btn" data-dl-icon>' +
+                  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>' +
+                  'Download icon' +
+                '</button>' +
+                '<span class="png-note" data-png-note hidden>PNG exports at 1024&times;1024, transparent background.</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="downloads">' +
+            '<span class="dl-label">Also in this direction:</span>' +
+            '<a href="' + base + 'lockup-stacked.svg" download>Stacked lockup (SVG)</a>' +
+            '<a href="' + base + 'lockup-horizontal.svg" download>Horizontal lockup (SVG)</a>' +
+            '<a href="' + base + 'avatar-circle.svg" download>Social avatar (SVG)</a>' +
+            '<a class="dl-zip" href="/assets/rest-and-reset-logo-assets-v2.zip" download>All formats (.zip)</a>' +
+          '</div>' +
+        '</section>';
+    });
+    document.getElementById('v2concepts').innerHTML = html2;
+
+    var smallHtml = '';
+    [1, 2, 3, 4, 5, 6, 7, 8].forEach(function (n) {
+      var c = RR2.CONCEPTS[n];
+      smallHtml += '<div style="display:flex;align-items:center;gap:12px;">' +
+        '<div style="width:72px;height:72px;border-radius:50%;background:#1F4A48;display:flex;align-items:center;justify-content:center;">' + RR2.conceptMark(c, 42, { color: '#E8DCC8' }) + '</div>' +
+        RR2.conceptMark(c, 28, { color: '#1F4A48' }) +
+        RR2.conceptMark(c, 16, { color: '#1F4A48' }) +
+        '</div>';
+    });
+    document.getElementById('v2small').innerHTML = smallHtml;
+    RR2.hydrate();
+
+    document.querySelectorAll('[data-v2-picker]').forEach(function (panel) {
+      var variant = panel.getAttribute('data-variant');
+      var preview = panel.querySelector('[data-preview]');
+      var hexLabel = panel.querySelector('[data-hexval]');
+      var pngNote = panel.querySelector('[data-png-note]');
+      var fmt = 'svg';
+      var hex = panel.getAttribute('data-default');
+
+      function renderPreview() {
+        preview.innerHTML = hex === 'gradient'
+          ? RR2.markSVG({ variant: variant, dimensional: true, size: 52 })
+          : RR2.markSVG({ variant: variant, color: hex, accent: hex, dimensional: false, size: 52 });
+      }
+      function setHex(newHex, sourceBtn) {
+        hex = newHex;
+        hexLabel.textContent = hex === 'gradient' ? 'Original (gradient)' : hex.toUpperCase();
+        panel.querySelectorAll('.mini').forEach(function (b) { b.setAttribute('aria-pressed', String(b === sourceBtn)); });
+        renderPreview();
+      }
+      panel.querySelectorAll('.mini').forEach(function (b) {
+        b.addEventListener('click', function () { setHex(b.getAttribute('data-hex'), b); });
+      });
+      panel.querySelectorAll('.fmt-btn').forEach(function (b) {
+        b.addEventListener('click', function () {
+          fmt = b.getAttribute('data-fmt');
+          panel.querySelectorAll('.fmt-btn').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+          pngNote.hidden = fmt !== 'png';
+        });
+      });
+      panel.querySelector('[data-dl-icon]').addEventListener('click', function () {
+        var slug = v2Slugs[panel.getAttribute('data-v2-picker')];
+        var name = 'rest-and-reset-' + slug + '-' + hex.replace('#', '').toLowerCase();
+        if (fmt === 'svg') RR2.downloadSVG(variant, hex, name + '.svg');
+        else RR2.downloadPNG(variant, hex, name + '.png', 1024);
+      });
+      renderPreview();
+    });
+  }
+
+  // ============================================================
+  // Mix & Match
+  // ============================================================
+  var ALL_MARKS = [
+    { id: 'v1-1', label: '1 &middot; Classic Simple', src: 'v1', variant: 'simple', dim: false, font: "'Lora',serif" },
+    { id: 'v1-2', label: '2 &middot; Modern Spine', src: 'v1', variant: 'detailed', dim: true, font: "'Piazzolla',serif" },
+    { id: 'v1-3', label: '3 &middot; Clean Sans', src: 'v1', variant: 'simple', dim: false, font: "'Archivo',sans-serif" },
+    { id: 'v1-4', label: '4 &middot; Bold Signage', src: 'v1', variant: 'detailed', dim: true, font: "'Archivo',sans-serif" }
+  ].concat([1, 2, 3, 4, 5, 6, 7, 8].map(function (n) {
+    var c = RR2.CONCEPTS[n];
+    return { id: 'v2-' + n, label: n + ' &middot; ' + c.name, src: 'v2', variant: c.variant, dim: c.dim, font: c.fontFamily };
+  }));
+  var MIX_FONTS = [
+    { label: 'Lora', css: "'Lora',serif" },
+    { label: 'Piazzolla', css: "'Piazzolla',serif" },
+    { label: 'Archivo', css: "'Archivo',sans-serif" }
+  ];
+  var MIX_COLORS = palette.map(function (p) { return { hex: p.hex, label: p.name }; });
+
+  // Returns a self-contained <svg>...</svg> string for one mark in one color
+  // (or 'gradient'), regardless of whether it's a V1 or V2 mark.
+  function rawMarkSvg(mark, hex) {
+    if (mark.src === 'v1') {
+      return hex === 'gradient' ? RR.standaloneDimensionalSVG(mark.variant) : RR.standaloneMarkSVG(mark.variant, hex);
+    }
+    return hex === 'gradient' ? RR2.standaloneDimensionalSVG(mark.variant) : RR2.standaloneSVG(mark.variant, hex);
+  }
+  function parseViewBox(svg) {
+    var m = svg.match(/viewBox="([^"]+)"/);
+    var parts = (m ? m[1] : '0 0 200 200').split(/\s+/).map(Number);
+    return { x: parts[0], y: parts[1], w: parts[2], h: parts[3] };
+  }
+  function innerOf(svg) {
+    return svg.replace(/^<svg[^>]*>/, '').replace(/<\/svg>\s*$/, '');
+  }
+
+  // Composes the full preview/export: mark on the left, wordmark on the
+  // right, optional background. box: {w,h} of the canvas.
+  function composeMix(opts) {
+    var raw = rawMarkSvg(opts.mark, opts.hex);
+    var vb = parseViewBox(raw);
+    var inner = innerOf(raw);
+    var boxW = opts.w, boxH = opts.h;
+    var markTarget = boxH - 24; // leave vertical padding
+    var scale = markTarget / Math.max(vb.w, vb.h);
+    var tx = 16 - vb.x * scale;
+    var ty = (boxH - vb.h * scale) / 2 - vb.y * scale;
+    var textColor = opts.hex === 'gradient' ? '#1F4A48' : opts.hex;
+    var textX = 16 + markTarget + 20;
+    var bg = opts.bg === 'transparent' ? '' : '<rect x="0" y="0" width="' + boxW + '" height="' + boxH + '" fill="' + opts.bg + '"></rect>';
+    return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + boxW + ' ' + boxH + '" width="' + boxW + '" height="' + boxH + '">' +
+      bg +
+      '<g transform="translate(' + tx.toFixed(2) + ',' + ty.toFixed(2) + ') scale(' + scale.toFixed(4) + ')">' + inner + '</g>' +
+      '<text x="' + textX + '" y="' + (boxH / 2 - 6) + '" font-family="' + opts.font + '" font-weight="600" font-size="34" letter-spacing="0.5" fill="' + textColor + '">REST &amp; RESET</text>' +
+      '<text x="' + textX + '" y="' + (boxH / 2 + 18) + '" font-family="Archivo,sans-serif" font-weight="600" font-size="11" letter-spacing="2" fill="' + textColor + '" opacity="0.72">UPPER CERVICAL CHIROPRACTIC CARE</text>' +
+      '</svg>';
+  }
+
+  function buildMix() {
+    var state = { markId: ALL_MARKS[0].id, font: ALL_MARKS[0].font, hex: '#1F4A48', bg: '#1F4A48', fmt: 'svg' };
+
+    function mark() { return ALL_MARKS.filter(function (m) { return m.id === state.markId; })[0]; }
+
+    var html3 =
+      '<div class="mix-grid">' +
+        '<div>' +
+          '<div class="mix-group"><div class="mix-label">1. Choose a mark</div><div class="mix-marks" id="mix-marks"></div></div>' +
+          '<div class="mix-group"><div class="mix-label">2. Choose a typeface</div><div class="mix-fonts" id="mix-fonts"></div></div>' +
+          '<div class="mix-group"><div class="mix-label">3. Logo color</div><div class="mix-colors" id="mix-colorrow"></div></div>' +
+          '<div class="mix-group" style="margin-bottom:0;"><div class="mix-label">4. Background</div><div class="mix-colors" id="mix-bgrow"></div></div>' +
+        '</div>' +
+        '<div class="mix-preview-wrap">' +
+          '<div class="mix-preview" id="mix-previewbox"></div>' +
+          '<div class="mix-actions">' +
+            '<div class="fmt-group" role="group" aria-label="File format">' +
+              '<button type="button" class="fmt-btn" data-mixfmt="svg" aria-pressed="true">SVG</button>' +
+              '<button type="button" class="fmt-btn" data-mixfmt="png" aria-pressed="false">PNG</button>' +
+            '</div>' +
+            '<button type="button" class="dl-btn" id="mix-download">' +
+              '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>' +
+              'Download' +
+            '</button>' +
+          '</div>' +
+          '<p class="png-note" style="margin-top:10px;">PNG exports at 2&times; this preview size. Background is included as drawn &mdash; choose Transparent for a cutout logo.</p>' +
+        '</div>' +
+      '</div>';
+    document.getElementById('mix-tool').innerHTML = html3;
+
+    // --- marks grid ---
+    var marksEl = document.getElementById('mix-marks');
+    marksEl.innerHTML = ALL_MARKS.map(function (m) {
+      var preview = m.src === 'v1' ? RR.markSVG({ variant: m.variant, fill: '#1F4A48', dot: '#1F4A48', dimensional: false, size: 34 })
+                                     : RR2.markSVG({ variant: m.variant, color: '#1F4A48', accent: '#1F4A48', dimensional: false, size: 34 });
+      return '<button type="button" class="mix-mark-btn" data-mark-id="' + m.id + '" aria-pressed="' + (m.id === state.markId) + '">' + preview + '<span class="mix-mark-name">' + m.label + '</span></button>';
+    }).join('');
+
+    // --- fonts ---
+    var fontsEl = document.getElementById('mix-fonts');
+    fontsEl.innerHTML = MIX_FONTS.map(function (f) {
+      return '<button type="button" class="mix-font-btn" style="font-family:' + f.css + ';" data-font="' + f.css + '" aria-pressed="' + (f.css === state.font) + '">' + f.label + '</button>';
+    }).join('');
+
+    // --- logo color row ---
+    var colorEl = document.getElementById('mix-colorrow');
+    function colorRowHtml(groupId, includeGradient, includeTransparent) {
+      var out = MIX_COLORS.map(function (q) {
+        return '<button type="button" class="mix-swatch' + (isLight(q.hex) ? ' light-border' : '') + '" style="background:' + q.hex + '" data-' + groupId + '="' + q.hex + '" aria-pressed="false" title="' + q.label + '"></button>';
+      }).join('');
+      if (includeGradient) out += '<button type="button" class="mix-swatch gradient-sw" data-' + groupId + '="gradient" aria-pressed="false" title="Original gradient (where available)"></button>';
+      if (includeTransparent) out += '<button type="button" class="mix-swatch transparent-sw" data-' + groupId + '="transparent" aria-pressed="false" title="Transparent"></button>';
+      out += '<label class="mix-custom"><input type="color" value="#1F4A48" data-' + groupId + 'custom><span>Custom</span></label>';
+      return out;
+    }
+    colorEl.innerHTML = colorRowHtml('mixcolor', true, false);
+    var bgEl = document.getElementById('mix-bgrow');
+    bgEl.innerHTML = colorRowHtml('mixbg', false, true);
+
+    function markPressed(sel, val) {
+      document.querySelectorAll(sel).forEach(function (b) {
+        var v = b.getAttribute(sel.indexOf('mixbg') > -1 ? 'data-mixbg' : (sel.indexOf('mixcolor') > -1 ? 'data-mixcolor' : null));
+      });
+    }
+
+    function syncPressed(container, attr, val) {
+      container.querySelectorAll('[' + attr + ']').forEach(function (b) {
+        b.setAttribute('aria-pressed', String(b.getAttribute(attr) === val));
+      });
+    }
+
+    function render() {
+      var m = mark();
+      var canDim = m.dim;
+      var hex = state.hex === 'gradient' && !canDim ? '#1F4A48' : state.hex;
+      state.hex = hex;
+      var svg = composeMix({ mark: m, hex: hex, font: state.font, bg: state.bg, w: 480, h: 150 });
+      document.getElementById('mix-previewbox').innerHTML = svg;
+      syncPressed(marksEl, 'data-mark-id', state.markId);
+      syncPressed(fontsEl, 'data-font', state.font);
+      syncPressed(colorEl, 'data-mixcolor', state.hex);
+      syncPressed(bgEl, 'data-mixbg', state.bg);
+    }
+
+    marksEl.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-mark-id]');
+      if (!b) return;
+      state.markId = b.getAttribute('data-mark-id');
+      state.font = mark().font;
+      render();
+    });
+    fontsEl.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-font]');
+      if (!b) return;
+      state.font = b.getAttribute('data-font');
+      render();
+    });
+    colorEl.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-mixcolor]');
+      if (!b) return;
+      state.hex = b.getAttribute('data-mixcolor');
+      render();
+    });
+    colorEl.querySelector('[data-mixcolorcustom]').addEventListener('input', function (e) {
+      state.hex = e.target.value;
+      render();
+    });
+    bgEl.addEventListener('click', function (e) {
+      var b = e.target.closest('[data-mixbg]');
+      if (!b) return;
+      state.bg = b.getAttribute('data-mixbg');
+      render();
+    });
+    bgEl.querySelector('[data-mixbgcustom]').addEventListener('input', function (e) {
+      state.bg = e.target.value;
+      render();
+    });
+    document.querySelectorAll('[data-mixfmt]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        state.fmt = b.getAttribute('data-mixfmt');
+        document.querySelectorAll('[data-mixfmt]').forEach(function (x) { x.setAttribute('aria-pressed', String(x === b)); });
+      });
+    });
+    document.getElementById('mix-download').addEventListener('click', function () {
+      var m = mark();
+      var name = 'rest-and-reset-mix-' + m.id + '-' + state.font.replace(/[^a-z]/gi, '').toLowerCase();
+      var svg = composeMix({ mark: m, hex: state.hex, font: state.font, bg: state.bg, w: 960, h: 300 });
+      if (state.fmt === 'svg') {
+        var blob = new Blob([svg], { type: 'image/svg+xml' });
+        var url = URL.createObjectURL(blob);
+        var a = document.createElement('a'); a.href = url; a.download = name + '.svg'; document.body.appendChild(a); a.click(); a.remove();
+        setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+      } else {
+        var svgUrl = URL.createObjectURL(new Blob([svg], { type: 'image/svg+xml' }));
+        var img = new Image();
+        img.onload = function () {
+          var canvas = document.createElement('canvas');
+          canvas.width = 1920; canvas.height = 600;
+          var ctx = canvas.getContext('2d');
+          ctx.drawImage(img, 0, 0, 1920, 600);
+          URL.revokeObjectURL(svgUrl);
+          canvas.toBlob(function (blob) {
+            var url = URL.createObjectURL(blob);
+            var a = document.createElement('a'); a.href = url; a.download = name + '.png'; document.body.appendChild(a); a.click(); a.remove();
+            setTimeout(function () { URL.revokeObjectURL(url); }, 4000);
+          }, 'image/png');
+        };
+        img.src = svgUrl;
+      }
+    });
+
+    render();
+  }
 </script>
 </body>
 </html>
