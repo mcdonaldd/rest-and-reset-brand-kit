@@ -152,10 +152,10 @@
     .footer-contact { text-align: left; }
     .services { column-gap: 32px; }
   }
-  @media (max-width: 1180px) {
-    .has-controls .kit-nav .full { display: none; }
-    .has-controls .kit-nav .short { display: inline; }
-  }
+  /* With four direction tabs plus the switcher, the full labels no longer fit
+     one row inside the 1180px container, so the short labels apply at every width. */
+  .has-controls .kit-nav .full { display: none; }
+  .has-controls .kit-nav .short { display: inline; }
   @media (max-width: 600px) {
     .container { padding: 0 16px; }
     .kit-bar.has-controls { position: static; }
@@ -224,6 +224,7 @@
     <nav class="kit-nav" aria-label="Brand kit">
       <a href="/#v1"><span class="full">V1 &middot; Original</span><span class="short">V1</span></a>
       <a href="/#v2"><span class="full">V2 &middot; New Directions</span><span class="short">V2</span></a>
+      <a href="/#v3"><span class="full">V3 &middot; Spectrum</span><span class="short">V3</span></a>
       <a href="/#mix">Mix &amp; Match</a>
       <a href="/site" aria-current="page"><span class="full">Website Mockup</span><span class="short">Mockup</span></a>
     </nav>
@@ -411,8 +412,9 @@
 
 <script src="/assets/mark.js"></script>
 <script src="/assets/mark-v2.js"></script>
+<script src="/assets/mark-v3.js"></script>
 <script>
-  // Unified registry of every logo direction (V1's 4 + V2's 8) so the
+  // Unified registry of every logo direction (V1's 4, V2's 8, V3's 13) so the
   // switcher and the whole page's type/accent treatment can key off one
   // id instead of two separate concept systems. Derived from RR/RR2's own
   // concept data rather than duplicated, so a change there can't drift.
@@ -441,11 +443,19 @@
     };
   });
 
+  for (var n3 = 1; n3 <= 13; n3++) {
+    var c3 = RR3.CONCEPTS[n3];
+    ALL_CONCEPTS['v3-' + n3] = {
+      src: 'v3', n: n3, group: 'V3 · Spectrum', label: 'V3 · ' + n3 + '. ' + c3.name,
+      font: c3.font, weight: 600, case: 'none', track: '0', accent: 'var(--clay)'
+    };
+  }
+
   function markFor(id, size, fill, flat) {
     var e = ALL_CONCEPTS[id];
-    return e.src === 'v1'
-      ? RR.conceptMark(RR.CONCEPTS[e.n], size, { fill: fill, flat: flat })
-      : RR2.conceptMark(RR2.CONCEPTS[e.n], size, { color: fill, flat: flat });
+    if (e.src === 'v1') return RR.conceptMark(RR.CONCEPTS[e.n], size, { fill: fill, flat: flat });
+    if (e.src === 'v3') return RR3.conceptMark(RR3.CONCEPTS[e.n], size, { color: fill, flat: flat });
+    return RR2.conceptMark(RR2.CONCEPTS[e.n], size, { color: fill, flat: flat });
   }
 
   // Build the picker once from ALL_CONCEPTS, grouped by version.
