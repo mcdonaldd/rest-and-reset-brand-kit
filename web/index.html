@@ -172,6 +172,39 @@
     .mix-grid { grid-template-columns: 1fr; }
     .mix-preview-wrap { position: static; }
   }
+
+  /* ---- V3 · Spectrum ---- */
+  #v3-view { --v3-text: oklch(38% 0.02 85); }
+  #v3-view h2.h2 { margin: 0; }
+  #v3-view .section[data-v3-block] { scroll-margin-top: 76px; }
+  /* The shared label colors are lighter than 4.5:1 on the page and card surfaces; V3 uses a darker one. */
+  #v3-view .meta, #v3-view .picker-label, #v3-view .dl-label, #v3-view .hexval, #v3-view .png-note,
+  #v3-view .mini-custom span, #v3-view .tile:not(.solid) .tile-label, #v3-view .tile .sub { color: var(--v3-text); }
+  .v3-changes { max-width: 640px; margin-bottom: 24px; }
+  .v3-changes ul { margin: 10px 0 0; padding: 0 0 0 18px; display: grid; gap: 6px; }
+  .v3-changes li { font-size: 13px; line-height: 1.55; color: var(--body); }
+  .v3-note { font-size: 13.5px; line-height: 1.55; color: var(--body); margin: 0 0 4px; max-width: 640px; }
+  .v3-lineage { font-size: 12.5px; color: var(--v3-text); margin: 0 0 14px; }
+  .v3-lineage strong { color: var(--heading); font-weight: 600; margin-right: 6px; }
+
+  .spectrum { margin: 36px 0 8px; }
+  .spectrum-ends { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; color: var(--heading); margin-bottom: 6px; }
+  .spectrum-scroll { overflow-x: auto; padding: 4px 0 2px; }
+  .spectrum-track { position: relative; display: grid; grid-template-columns: repeat(13, minmax(54px, 1fr)); min-width: 702px; padding-bottom: 16px; }
+  .spectrum-track::before { content: ""; position: absolute; left: 0; right: 0; bottom: 5px; height: 1px; background: var(--muted); }
+  .spectrum-track::after { content: ""; position: absolute; right: 1px; bottom: 1.5px; width: 8px; height: 8px; border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); transform: rotate(45deg); }
+  .spec-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 2px 6px; background: none; border: 0; border-radius: 8px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; color: var(--v3-text); }
+  .spec-btn:hover { background: var(--card); box-shadow: inset 0 0 0 1px var(--line); color: var(--heading); }
+  .spec-btn:focus-visible { outline: 2px solid var(--clay); outline-offset: 2px; }
+
+  .v3-meta { font-size: 13px; line-height: 1.55; color: var(--body); margin: 6px 0 18px; max-width: 680px; }
+  .v3-size-grid { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+  .v3-size { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 14px 16px; }
+  .v3-size-name { font-size: 12.5px; font-weight: 600; color: var(--heading); margin-bottom: 12px; }
+  .v3-size-row { display: flex; align-items: flex-end; gap: 20px; }
+  .v3-size-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 0; }
+  .v3-size-cell span { font-size: 11px; line-height: 1.2; color: var(--v3-text); }
+  .v3-flag { margin-top: 12px; font-size: 12px; font-weight: 600; color: oklch(40% 0.09 45); }
 </style>
 </head>
 <body>
@@ -208,6 +241,7 @@
     <nav class="kit-nav" aria-label="Brand kit">
       <a href="/#v1" data-tab="v1" aria-current="page"><span class="full">V1 &middot; Original</span><span class="short">V1</span></a>
       <a href="/#v2" data-tab="v2"><span class="full">V2 &middot; New Directions</span><span class="short">V2</span></a>
+      <a href="/#v3" data-tab="v3"><span class="full">V3 &middot; Spectrum</span><span class="short">V3</span></a>
       <a href="/#mix" data-tab="mix">Mix &amp; Match</a>
       <a href="/site"><span class="full">Website Mockup</span><span class="short">Mockup</span></a>
     </nav>
@@ -308,7 +342,7 @@
   </section>
 
   <aside class="next">
-    <p>Preview any direction, V1 or V2, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
+    <p>Preview any direction, from V1, V2 or V3, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
     <a href="/site#concept=v1-1">Open website mockup &rarr;</a>
   </aside>
 </div>
@@ -346,8 +380,45 @@
   </section>
 
   <aside class="next">
-    <p>Preview any direction, V1 or V2, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
+    <p>Preview any direction, from V1, V2 or V3, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
     <a href="/site#concept=v2-1">Open website mockup &rarr;</a>
+  </aside>
+</div>
+
+<div class="wrap" id="v3-view" hidden>
+  <header>
+    <h1>Rest &amp; Reset</h1>
+    <p class="lede">Thirteen marks from Jared&rsquo;s November sketch round, ordered from most musical (mark 1) to most spine (mark 13). The palette, typography and usage rules carry over from V1.</p>
+    <div class="card v3-changes">
+      <div class="t">Four changes in Jared&rsquo;s sketch</div>
+      <ul>
+        <li>The whole rest moves inside the fermata.</li>
+        <li>The rest gets rounder.</li>
+        <li>The fermata&rsquo;s arc gets pointier: a crescent that tapers to fine points.</li>
+        <li>The fermata dot becomes a half-circle dome sitting on the staff line.</li>
+      </ul>
+    </div>
+    <a class="kit-download" href="/assets/rest-and-reset-logo-assets-v3.zip" download>
+      <svg aria-hidden="true" focusable="false" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>
+      Download all V3 logo assets (.zip)
+    </a>
+    <div class="spectrum" role="group" aria-label="Jump to a V3 mark, ordered from most musical to most spine">
+      <div class="spectrum-ends"><span>Most musical</span><span>Most spine</span></div>
+      <div class="spectrum-scroll"><div class="spectrum-track" id="v3axis"></div></div>
+    </div>
+  </header>
+
+  <div id="v3concepts"></div>
+
+  <section class="section v3-sizes" aria-labelledby="v3-sizes-h" style="border-bottom:0;margin-bottom:0;padding-bottom:0;">
+    <h2 class="h2" id="v3-sizes-h">Small-size check</h2>
+    <p class="v3-meta">Each mark in one color at 64, 32 and 16 px. The hairline tips on mark 13 and the taper on mark 1 are intentional, so they are flagged here rather than thickened.</p>
+    <ul class="v3-size-grid" id="v3small"></ul>
+  </section>
+
+  <aside class="next">
+    <p>Preview any direction, from V1, V2 or V3, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
+    <a href="/site#concept=v3-1">Open website mockup &rarr;</a>
   </aside>
 </div>
 
@@ -362,6 +433,7 @@
 
 <script src="/assets/mark.js"></script>
 <script src="/assets/mark-v2.js"></script>
+<script src="/assets/mark-v3.js"></script>
 <script>
   var palette = [
     { name: 'Deep Teal', hex: '#1F4A48', color: RR.TEAL },
@@ -416,6 +488,10 @@
   var quickColors = palette.map(function (p) { return { hex: p.hex, label: p.name }; });
   var bgChoices = quickColors.concat([{ hex: 'transparent', label: 'Transparent' }]);
 
+  function escHtml(s) {
+    return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+  }
+
   function bgRowHtml() {
     return '<div class="picker-label picker-label-sub">Background</div>' +
       '<div class="swatches-mini" role="group" aria-label="Background">' +
@@ -433,9 +509,10 @@
 
   // Places a standalone mark file on a square tile of the chosen color, with
   // the mark filling ~72% of the tile, so the export reads like an app icon.
-  function composeOnBackground(svg, bg, px) {
+  // `fill` overrides that share for files whose viewBox already carries padding.
+  function composeOnBackground(svg, bg, px, fill) {
     var vb = parseViewBox(svg);
-    var side = Math.max(vb.w, vb.h) / 0.72;
+    var side = Math.max(vb.w, vb.h) / (fill || 0.72);
     var x = vb.x + vb.w / 2 - side / 2, y = vb.y + vb.h / 2 - side / 2;
     var box = x.toFixed(2) + ' ' + y.toFixed(2) + ' ' + side.toFixed(2) + ' ' + side.toFixed(2);
     return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="' + box + '" width="' + px + '" height="' + px + '">' +
@@ -517,7 +594,7 @@
       var name = 'rest-and-reset-' + o.slug + '-' + hex.replace('#', '').toLowerCase();
       if (bg === 'transparent') return o.saveTransparent(hex, fmt, name);
       name += '-on-' + bg.replace('#', '').toLowerCase();
-      var svg = composeOnBackground(o.fileSVG(hex), bg, 1024);
+      var svg = composeOnBackground(o.fileSVG(hex), bg, 1024, o.tileFill);
       if (fmt === 'svg') saveBlob(new Blob([svg], { type: 'image/svg+xml' }), name + '.svg');
       else svgToPNG(svg, name + '.png', 1024);
     });
@@ -610,13 +687,13 @@
   });
 
   // ============================================================
-  // Tabs: V1 / V2 / Mix & Match, routed by URL hash (/#v2) so the mockup
+  // Tabs: V1 / V2 / V3 / Mix & Match, routed by URL hash (/#v2) so the mockup
   // and the back button can return to a specific tab.
   // ============================================================
   (function () {
-    var views = { v1: document.getElementById('v1-view'), v2: document.getElementById('v2-view'), mix: document.getElementById('mix-view') };
+    var views = { v1: document.getElementById('v1-view'), v2: document.getElementById('v2-view'), v3: document.getElementById('v3-view'), mix: document.getElementById('mix-view') };
     var links = document.querySelectorAll('.kit-nav [data-tab]');
-    var v2Built = false, mixBuilt = false;
+    var v2Built = false, v3Built = false, mixBuilt = false;
     function current() {
       var h = location.hash.replace('#', '');
       return views[h] ? h : 'v1';
@@ -628,11 +705,12 @@
         else a.removeAttribute('aria-current');
       });
       if (which === 'v2' && !v2Built) { buildV2(); v2Built = true; }
+      if (which === 'v3' && !v3Built) { buildV3(); v3Built = true; }
       if (which === 'mix' && !mixBuilt) { buildMix(); mixBuilt = true; }
       if (scroll) window.scrollTo(0, 0);
     }
     window.addEventListener('hashchange', function () { show(current(), true); });
-    // Deferred until the whole script has run: buildV2/buildMix read vars declared below.
+    // Deferred until the whole script has run: buildV2/buildV3/buildMix read vars declared below.
     document.addEventListener('DOMContentLoaded', function () { show(current(), false); });
   })();
 
@@ -741,6 +819,126 @@
   }
 
   // ============================================================
+  // V3 section
+  // ============================================================
+  // The delivered V3 lockups set the wordmark in title case with this subline, so the tiles match what downloads.
+  var v3Subline = 'DR. JARED WILSON &middot; CHIROPRACTIC CARE';
+  var V3_HAIRLINE_FLAGS = { 1: 'Taper is hairline at 16 px', 13: 'Tips are hairline at 16 px' };
+  var V3_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+  function buildV3() {
+    var html3 = '', axis = '', small = '';
+    var flatTeal = { fill: '#1F4A48', finish: 'flat' };
+
+    V3_ORDER.forEach(function (n) {
+      var c = RR3.CONCEPTS[n];
+      var name = escHtml(c.name);
+      var base = '/assets/icons-v3/' + c.slug + '/';
+
+      axis += '<button type="button" class="spec-btn" data-jump="' + n + '" title="' + n + ' &middot; ' + name + '" aria-label="Go to ' + n + ', ' + name + '">' +
+        RR3.conceptMark(c, 40) + '<span>' + n + '</span></button>';
+
+      var flag = V3_HAIRLINE_FLAGS[n];
+      small += '<li class="v3-size"><div class="v3-size-name">' + n + ' &middot; ' + name + '</div><div class="v3-size-row">' +
+        [64, 32, 16].map(function (px) {
+          return '<div class="v3-size-cell">' + RR3.render(n, { size: px, fill: flatTeal.fill, finish: flatTeal.finish }) + '<span>' + px + ' px</span></div>';
+        }).join('') + '</div>' + (flag ? '<div class="v3-flag">' + flag + '</div>' : '') + '</li>';
+
+      html3 +=
+        '<section class="section" data-v3-block="' + n + '">' +
+          '<div class="concept-head"><h2 class="h2">' + n + '. ' + name + '</h2>' +
+          '<div class="meta">' + c.finish + ' &middot; ' + c.fontLabel + '</div>' +
+          '<a class="see-site" href="/site#concept=v3-' + n + '">See it on the website &rarr;</a></div>' +
+          '<p class="v3-note">' + escHtml(c.note) + '</p>' +
+          '<p class="v3-lineage"><strong>Lineage</strong>' + escHtml(c.lineage) + '</p>' +
+          '<div class="tiles">' +
+            '<div class="tile">' + RR3.conceptMark(c, 120) + '<div class="tile-label">Mark only</div></div>' +
+            '<div class="tile">' + RR3.conceptMark(c, 64) +
+              '<div><div class="word" style="font-family:' + c.font + ';font-size:19px;">Rest &amp; Reset</div>' +
+              '<div class="sub" style="font-size:9px;margin-top:4px;">' + v3Subline + '</div></div>' +
+              '<div class="tile-label">Stacked</div></div>' +
+            '<div class="tile" style="gap:12px;"><div class="horiz">' + RR3.conceptMark(c, 52) +
+              '<div><div class="word" style="font-family:' + c.font + ';font-size:17px;line-height:1.1;">Rest &amp; Reset</div>' +
+              '<div class="sub" style="font-size:8px;margin-top:3px;">' + v3Subline + '</div></div></div>' +
+              '<div class="tile-label">Horizontal</div></div>' +
+            '<div class="tile solid">' + RR3.conceptMark(c, 76, { color: 'oklch(97% 0.01 85)', flat: true }) +
+              '<div class="tile-label">Single color</div></div>' +
+          '</div>' +
+
+          '<div class="picker" data-v3-picker="' + n + '" data-default="' + (c.dim ? 'gradient' : quickColors[0].hex) + '">' +
+            '<div class="picker-preview" data-preview></div>' +
+            '<div class="picker-controls">' +
+              '<div class="picker-label">Recolor &amp; download the icon</div>' +
+              '<div class="swatches-mini" role="group" aria-label="Quick colors">' +
+                (c.dim ? '<button type="button" class="mini gradient" data-hex="gradient" aria-pressed="true" aria-label="Original gradient" title="Original &middot; gradient + shadow"></button>' : '') +
+                quickColors.map(function (q) {
+                  return '<button type="button" class="mini' + (isLight(q.hex) ? ' light' : '') + '" style="background:' + q.hex + '" data-hex="' + q.hex + '" aria-pressed="' + (!c.dim && q.hex === quickColors[0].hex ? 'true' : 'false') + '" aria-label="' + q.label + '" title="' + q.label + ' &middot; ' + q.hex + '"></button>';
+                }).join('') +
+                '<span class="hexval" data-hexval>' + (c.dim ? 'Original (gradient)' : quickColors[0].hex) + '</span>' +
+              '</div>' +
+              bgRowHtml() +
+              '<div class="picker-row2">' +
+                '<div class="fmt-group" role="group" aria-label="File format">' +
+                  '<button type="button" class="fmt-btn" data-fmt="svg" aria-pressed="true">SVG</button>' +
+                  '<button type="button" class="fmt-btn" data-fmt="png" aria-pressed="false">PNG</button>' +
+                '</div>' +
+                '<button type="button" class="dl-btn" data-dl-icon>' +
+                  '<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>' +
+                  'Download icon' +
+                '</button>' +
+                '<span class="png-note" data-png-note hidden>PNG exports at 1024&times;1024, transparent background.</span>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<div class="downloads">' +
+            '<span class="dl-label">Also in this direction:</span>' +
+            '<a href="' + base + 'lockup-stacked.svg" download>Stacked lockup (SVG)</a>' +
+            '<a href="' + base + 'lockup-horizontal.svg" download>Horizontal lockup (SVG)</a>' +
+            '<a href="' + base + 'avatar-circle.svg" download>Social avatar (SVG)</a>' +
+            '<a class="dl-zip" href="/assets/rest-and-reset-logo-assets-v3.zip" download>All formats (.zip)</a>' +
+          '</div>' +
+        '</section>';
+    });
+
+    document.getElementById('v3axis').innerHTML = axis;
+    document.getElementById('v3concepts').innerHTML = html3;
+    document.getElementById('v3small').innerHTML = small;
+
+    // The tab is routed by URL hash, so the axis scrolls with script instead of #anchor links.
+    document.getElementById('v3axis').addEventListener('click', function (e) {
+      var b = e.target.closest('[data-jump]');
+      if (!b) return;
+      var block = document.querySelector('[data-v3-block="' + b.getAttribute('data-jump') + '"]');
+      var heading = block.querySelector('h2');
+      var calm = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      block.scrollIntoView({ behavior: calm ? 'auto' : 'smooth', block: 'start' });
+      heading.setAttribute('tabindex', '-1');
+      heading.focus({ preventScroll: true });
+    });
+
+    document.querySelectorAll('[data-v3-picker]').forEach(function (panel) {
+      var n = +panel.getAttribute('data-v3-picker');
+      function fileSVG(hex) {
+        return hex === 'gradient' ? RR3.standaloneDimensionalSVG(n) : RR3.standaloneSVG(n, hex);
+      }
+      wireIconPicker(panel, {
+        slug: RR3.CONCEPTS[n].slug,
+        tileFill: 0.85,
+        previewSVG: function (hex) {
+          return hex === 'gradient' ? RR3.render(n, { size: 52, finish: 'dimensional' }) : RR3.render(n, { size: 52, fill: hex, finish: 'flat' });
+        },
+        fileSVG: fileSVG,
+        saveTransparent: function (hex, fmt, name) {
+          var svg = fileSVG(hex);
+          if (fmt === 'svg') saveBlob(new Blob([svg], { type: 'image/svg+xml' }), name + '.svg');
+          else svgToPNG(svg, name + '.png', 1024);
+        }
+      });
+    });
+  }
+
+  // ============================================================
   // Mix & Match
   // ============================================================
   var ALL_MARKS = [
@@ -751,6 +949,9 @@
   ].concat([1, 2, 3, 4, 5, 6, 7, 8].map(function (n) {
     var c = RR2.CONCEPTS[n];
     return { id: 'v2-' + n, label: n + ' &middot; ' + c.name, src: 'v2', variant: c.variant, dim: c.dim, font: c.fontFamily };
+  })).concat([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(function (n) {
+    var c = RR3.CONCEPTS[n];
+    return { id: 'v3-' + n, label: n + ' &middot; ' + escHtml(c.name), src: 'v3', variant: n, dim: c.dim, font: c.font };
   }));
   var MIX_FONTS = [
     { label: 'Lora', css: "'Lora',serif" },
@@ -764,6 +965,9 @@
   function rawMarkSvg(mark, hex) {
     if (mark.src === 'v1') {
       return hex === 'gradient' ? RR.standaloneDimensionalSVG(mark.variant) : RR.standaloneMarkSVG(mark.variant, hex);
+    }
+    if (mark.src === 'v3') {
+      return hex === 'gradient' ? RR3.standaloneDimensionalSVG(mark.variant) : RR3.standaloneSVG(mark.variant, hex);
     }
     return hex === 'gradient' ? RR2.standaloneDimensionalSVG(mark.variant) : RR2.standaloneSVG(mark.variant, hex);
   }
@@ -832,8 +1036,10 @@
     // --- marks grid ---
     var marksEl = document.getElementById('mix-marks');
     marksEl.innerHTML = ALL_MARKS.map(function (m) {
-      var preview = m.src === 'v1' ? RR.markSVG({ variant: m.variant, fill: '#1F4A48', dot: '#1F4A48', dimensional: false, size: 34 })
-                                     : RR2.markSVG({ variant: m.variant, color: '#1F4A48', accent: '#1F4A48', dimensional: false, size: 34 });
+      var preview;
+      if (m.src === 'v1') preview = RR.markSVG({ variant: m.variant, fill: '#1F4A48', dot: '#1F4A48', dimensional: false, size: 34 });
+      else if (m.src === 'v3') preview = RR3.render(m.variant, { size: 34, fill: '#1F4A48', finish: 'flat' });
+      else preview = RR2.markSVG({ variant: m.variant, color: '#1F4A48', accent: '#1F4A48', dimensional: false, size: 34 });
       return '<button type="button" class="mix-mark-btn" data-mark-id="' + m.id + '" aria-pressed="' + (m.id === state.markId) + '">' + preview + '<span class="mix-mark-name">' + m.label + '</span></button>';
     }).join('');
 
