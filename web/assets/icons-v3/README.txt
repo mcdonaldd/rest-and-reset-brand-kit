@@ -1,5 +1,5 @@
 Rest & Reset V3 SVG assets
-Thirteen marks from Jared's November sketch round, ordered 01 (most musical) to 13 (most spine).
+Fourteen marks from Jared's November sketch round, ordered 01 (most musical) to 14 (most spine). 07 Held Vertebra is Jared's pick.
 Each folder:
   mark-color.svg      full color (teal + clay dot; 05 keeps the V2 gradient + shadow finish)
   mark-teal/black/white/cream.svg   flat single-color versions

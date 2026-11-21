@@ -1,5 +1,5 @@
 {
- "version": "V3",
+ "version": 3,
  "viewBox": "0 0 200 200",
  "colors": {
   "teal": "#1F4A48",
@@ -8,14 +8,14 @@
   "ink": "#152E2D",
   "tealTint": "#C9DEDC"
  },
- "order": "most musical (01) to most spine (13)",
+ "order": "most musical (01) to most spine (14)",
  "marks": [
   {
    "number": 1,
    "slug": "01-score",
    "name": "Score",
    "note": "Jared's sketch, drawn clean. Pointed fermata, domed dot, rounded rest held inside the arc.",
-   "lineage": "Jared's new sketch",
+   "lineage": "From the new sketch",
    "dimensional": false,
    "geometry": "<path d=\"M34,136 A66,70 0 0 1 166,136 A62.1,57 0 0 0 34,136 Z\"/><path fill=\"ACCENT\" d=\"M85,112 A15,15 0 0 1 115,112 Z\"/><rect x=\"64\" y=\"115\" width=\"72\" height=\"6\" rx=\"3\"/><path d=\"M82,121 H118 V130 Q118,141 107,141 H93 Q82,141 82,130 Z\"/>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
@@ -25,7 +25,7 @@
    "slug": "02-breath",
    "name": "Breath",
    "note": "Same score. The rest pinches at the waist and the line ends swell, the first hint of bone.",
-   "lineage": "Jared's new sketch",
+   "lineage": "From the new sketch",
    "dimensional": false,
    "geometry": "<path d=\"M34,138 A66,72 0 0 1 166,138 A62.1,59 0 0 0 34,138 Z\"/><path fill=\"ACCENT\" d=\"M85,112 A15,15 0 0 1 115,112 Z\"/><rect x=\"62\" y=\"115\" width=\"76\" height=\"6\" rx=\"3\"/><circle cx=\"62\" cy=\"118\" r=\"5.5\"/><circle cx=\"138\" cy=\"118\" r=\"5.5\"/><path d=\"M81,121 H119 C115,127.65 115,131.45 119,132 Q119,140 111,140 H89 Q81,140 81,132 C85,131.45 85,127.65 81,121 Z\"/>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
@@ -35,7 +35,7 @@
    "slug": "03-sunset-rest-ii",
    "name": "Sunset Rest II",
    "note": "The next version of V2 #3. The line and a rounder rest move inside a pointed fermata, and the three tapering discs stay below.",
-   "lineage": "Next version of V2 #3 Sunset Rest",
+   "lineage": "Next version of V2 #3",
    "dimensional": false,
    "geometry": "<g transform=\"translate(0,-22)\"><path d=\"M38,138 A62,70 0 0 1 162,138 A58.1,57 0 0 0 38,138 Z\"/><path fill=\"ACCENT\" d=\"M84,112 A16,16 0 0 1 116,112 Z\"/><rect x=\"64\" y=\"115\" width=\"72\" height=\"6\" rx=\"3\"/><path d=\"M83,121 H117 V130 Q117,140 107,140 H93 Q83,140 83,130 Z\"/><rect x=\"62\" y=\"149\" width=\"76\" height=\"6\" rx=\"3\"/><rect x=\"74\" y=\"161\" width=\"52\" height=\"6\" rx=\"3\"/><rect x=\"87\" y=\"173\" width=\"26\" height=\"6\" rx=\"3\"/></g>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
@@ -45,7 +45,7 @@
    "slug": "04-first-vertebra",
    "name": "First Vertebra",
    "note": "The line and rest fuse into a single vertebra under the fermata. Two discs trail below.",
-   "lineage": "Discs from V2 #3",
+   "lineage": "Discs from V2 #3 Sunset Rest",
    "dimensional": false,
    "geometry": "<path d=\"M36,128 A64,70 0 0 1 164,128 A60.1,57 0 0 0 36,128 Z\"/><path fill=\"ACCENT\" d=\"M86,102 A14,14 0 0 1 114,102 Z\"/><path d=\"M84,106 Q100,108.5 116,106 Q120,106 120,110 C116,113.7 116,120.3 120,124 Q120,128 116,128 Q100,130.5 84,128 Q80,128 80,124 C84,120.3 84,113.7 80,110 Q80,106 84,106 Z\"/><rect x=\"53.6\" y=\"111\" width=\"28.4\" height=\"6\"/><path d=\"M58.1,107.25 H52 Q49,107.25 50,110.25 Q53,114 50,117.75 Q49,120.75 52,120.75 H58.1 Q61.1,114 58.1,107.25 Z\"/><rect x=\"118\" y=\"111\" width=\"28.4\" height=\"6\"/><path d=\"M141.9,107.25 H148 Q151,107.25 150,110.25 Q147,114 150,117.75 Q151,120.75 148,120.75 H141.9 Q138.9,114 141.9,107.25 Z\"/><rect x=\"76\" y=\"141\" width=\"48\" height=\"6\" rx=\"3\"/><rect x=\"84\" y=\"154\" width=\"32\" height=\"6\" rx=\"3\"/><rect x=\"92\" y=\"167\" width=\"16\" height=\"6\" rx=\"3\"/>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
@@ -55,7 +55,7 @@
    "slug": "05-sunset-vertebra-ii",
    "name": "Sunset Vertebra II",
    "note": "The next version of V2 #4. The vertebra moves inside a pointed fermata, its body rounds off like the new rest, and the dimensional finish stays.",
-   "lineage": "Next version of V2 #4 Sunset Vertebra (dimensional)",
+   "lineage": "Next version of V2 #4",
    "dimensional": true,
    "geometry": "<g transform=\"translate(0,-22)\"><path d=\"M34,152 A66,84 0 0 1 166,152 A62.1,71 0 0 0 34,152 Z\"/><path fill=\"ACCENT\" d=\"M82,112 A18,18 0 0 1 118,112 Z\"/><g transform=\"translate(100,131) scale(0.66) translate(-100,-128)\"><path d=\"M44,114 C52,104 70,108 82,110 C92,112 108,112 118,110 C130,108 148,104 156,114 C160,120 154,126 146,124 C136,122 128,124 124,128 C120,134 122,142 126,148 Q100,154 74,148 C78,142 80,134 76,128 C72,124 64,122 54,124 C46,126 40,120 44,114 Z\"/></g><path d=\"M87,140 H113 V144.5 Q113,149 108.5,149 H91.5 Q87,149 87,144.5 Z\"/><path d=\"M76,168 Q100,162 124,168 L124,168\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M86,182 Q100,177 114,182\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"6\" stroke-linecap=\"round\"/></g>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
@@ -65,24 +65,34 @@
    "slug": "06-sunset-vertebra-ii-flat",
    "name": "Sunset Vertebra II, Flat",
    "note": "Same drawing as 05 with the gradient and drop shadow removed: solid teal with a solid clay dot.",
-   "lineage": "Flat finish of Sunset Vertebra II",
+   "lineage": "05, flat finish",
    "dimensional": false,
    "geometry": "<g transform=\"translate(0,-22)\"><path d=\"M34,152 A66,84 0 0 1 166,152 A62.1,71 0 0 0 34,152 Z\"/><path fill=\"ACCENT\" d=\"M82,112 A18,18 0 0 1 118,112 Z\"/><g transform=\"translate(100,131) scale(0.66) translate(-100,-128)\"><path d=\"M44,114 C52,104 70,108 82,110 C92,112 108,112 118,110 C130,108 148,104 156,114 C160,120 154,126 146,124 C136,122 128,124 124,128 C120,134 122,142 126,148 Q100,154 74,148 C78,142 80,134 76,128 C72,124 64,122 54,124 C46,126 40,120 44,114 Z\"/></g><path d=\"M87,140 H113 V144.5 Q113,149 108.5,149 H91.5 Q87,149 87,144.5 Z\"/><path d=\"M76,168 Q100,162 124,168 L124,168\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M86,182 Q100,177 114,182\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"6\" stroke-linecap=\"round\"/></g>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
    "number": 7,
-   "slug": "07-atlas-and-axis",
+   "slug": "07-held-vertebra",
+   "name": "Held Vertebra",
+   "note": "Jared's pick: the Atlas & Axis fermata over everything from Sunset Vertebra II Flat. The first vertebra's wings now curve gently downward, with the pointed flares removed.",
+   "lineage": "Arc of 08 + everything of 06",
+   "dimensional": false,
+   "geometry": "<g transform=\"translate(0,-20)\"><path d=\"M38,132 A62,66 0 0 1 162,132 A58.4,54 0 0 0 38,132 Z\"/><path fill=\"ACCENT\" d=\"M83,106.5 A17,17 0 0 1 117,106.5 Z\"/><path d=\"M100,113 C112,112 126,113 133,117 C139,120 139,127 134,129 C130,131 126,128 122,127 C118,126 116,128 116,132 C116,137 116,142 117,145 Q117,150 111,150 H89 Q83,150 83,145 C84,142 84,137 84,132 C84,128 82,126 78,127 C74,128 70,131 66,129 C61,127 61,120 67,117 C74,113 88,112 100,113 Z\"/><path d=\"M76,168 Q100,162 124,168\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"6\" stroke-linecap=\"round\"/><path d=\"M86,182 Q100,177 114,182\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"6\" stroke-linecap=\"round\"/></g>",
+   "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
+  },
+  {
+   "number": 8,
+   "slug": "08-atlas-and-axis",
    "name": "Atlas & Axis",
    "note": "Upper cervical, literally. The arc is C1, the dome is the dens of C2 rising into it, the line becomes C2's wings.",
-   "lineage": "C2 axis reference photo + V2 #4",
+   "lineage": "C2 photo + V2 #4 Sunset Vertebra",
    "dimensional": false,
    "geometry": "<path d=\"M38,120 A62,66 0 0 1 162,120 A58.4,54 0 0 0 38,120 Z\"/><path fill=\"ACCENT\" d=\"M87,100 A13,13 0 0 1 113,100 Z\"/><path d=\"M100,111.2 C120,102.2 140,104.9 150,112.1 Q153,121 144,121 C134,116.6 117.5,118.4 100,119.3 C82.5,118.4 66,116.6 56,121 Q47,121 50,112.1 C60,104.9 80,102.2 100,111.2 Z\"/><path d=\"M80,116 H120 C115,125.1 115,130.3 120,132 Q120,142 110,142 H90 Q80,142 80,132 C85,130.3 85,125.1 80,116 Z\"/><path d=\"M88,150 Q100,152.5 112,150 Q116,150 116,154 C113,155.6 113,160.4 116,162 Q116,166 112,166 Q100,168.5 88,166 Q84,166 84,162 C87,160.4 87,155.6 84,154 Q84,150 88,150 Z\"/>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
-   "number": 8,
-   "slug": "08-column",
+   "number": 9,
+   "slug": "09-column",
    "name": "Column",
    "note": "The fermata crowns a column. Three rests stack into vertebrae and step out below the arc.",
    "lineage": "Steps from V2 #6 Tidal Spine",
@@ -91,28 +101,28 @@
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
-   "number": 9,
-   "slug": "09-tidal-spine-ii",
+   "number": 10,
+   "slug": "10-tidal-spine-ii",
    "name": "Tidal Spine II",
    "note": "The next version of V2 #6. The big dome, line and rounded rest sit inside a pointed fermata, and the tide of bars steps down as soft pills.",
-   "lineage": "Next version of V2 #6 Tidal Spine",
+   "lineage": "Next version of V2 #6",
    "dimensional": false,
    "geometry": "<g transform=\"translate(0,-24)\"><path d=\"M30,142 A70,76 0 0 1 170,142 A65.8,62 0 0 0 30,142 Z\"/><path fill=\"ACCENT\" d=\"M76,116 A24,24 0 0 1 124,116 Z\"/><rect x=\"50\" y=\"117.5\" width=\"100\" height=\"7\" rx=\"3.5\"/><path d=\"M80,124.5 H120 V134.5 Q120,144.5 110,144.5 H90 Q80,144.5 80,134.5 Z\"/><rect x=\"60\" y=\"151\" width=\"80\" height=\"10\" rx=\"5\"/><rect x=\"72\" y=\"165\" width=\"56\" height=\"10\" rx=\"5\"/><rect x=\"84\" y=\"179\" width=\"32\" height=\"10\" rx=\"5\"/></g>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
-   "number": 10,
-   "slug": "10-held-spine",
+   "number": 11,
+   "slug": "11-held-spine",
    "name": "Held Spine",
    "note": "Jared's reference column, four vertebrae with processes. The fermata shrinks to a cap on top.",
-   "lineage": "Jared's column reference photo",
+   "lineage": "Column photo",
    "dimensional": false,
    "geometry": "<path d=\"M66,54 A34,34 0 0 1 134,54 A31.3,25 0 0 0 66,54 Z\"/><path fill=\"ACCENT\" d=\"M92,46 A8,8 0 0 1 108,46 Z\"/><path d=\"M85,60 Q100,63 115,60 Q120,60 120,65 C115,67.7 115,74.3 120,77 Q120,82 115,82 Q100,85 85,82 Q80,82 80,77 C85,74.3 85,67.7 80,65 Q80,60 85,60 Z\"/><rect x=\"64.8\" y=\"68.5\" width=\"17.2\" height=\"5\"/><path d=\"M68.3,65.75 H64 Q61,65.75 62,68.75 Q65,71 62,73.25 Q61,76.25 64,76.25 H68.3 Q71.3,71 68.3,65.75 Z\"/><rect x=\"118\" y=\"68.5\" width=\"17.2\" height=\"5\"/><path d=\"M131.7,65.75 H136 Q139,65.75 138,68.75 Q135,71 138,73.25 Q139,76.25 136,76.25 H131.7 Q128.7,71 131.7,65.75 Z\"/><path d=\"M84,91 Q100,94 116,91 Q121,91 121,96 C116,99.05 116,105.95 121,109 Q121,114 116,114 Q100,117 84,114 Q79,114 79,109 C84,105.95 84,99.05 79,96 Q79,91 84,91 Z\"/><rect x=\"63.8\" y=\"100\" width=\"17.2\" height=\"5\"/><path d=\"M67.3,97.25 H63 Q60,97.25 61,100.25 Q64,102.5 61,104.75 Q60,107.75 63,107.75 H67.3 Q70.3,102.5 67.3,97.25 Z\"/><rect x=\"119\" y=\"100\" width=\"17.2\" height=\"5\"/><path d=\"M132.7,97.25 H137 Q140,97.25 139,100.25 Q136,102.5 139,104.75 Q140,107.75 137,107.75 H132.7 Q129.7,102.5 132.7,97.25 Z\"/><path d=\"M83,123 Q100,126 117,123 Q122,123 122,128 C117,131.4 117,138.6 122,142 Q122,147 117,147 Q100,150 83,147 Q78,147 78,142 C83,138.6 83,131.4 78,128 Q78,123 83,123 Z\"/><rect x=\"62.8\" y=\"132.5\" width=\"17.2\" height=\"5\"/><path d=\"M66.3,129.75 H62 Q59,129.75 60,132.75 Q63,135 60,137.25 Q59,140.25 62,140.25 H66.3 Q69.3,135 66.3,129.75 Z\"/><rect x=\"120\" y=\"132.5\" width=\"17.2\" height=\"5\"/><path d=\"M133.7,129.75 H138 Q141,129.75 140,132.75 Q137,135 140,137.25 Q141,140.25 138,140.25 H133.7 Q130.7,135 133.7,129.75 Z\"/><path d=\"M82,156 Q100,159 118,156 Q123,156 123,161 C118,164.75 118,172.25 123,176 Q123,181 118,181 Q100,184 82,181 Q77,181 77,176 C82,172.25 82,164.75 77,161 Q77,156 82,156 Z\"/><rect x=\"61.8\" y=\"166\" width=\"17.2\" height=\"5\"/><path d=\"M65.3,163.25 H61 Q58,163.25 59,166.25 Q62,168.5 59,170.75 Q58,173.75 61,173.75 H65.3 Q68.3,168.5 65.3,163.25 Z\"/><rect x=\"121\" y=\"166\" width=\"17.2\" height=\"5\"/><path d=\"M134.7,163.25 H139 Q142,163.25 141,166.25 Q138,168.5 141,170.75 Q142,173.75 139,173.75 H134.7 Q131.7,168.5 134.7,163.25 Z\"/>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
-   "number": 11,
-   "slug": "11-vertebra",
+   "number": 12,
+   "slug": "12-vertebra",
    "name": "Vertebra",
    "note": "A single bold vertebra crowned by a full fermata. The rest survives as its body, the dot as a dome on its crest.",
    "lineage": "Vertebra from V2 #4",
@@ -121,8 +131,8 @@
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
-   "number": 12,
-   "slug": "12-curve",
+   "number": 13,
+   "slug": "13-curve",
    "name": "Curve",
    "note": "The spine in profile, built from seven whole rests, each hanging from its own line, under a fermata held at the top of the neck.",
    "lineage": "Column photo, in profile",
@@ -131,11 +141,11 @@
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
   },
   {
-   "number": 13,
-   "slug": "13-curve-held",
+   "number": 14,
+   "slug": "14-curve-held",
    "name": "Curve, Held",
    "note": "Curve taken inside, as Jared asked. A round fermata, tapering gradually to points, holds the dome and the upper neck, and the rest of the S flows out below it.",
-   "lineage": "Curve, held inside the fermata",
+   "lineage": "13, held inside the fermata",
    "dimensional": false,
    "geometry": "<g transform=\"translate(0,-16)\"><path d=\"M36,146 A64,78 0 0 1 164,146 A60.7,67 0 0 0 36,146 Z\"/><path fill=\"ACCENT\" d=\"M89,96 A11,11 0 0 1 111,96 Z\"/><g transform=\"translate(99.36,101) rotate(-10.2)\"><rect x=\"-13.6\" y=\"-1.5\" width=\"27.2\" height=\"3\" rx=\"1.5\"/><circle cx=\"-13.6\" cy=\"0\" r=\"2.2\"/><circle cx=\"13.6\" cy=\"0\" r=\"2.2\"/><path d=\"M-8.5,1.1 H8.5 C6.5,4.25 6.5,6.05 8.5,5.15 Q8.5,10.1 3.55,10.1 H-3.55 Q-8.5,10.1 -8.5,5.15 C-6.5,6.05 -6.5,4.25 -8.5,1.1 Z\"/></g><g transform=\"translate(104.72,115.98) rotate(-2.94)\"><rect x=\"-15.68\" y=\"-1.5\" width=\"31.36\" height=\"3\" rx=\"1.5\"/><circle cx=\"-15.68\" cy=\"0\" r=\"2.4\"/><circle cx=\"15.68\" cy=\"0\" r=\"2.4\"/><path d=\"M-9.8,1.1 H9.8 C7.52,4.56 7.52,6.54 9.8,5.55 Q9.8,11 4.36,11 H-4.36 Q-9.8,11 -9.8,5.55 C-7.52,6.54 -7.52,4.56 -9.8,1.1 Z\"/></g><g transform=\"translate(102.91,133.12) rotate(7.39)\"><rect x=\"-17.76\" y=\"-1.5\" width=\"35.52\" height=\"3\" rx=\"1.5\"/><circle cx=\"-17.76\" cy=\"0\" r=\"2.6\"/><circle cx=\"17.76\" cy=\"0\" r=\"2.6\"/><path d=\"M-11.1,1.1 H11.1 C8.54,4.88 8.54,7.04 11.1,5.96 Q11.1,11.9 5.16,11.9 H-5.16 Q-11.1,11.9 -11.1,5.96 C-8.54,7.04 -8.54,4.88 -11.1,1.1 Z\"/></g><g transform=\"translate(95.61,151.17) rotate(10.48)\"><rect x=\"-19.84\" y=\"-1.5\" width=\"39.68\" height=\"3\" rx=\"1.5\"/><circle cx=\"-19.84\" cy=\"0\" r=\"2.8\"/><circle cx=\"19.84\" cy=\"0\" r=\"2.8\"/><path d=\"M-12.4,1.1 H12.4 C9.56,5.2 9.56,7.54 12.4,6.36 Q12.4,12.8 5.96,12.8 H-5.96 Q-12.4,12.8 -12.4,6.36 C-9.56,7.54 -9.56,5.2 -12.4,1.1 Z\"/></g><g transform=\"translate(89.6,169.85) rotate(4.26)\"><rect x=\"-21.92\" y=\"-1.5\" width=\"43.84\" height=\"3\" rx=\"1.5\"/><circle cx=\"-21.92\" cy=\"0\" r=\"3\"/><circle cx=\"21.92\" cy=\"0\" r=\"3\"/><path d=\"M-13.7,1.1 H13.7 C10.58,5.51 10.58,8.03 13.7,6.77 Q13.7,13.7 6.77,13.7 H-6.77 Q-13.7,13.7 -13.7,6.77 C-10.58,8.03 -10.58,5.51 -13.7,1.1 Z\"/></g><g transform=\"translate(90.46,189) rotate(-6.36)\"><rect x=\"-24\" y=\"-1.5\" width=\"48\" height=\"3\" rx=\"1.5\"/><circle cx=\"-24\" cy=\"0\" r=\"3.2\"/><circle cx=\"24\" cy=\"0\" r=\"3.2\"/><path d=\"M-15,1.1 H15 C11.6,5.82 11.6,8.53 15,7.17 Q15,14.6 7.57,14.6 H-7.57 Q-15,14.6 -15,7.17 C-11.6,8.53 -11.6,5.82 -15,1.1 Z\"/></g></g>",
    "geometry_help": "SVG children for a 200x200 viewBox. Wrap in <g fill=MAIN color=MAIN>; replace the literal ACCENT with the accent color (clay #B5764A in full color, MAIN for one-color)."
