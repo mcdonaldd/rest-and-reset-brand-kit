@@ -190,7 +190,7 @@
   .spectrum { margin: 36px 0 8px; }
   .spectrum-ends { display: flex; justify-content: space-between; font-size: 12.5px; font-weight: 600; color: var(--heading); margin-bottom: 6px; }
   .spectrum-scroll { overflow-x: auto; padding: 4px 0 2px; }
-  .spectrum-track { position: relative; display: grid; grid-template-columns: repeat(13, minmax(54px, 1fr)); min-width: 702px; padding-bottom: 16px; }
+  .spectrum-track { position: relative; display: grid; grid-template-columns: repeat(14, minmax(54px, 1fr)); min-width: 756px; padding-bottom: 16px; }
   .spectrum-track::before { content: ""; position: absolute; left: 0; right: 0; bottom: 5px; height: 1px; background: var(--muted); }
   .spectrum-track::after { content: ""; position: absolute; right: 1px; bottom: 1.5px; width: 8px; height: 8px; border-top: 1px solid var(--muted); border-right: 1px solid var(--muted); transform: rotate(45deg); }
   .spec-btn { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 8px 2px 6px; background: none; border: 0; border-radius: 8px; cursor: pointer; font: inherit; font-size: 12px; font-weight: 600; color: var(--v3-text); }
@@ -204,6 +204,7 @@
   .v3-size-row { display: flex; align-items: flex-end; gap: 20px; }
   .v3-size-cell { display: flex; flex-direction: column; align-items: center; gap: 6px; line-height: 0; }
   .v3-size-cell span { font-size: 11px; line-height: 1.2; color: var(--v3-text); }
+  .v3-pick { font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; color: oklch(40% 0.09 45); background: oklch(93% 0.035 80); padding: 3px 10px; border-radius: 999px; white-space: nowrap; }
   .v3-flag { margin-top: 12px; font-size: 12px; font-weight: 600; color: oklch(40% 0.09 45); }
 </style>
 </head>
@@ -388,7 +389,7 @@
 <div class="wrap" id="v3-view" hidden>
   <header>
     <h1>Rest &amp; Reset</h1>
-    <p class="lede">Thirteen marks from Jared&rsquo;s November sketch round, ordered from most musical (mark 1) to most spine (mark 13). The palette, typography and usage rules carry over from V1.</p>
+    <p class="lede">Fourteen marks from Jared&rsquo;s November sketch round, ordered from most musical (mark 1) to most spine (mark 14). Mark 7, Held Vertebra, is Jared&rsquo;s pick. The palette, typography and usage rules carry over from V1.</p>
     <div class="card v3-changes">
       <div class="t">Four changes in Jared&rsquo;s sketch</div>
       <ul>
@@ -412,13 +413,13 @@
 
   <section class="section v3-sizes" aria-labelledby="v3-sizes-h" style="border-bottom:0;margin-bottom:0;padding-bottom:0;">
     <h2 class="h2" id="v3-sizes-h">Small-size check</h2>
-    <p class="v3-meta">Each mark in one color at 64, 32 and 16 px. The hairline tips on mark 13 and the taper on mark 1 are intentional, so they are flagged here rather than thickened.</p>
+    <p class="v3-meta">Each mark in one color at 64, 32 and 16 px. The hairline tips on marks 1 and 14 are intentional and thin out at 16 px, so they are flagged here rather than thickened.</p>
     <ul class="v3-size-grid" id="v3small"></ul>
   </section>
 
   <aside class="next">
     <p>Preview any direction, from V1, V2 or V3, on a mockup of the current restandresetchiro.com homepage, and switch between them as you scroll.</p>
-    <a href="/site#concept=v3-1">Open website mockup &rarr;</a>
+    <a href="/site#concept=v3-7">Open website mockup &rarr;</a>
   </aside>
 </div>
 
@@ -823,8 +824,9 @@
   // ============================================================
   // V3 lockups follow V2: uppercase wordmark and the same subline, with no personal name.
   var v3Subline = 'UPPER CERVICAL CHIROPRACTIC CARE';
-  var V3_HAIRLINE_FLAGS = { 1: 'Taper is hairline at 16 px', 13: 'Tips are hairline at 16 px' };
-  var V3_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+  var V3_HAIRLINE_FLAGS = { 1: 'Taper is hairline at 16 px', 14: 'Tips are hairline at 16 px' };
+  var V3_ORDER = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14];
+  var V3_PICK = 7;
 
   function buildV3() {
     var html3 = '', axis = '', small = '';
@@ -835,7 +837,7 @@
       var name = escHtml(c.name);
       var base = '/assets/icons-v3/' + c.slug + '/';
 
-      axis += '<button type="button" class="spec-btn" data-jump="' + n + '" title="' + n + ' &middot; ' + name + '" aria-label="Go to ' + n + ', ' + name + '">' +
+      axis += '<button type="button" class="spec-btn" data-jump="' + n + '" title="' + n + ' &middot; ' + name + '" aria-label="Go to ' + n + ', ' + name + (n === V3_PICK ? ' (Jared&rsquo;s pick)' : '') + '">' +
         RR3.conceptMark(c, 40) + '<span>' + n + '</span></button>';
 
       var flag = V3_HAIRLINE_FLAGS[n];
@@ -847,6 +849,7 @@
       html3 +=
         '<section class="section" data-v3-block="' + n + '">' +
           '<div class="concept-head"><h2 class="h2">' + n + '. ' + name + '</h2>' +
+          (n === V3_PICK ? '<span class="v3-pick">Jared&rsquo;s pick</span>' : '') +
           '<div class="meta">' + c.finish + ' &middot; ' + c.fontLabel + '</div>' +
           '<a class="see-site" href="/site#concept=v3-' + n + '">See it on the website &rarr;</a></div>' +
           '<p class="v3-note">' + escHtml(c.note) + '</p>' +
@@ -949,7 +952,7 @@
   ].concat([1, 2, 3, 4, 5, 6, 7, 8].map(function (n) {
     var c = RR2.CONCEPTS[n];
     return { id: 'v2-' + n, label: n + ' &middot; ' + c.name, src: 'v2', variant: c.variant, dim: c.dim, font: c.fontFamily };
-  })).concat([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13].map(function (n) {
+  })).concat([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14].map(function (n) {
     var c = RR3.CONCEPTS[n];
     return { id: 'v3-' + n, label: n + ' &middot; ' + escHtml(c.name), src: 'v3', variant: n, dim: c.dim, font: c.font };
   }));
